@@ -1,0 +1,30 @@
+stages:
+  - build
+  - run
+    
+build:
+  before_script:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  stage: build
+  image: docker:stable
+  tags:
+    - docker
+  services:
+    - docker:dind
+  variables: 
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVER: overlay2
+    IMAGE_TAG: tayko/tayko.co
+  script:
+    - docker build -t $IMAGE_TAG
+    - docker push $IMAGE_TAG
+run:
+  before_script:
+    - cd $SITE_DIR
+    - docker-compose down || true
+  stage: run
+  tags:
+    - shell
+  script: 
+    - docker-compose pull
+    - docker-compose up -d
