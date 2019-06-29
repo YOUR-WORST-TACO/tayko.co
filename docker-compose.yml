@@ -2,7 +2,7 @@ version: '3'
 services:
   tayko.co:
     container_name: tayko.co
-    image: 
+    image: tayko/tayko.co
     restart: always
     expose:
       - "80"
@@ -15,7 +15,7 @@ services:
       - "traefik.enabled=true"
       - "traefik.port=80"
       - "traefik.default.protocol=http"
-        
+
 networks:
   web:
     external: true
