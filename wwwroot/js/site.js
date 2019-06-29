@@ -3,7 +3,6 @@
 
 // Write your JavaScript code.
 
-Rainbow.defer = false;
 
 $(function() {
     'use strict';
@@ -13,15 +12,13 @@ $(function() {
             prefetch: true,
             cacheLength: 4,
             onBefore: function($currentTarget, $container) {
-                Rainbow.defer = true;
+                
                 },
             onReady: {
                 duration:1,
                 render: function ($container, $newContent) {
                     //Rainbow.color();
                     $container.html($newContent);
-                    Rainbow.remove('csharp');
-                    Rainbow.color();
                 }
             }
         },
