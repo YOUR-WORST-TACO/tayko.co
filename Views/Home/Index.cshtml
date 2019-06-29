@@ -2,4 +2,28 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h1>Nothing to see here yet.</h1>
+<pre><code data-language="csharp">// The best person class ever written
+public class Person
+{
+    public string FirstName { get; set; }
+    public string Lastname { get; set; }
+    public int Gender { get; set; }
+    public DateTime Age { get; set; }
+
+    public Person()
+    {}
+
+    public string GetName()
+    {
+        return $"{FirstName} {Lastname}";
+    }
+}
+</code></pre>
+
+@section Scripts
+{
+    <script>
+    Rainbow.defer = true;
+    Rainbow.color()
+    </script>
+}

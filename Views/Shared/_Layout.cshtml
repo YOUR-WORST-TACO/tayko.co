@@ -6,12 +6,10 @@
     <title>@ViewData["Title"] - Tayko.co</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/rainbow/themes/css/monokai.css"/>
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
         <link rel="stylesheet" href="~/css/site.css"/>
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="~/lib/rainbow/themes/css/monokai.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"/>
@@ -43,12 +41,16 @@
     </div>
 </nav>
 -->
+
 <!-- RE-STRUCTURE -->
-<div class="container body-content">
+<div id="main" class="container body-content">
+    <a asp-controller="Home" asp-action="Code">CODE</a>
+    <a asp-controller="Home" asp-action="Index">INDEX</a>
+    
     @RenderBody()
     <hr/>
     <footer>
-        <p>&copy; 2019 - Tayko.co</p>
+        <p>&copy; @DateTime.Now.Year - Tayko.co</p>
     </footer>
 </div>
 
@@ -57,9 +59,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>            <!-- Bootstrap -->
     
     <script src="~/lib/smoothState/dist/jquery.smoothState.js"></script>    <!-- SmoothState -->
-    <script src="~/lib/rainbow/dist/rainbow.js"></script>                   <!-- Rainbow -->
-    <script src="~/lib/rainbow/dist/csharp.js"></script>                    <!-- Rainbow C# -->
-    
+
     <script src="~/js/site.js" asp-append-version="true"></script>          <!-- Site.js -->
 </environment>
 <environment exclude="Development">
