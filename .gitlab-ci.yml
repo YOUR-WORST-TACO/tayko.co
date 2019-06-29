@@ -20,7 +20,7 @@ build:
     - docker push $IMAGE_TAG
 run:
   before_script:
-    - cd $SITE_DIR
+    - cp docker-compose.yml $SITE_DIR/docker-compose.yml
     - docker-compose down || true
   stage: run
   tags:
