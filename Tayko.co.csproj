@@ -13,4 +13,53 @@
         <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\dist\csharp.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\dist\rainbow-custom.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\dist\rainbow.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\LICENSE" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\all-hallows-eve.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\blackboard.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\dreamweaver.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\espresso-libre.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\github.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\kimbie-dark.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\kimbie-light.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\monokai.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\obsidian.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\paraiso-dark.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\paraiso-light.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\pastie.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\rainbow.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\solarized-dark.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\solarized-light.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\sunburst.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\tomorrow-night.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\tricolore.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\twilight.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\css\zenburnesque.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\all-hallows-eve.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\blackboard.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\dreamweaver.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\espresso-libre.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\github.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\kimbie-dark.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\kimbie-light.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\monokai.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\obsidian.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\paraiso-dark.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\paraiso-light.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\pastie.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\rainbow.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\solarized-dark.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\solarized-light.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\sunburst.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\tomorrow-night.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\tricolore.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\twilight.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\zenburnesque.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\_base.sass" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\rainbow\themes\sass\_init.sass" />
+    </ItemGroup>
+
 </Project>
