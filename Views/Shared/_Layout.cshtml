@@ -53,11 +53,14 @@
 </div>
 
 <environment include="Development">
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/lib/rainbow/dist/rainbow.js"></script>
-    <script src="~/lib/rainbow/dist/csharp.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>                     <!-- JQuery -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>            <!-- Bootstrap -->
+    
+    <script src="~/lib/smoothState/dist/jquery.smoothState.js"></script>    <!-- SmoothState -->
+    <script src="~/lib/rainbow/dist/rainbow.js"></script>                   <!-- Rainbow -->
+    <script src="~/lib/rainbow/dist/csharp.js"></script>                    <!-- Rainbow C# -->
+    
+    <script src="~/js/site.js" asp-append-version="true"></script>          <!-- Site.js -->
 </environment>
 <environment exclude="Development">
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
@@ -72,7 +75,10 @@
             crossorigin="anonymous"
             integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
         </script>
+    
+    <script src="~/lib/smoothState/dist/jquery.smoothState.min.js"></script>
     <script src="~/lib/rainbow/dist/rainbow-custom.min.js"></script>
+    
     <script src="~/js/site.min.js" asp-append-version="true"></script>
 </environment>
 
