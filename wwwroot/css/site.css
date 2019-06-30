@@ -6,9 +6,9 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 body {
-    background-image: url("../images/wallpaper-frosted.png");
+    background-image: url("../images/wallpaper.png");
     background-size: cover;
-    background-attachment: fixed;
+    /*background-attachment: fixed;*/
     min-height: 100vh;
 }
 

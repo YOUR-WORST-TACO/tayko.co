@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - Tayko.co</title>
 
-    <link rel="stylesheet" href="~/lib/highlight/dist/styles/atelier-cave-dark.css"/>
-
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
         <link rel="stylesheet" href="~/css/site.css"/>
+        <link rel="stylesheet" href="~/css/tayko-hljs-color.css"/>
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -48,15 +47,13 @@
 
 <div id="main">
     <nav class="navbar navbar-content">
-        <h1 style="color: #000 !important;">Stephen, Tafoya</h1>
+        <h1>Stephen, Tafoya</h1>
         <a asp-controller="Home" asp-action="Code">CODE</a>
         <a asp-controller="Home" asp-action="Index">INDEX</a>
     </nav>
 
     <div class="body-content">
         <div class="primary-content">
-
-
             @RenderBody()
         </div>
     </div>
