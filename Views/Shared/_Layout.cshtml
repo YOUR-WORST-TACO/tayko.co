@@ -46,23 +46,25 @@
 
 <!-- RE-STRUCTURE -->
 
-<div class="body-content">
-    <nav class="navbar content-left">
+<div id="main">
+    <nav class="navbar navbar-content">
         <h1 style="color: #000 !important;">Stephen, Tafoya</h1>
-    </nav>
-    <div id="main" class="content-right">
         <a asp-controller="Home" asp-action="Code">CODE</a>
         <a asp-controller="Home" asp-action="Index">INDEX</a>
-        
-        @RenderBody()
-        
-        <hr/>
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Tayko.co</p>
-            </footer>
-    </div>
-</div>
+    </nav>
 
+    <div class="body-content">
+        <div class="primary-content">
+
+
+            @RenderBody()
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Tayko.co</p>
+    </footer>
+</div>
 <environment include="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script> <!-- JQuery -->
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script> <!-- Bootstrap -->
