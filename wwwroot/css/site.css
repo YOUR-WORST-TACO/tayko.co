@@ -1,14 +1,16 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
-    padding-top: 0px;
-    padding-bottom: 20px;
+    background-image: url("../images/wallpaper-frosted.png");
+    background-size: cover;
+    min-height: 100vh;
 }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
     display: flex;
+    height: 100vh;
 }
 
 /* Nav element, left side of screen */
@@ -18,7 +20,10 @@ body {
 
 /* Content, right side of screen */
 .content-right {
-    flex: 1;
+    flex: 0 0 65%;
+    background-color: #000;
+    height: 100%;
+    padding: 25px;
 }
 
 /* Carousel */
@@ -48,5 +53,4 @@ body {
 footer {
     position: absolute;
     bottom: 0;
-    width:100%;
 }
