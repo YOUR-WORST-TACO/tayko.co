@@ -155,10 +155,4 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\highlight\dist\styles\zenburn.css" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Styles\Layouts" />
-      <Folder Include="Styles\Mixins" />
-      <Folder Include="Styles\Pages" />
-    </ItemGroup>
-
 </Project>

@@ -1,0 +1,17 @@
+nav {
+  @include sidebar_resize;
+  
+  h1 {
+    text-align: center;
+  }
+  
+  width: 30vw;
+}
+
+.navbar-content {
+  
+  @media screen and (max-width: $page-response-width) {
+    position: relative;
+  }
+  position: fixed;
+}

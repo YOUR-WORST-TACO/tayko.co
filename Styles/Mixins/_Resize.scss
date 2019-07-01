@@ -1,0 +1,9 @@
+@mixin sidebar_resize {
+  @media screen and (max-width: $page-transition-width) {
+    width: 40vw;
+  }
+  
+  @media screen and (max-width: $page-response-width) {
+    width: 100vw;
+  }
+}

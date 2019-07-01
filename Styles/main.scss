@@ -1,10 +1,16 @@
 @import 'Parameters';
-
 @import 'Colors';
-
 @import 'CodeStyle';
+
+@import 'Mixins/Resize';
+
+@import 'Layouts/Resize';
 
 @import 'Components/CodeBox';
 @import 'Components/Footer';
+@import 'Components/Navbar';
+@import 'Components/BodyContent';
+
+@import 'Pages/Shared';
 
 @import 'TEMP';

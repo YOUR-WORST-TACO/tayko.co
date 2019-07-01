@@ -1,4 +1,6 @@
 footer {
+  @include sidebar_resize;
+  
   width: 30vw;
   text-align: center;
   color: $color-foreground;
@@ -7,4 +9,9 @@ footer {
   bottom: 0;
   line-height: 20px;
   font-size: 15px;
+
+  @media screen and (max-width: $page-response-width) {
+    position: relative;
+    background-color: $color-background;
+  }
 }
