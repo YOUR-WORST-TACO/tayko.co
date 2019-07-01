@@ -15,9 +15,15 @@ nav {
   }
   
   width: 30vw;
+
+  @media screen and (max-width: $page-transition-width) {
+    height: 200px;
+  }
+  
   @media screen and (max-width: $page-response-width) {
     padding-top: 40px;
   }
+  
 }
 
 .navbar-content {

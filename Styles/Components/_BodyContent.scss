@@ -3,12 +3,12 @@ $top-padding: 100px;
 .body-content {
   margin-left: 30vw;
   background-color: #14191B;
-  padding: $top-padding calc(40px - 1em) 40px 40px;
+  padding: $top-padding 100px 100px;
   min-height: 100vh;
 
   @media screen and (max-width: $page-transition-width) {
     margin-left: 40vw;
-    padding: $top-padding calc(30px - 1em) 30px 30px;
+    padding: $top-padding 30px 30px;
   }
   
   @media screen and (max-width: $page-response-width) {
