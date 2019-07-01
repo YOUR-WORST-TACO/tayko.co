@@ -6,7 +6,7 @@
 
 $(function() {
     'use strict';
-    var $page = $('#main'),
+    let $page = $('#main'),
         options = {
             debug: true,
             prefetch: true,
@@ -17,9 +17,13 @@ $(function() {
             onReady: {
                 duration:1,
                 render: function ($container, $newContent) {
-                    //Rainbow.color();
                     $container.html($newContent);
                 }
+            },
+            onAfter: function($container, $newContent) {
+                document.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightBlock(block);
+                });
             }
         },
         smoothState = $page.smoothState(options).data('smoothState');
