@@ -1,16 +1,18 @@
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
+$top-padding
+
 .body-content {
   margin-left: 30vw;
   background-color: #14191B;
-  padding: 25px;
+  padding: $top-padding 40px 40px;
   min-height: 100vh;
 
   @media screen and (max-width: $page-transition-width) {
     margin-left: 40vw;
+    padding: $top-padding 30px 30px;
   }
   
   @media screen and (max-width: $page-response-width) {
+    padding-top: 30px;
     margin-left: 0;
   }
 }
