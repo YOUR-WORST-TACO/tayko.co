@@ -3,6 +3,7 @@
 @import 'CodeStyle';
 
 @import 'Mixins/Resize';
+@import 'Mixins/TextStyles';
 
 @import 'Layouts/Resize';
 
@@ -12,4 +13,4 @@
 @import 'Components/BodyContent';
 @import 'Components/Scrollbar';
 
-@import 'Pages/Shared';
+@import 'Globals';

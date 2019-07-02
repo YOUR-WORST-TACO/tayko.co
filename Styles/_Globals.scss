@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url("../images/wallpaper.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1 {
+  padding-top: 25px;
+  @include default_text;
+}
+
+h2 {
+  @include default_text;
+}
+
+h3 {
+  @include default_text;
+}
+
+h4 {
+  @include default_text;
+}
+
+p {
+  @include default_text;
+  
+  font-size: 18px;
+}
