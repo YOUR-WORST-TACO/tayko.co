@@ -1,17 +1,15 @@
 footer {
-  @include sidebar_resize;
+  margin-left: 30vw;
   
-  width: 30vw;
-  text-align: center;
-  color: $color-foreground;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  line-height: 20px;
-  font-size: 15px;
+  background-color: $color-background;
+  
+  @media screen and (max-width: $page-transition-width) {
+    margin-left: 40vw;
+    //padding: $top-padding 30px 30px;
+  }
 
   @media screen and (max-width: $page-response-width) {
-    position: relative;
-    background-color: $color-background;
+    //padding-top: 30px;
+    margin-left: 0;
   }
 }

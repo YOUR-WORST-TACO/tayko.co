@@ -4,6 +4,7 @@
 
 @import 'Mixins/Resize';
 @import 'Mixins/TextStyles';
+@import 'Mixins/Links';
 
 @import 'Layouts/Resize';
 
@@ -12,5 +13,6 @@
 @import 'Components/Navbar';
 @import 'Components/BodyContent';
 @import 'Components/Scrollbar';
+@import 'Components/Copyright';
 
 @import 'Globals';

@@ -2,7 +2,7 @@ $top-padding: 100px;
 
 .body-content {
   margin-left: 30vw;
-  background-color: #14191B;
+  background-color: $color-background;
   padding-top: $top-padding;
   //padding: $top-padding 100px 100px;
   min-height: 100vh;

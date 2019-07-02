@@ -1,0 +1,21 @@
+@mixin hover-text-link {
+  &:link, &:visited {
+    color: $color-foreground;
+  }
+  &:hover, &:focus {
+    color: $color-foreground-2;
+    font-style: normal;
+    text-decoration: none;
+  }
+  &:link:active, &:visited:active
+  {
+    color: $color-foreground-2;
+  }
+}
+
+@mixin plain-text-link {
+  &:link, &:visited, &:hover, &:focus, &:link:active, &:visited:active {
+    color: $color-foreground;
+    text-decoration: none;
+  }
+}

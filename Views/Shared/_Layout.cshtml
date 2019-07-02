@@ -42,14 +42,22 @@
 </nav>
 -->
 
-<!-- RE-STRUCTURE -->
 
 <div id="main">
     <nav class="navbar navbar-content">
-        <h1>Stephen Tafoya</h1>
+        <h1>
+            <a asp-controller="Home" asp-action="Index">Stephen Tafoya</a>
+        </h1>
         <h2>Developer. Artist. Creator.</h2>
-        <a asp-controller="Home" asp-action="Code">CODE</a>
-        <a asp-controller="Home" asp-action="Index">INDEX</a>
+
+        <ul>
+            <li>
+                <a asp-controller="Home" asp-action="Code">CODE</a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="Index">INDEX</a>
+            </li>
+        </ul>
     </nav>
 
     <div class="body-content">
@@ -59,8 +67,12 @@
     </div>
 
     <footer>
-        <p>&copy; @DateTime.Now.Year - Tayko.co</p>
+        github, linkdin, gitlab,
     </footer>
+
+    <div class="copyright">
+        <p>&copy; @DateTime.Now.Year - Tayko.co</p>
+    </div>
 </div>
 <environment include="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script> <!-- JQuery -->
