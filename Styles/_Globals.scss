@@ -12,11 +12,13 @@ body {
 }
 
 h1 {
-  padding-top: 25px;
+  font-size: 70px;
   @include default_text;
 }
 
 h2 {
+  padding-top: 25px;
+  font-size: 40px;
   @include default_text;
 }
 
