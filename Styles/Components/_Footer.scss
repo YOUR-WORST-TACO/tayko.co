@@ -1,6 +1,9 @@
 footer {
   margin-left: 30vw;
   
+  padding-top: 50px;
+  height: 150px;
+  
   background-color: $color-background;
   
   @media screen and (max-width: $page-transition-width) {
