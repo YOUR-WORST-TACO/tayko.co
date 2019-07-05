@@ -55,6 +55,14 @@ namespace Tayko.co
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "blog",
+                    template: "{action=Index}/{*blog}",
+                    defaults: new {controller = "Blog"});
+                routes.MapRoute(
+                    name: "project",
+                    template: "{action=Index}/{id?}",
+                    defaults: new {controller = "Projects"});
+                routes.MapRoute(
                     name: "default",
                     template: "{action=Index}/{id?}",
                     defaults: new { controller = "Home"});

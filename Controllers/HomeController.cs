@@ -19,6 +19,11 @@ namespace Tayko.co.Controllers
         {
             return View();
         }
+
+        public IActionResult Resume()
+        {
+            return View();
+        }
         /*public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
