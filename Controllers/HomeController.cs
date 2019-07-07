@@ -20,7 +20,7 @@ namespace Tayko.co.Controllers
             return View();
         }
 
-        public IActionResult Resume()
+        public IActionResult Contact()
         {
             return View();
         }
