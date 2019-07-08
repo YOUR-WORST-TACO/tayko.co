@@ -1,0 +1,14 @@
+@using System.IO
+
+<h1>Articles below</h1>
+<hr/>
+<ul>
+    @{
+        string articles = "./Views/Blog/Articles";
+        foreach (var articlePath in Directory.GetFiles(articles))
+        {
+            var article = System.IO.Path.GetFileNameWithoutExtension(articlePath);
+            <li><a href="Article/@article">@article</a></li>
+        }
+    }
+</ul>

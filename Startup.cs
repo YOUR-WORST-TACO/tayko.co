@@ -47,25 +47,30 @@ namespace Tayko.co
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            //app.UseExceptionHandler("/Error");
+            //app.UseHsts();
+            //app.UseDeveloperExceptionPage();
 
+            //app.UseStatusCodePages();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+            //app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "blog",
-                    template: "{action=Index}/{*blog}",
-                    defaults: new {controller = "Blog"});
-                routes.MapRoute(
-                    name: "project",
-                    template: "{action=Index}/{id?}",
-                    defaults: new {controller = "Projects"});
-                routes.MapRoute(
                     name: "default",
                     template: "{action=Index}/{id?}",
-                    defaults: new { controller = "Home"});
+                    new { controller = "Home"});
+                routes.MapRoute(
+                    name: "blog",
+                    template: "Article/{*article}",
+                    new {controller = "Blog", action="Article"});
+                routes.MapRoute(
+                    "NotFound",
+                    "{*url}",
+                    new { controller = "Error", action = "PageNotFound" }
+                );
             });
         }
     }

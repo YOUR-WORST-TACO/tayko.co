@@ -153,6 +153,10 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\highlight\dist\styles\xcode.css" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\highlight\dist\styles\xt256.css" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\highlight\dist\styles\zenburn.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\smoothState\dist\jquery.smoothState.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\smoothState\dist\jquery.smoothState.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\smoothState\LICENSE.md" />
+      <_ContentIncludedByDefault Remove="Views\Home\Articles\my-test-article.cshtml" />
     </ItemGroup>
 
 </Project>

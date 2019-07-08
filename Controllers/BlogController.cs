@@ -1,3 +1,4 @@
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Tayko.co.Controllers
@@ -5,9 +6,15 @@ namespace Tayko.co.Controllers
     public class BlogController : Controller
     {
         // GET
-        public IActionResult Blogs()
+        public IActionResult Article(string article)
         {
-            return View();
+            if (article != null)
+            {
+                
+                return View($"Articles/{article}");
+            }
+            
+            return View("Articles");
         }
     }
 }

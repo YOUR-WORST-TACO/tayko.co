@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Tayko.co.Controllers
 {
-    public class ProjectsController : Controller
+    public class ErrorController : Controller
     {
         // GET
-        public IActionResult Projects()
+        public IActionResult PageNotFound()
         {
             return View();
         }
