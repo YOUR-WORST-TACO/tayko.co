@@ -4,11 +4,11 @@
 <hr/>
 <ul>
     @{
-        string articles = "Views/Blog/Articles";
-        foreach (var articlePath in Directory.GetFiles(articles))
+        var ArticleBag = ViewBag.ArticleBag;
+
+        foreach (var article in ArticleBag)
         {
-            var article = System.IO.Path.GetFileNameWithoutExtension(articlePath);
-            <li><a href="Article/@article">@article</a></li>
+            <li>@article</li>
         }
     }
 </ul>
