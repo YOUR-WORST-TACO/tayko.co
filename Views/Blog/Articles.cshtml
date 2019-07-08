@@ -4,7 +4,7 @@
 <hr/>
 <ul>
     @{
-        string articles = "./Views/Blog/Articles";
+        string articles = "Views/Blog/Articles";
         foreach (var articlePath in Directory.GetFiles(articles))
         {
             var article = System.IO.Path.GetFileNameWithoutExtension(articlePath);
