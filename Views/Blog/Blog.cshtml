@@ -1,1 +1,3 @@
-@Html.Partial($"~/Blog/{ViewData["article-url"]}.html")c
+@model Article
+
+@Html.Raw(Model.Contents);
