@@ -48,9 +48,6 @@ namespace Tayko.co
                 app.UseHsts();
             }*/
             app.UseDeveloperExceptionPage();
-            //app.UseExceptionHandler("/Error");
-            //app.UseHsts();
-            //app.UseDeveloperExceptionPage();
 
             //app.UseStatusCodePages();
             app.UseHttpsRedirection();

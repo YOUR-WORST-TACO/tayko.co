@@ -7,7 +7,11 @@
         foreach (var article in Model.Articles)
         {
             <li><a asp-controller="Blog" asp-action="LoadBlog" asp-route-article="@article.Name"><h2>@article.Title</h2>
-            <p>@article.Description</p></a></li>
+                @if (article.Date != DateTime.MinValue)
+                {
+                    <p><b>@article.Date.ToString("M/d/yy")</b></p>
+                }
+                <p>@article.Description</p></a></li>
         }
     }
 </ul>
