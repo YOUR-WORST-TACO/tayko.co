@@ -65,8 +65,8 @@ namespace Tayko.co
                     new { controller = "Home"});
                 routes.MapRoute(
                     name: "blog",
-                    template: "Article/{*article}",
-                    new {controller = "Blog", action="Article"});
+                    template: "Blog/{*article}",
+                    new {controller = "Blog", action="LoadBlog"});
                 routes.MapRoute(
                     "NotFound",
                     "{*url}",

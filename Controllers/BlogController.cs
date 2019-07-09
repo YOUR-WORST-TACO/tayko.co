@@ -9,7 +9,7 @@ namespace Tayko.co.Controllers
     public class BlogController : Controller
     {
         // GET
-        public IActionResult Article(string article)
+        public IActionResult LoadBlog(string article)
         {
             if (article != null)
             {
