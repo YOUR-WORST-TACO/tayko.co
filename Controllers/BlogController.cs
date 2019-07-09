@@ -1,5 +1,8 @@
 using System.IO;
+using Tayko.co.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.DotNet.PlatformAbstractions;
+using Microsoft.Extensions.FileProviders;
 
 namespace Tayko.co.Controllers
 {
@@ -8,34 +11,18 @@ namespace Tayko.co.Controllers
         // GET
         public IActionResult Article(string article)
         {
-            
             if (article != null)
             {
-                return View($"Articles/{article}");
+                ViewData["article-url"] = article;
+
+                return View("Blog");
             }
 
-            string[,] articles =
-            {
-                {
-                    "articles-how-to",
-                    "Articles How To",
-                    "How to make articles, an insightful look at article creation"
-                },
-                {
-                    "how-to-article",
-                    "How to Article",
-                    "Another take on making articles, not as insightful, but could incite rage and anger"
-                },
-                {
-                    "my-test-article",
-                    "My Test Article",
-                    "A horrid example of an article, do not look at this"
-                }
-            };
+            var provider = new PhysicalFileProvider(ApplicationEnvironment.ApplicationBasePath);
 
-            ViewBag.ArticleBag = articles;
-            
-            return View("Articles");
+            BlogModel blogs = new BlogModel(provider);
+
+            return View("Articles", blogs);
         }
     }
 }

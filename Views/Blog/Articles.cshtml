@@ -1,14 +1,13 @@
-@using System.IO
+@model BlogModel
 
 <h1>Articles below</h1>
 <hr/>
 <ul>
     @{
-        var ArticleBag = ViewBag.ArticleBag;
-
-        foreach (var article in ArticleBag)
+        foreach (var article in Model.Articles)
         {
-            <li>@article</li>
+            <li><h2>@article.Title</h2></li>
+            <li><p>@article.Description</p></li>
         }
     }
 </ul>

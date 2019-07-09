@@ -12,11 +12,18 @@
         <PackageReference Include="Microsoft.AspNetCore.HttpsPolicy" Version="2.1.1" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.3" />
         <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
+        <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="2.2.0" />
     </ItemGroup>
     
     <ItemGroup>
         <Content Include="Blog\**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Blog\Articles\articles-how-to.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Blog\Articles\how-to-article.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Blog\Articles\my-test-article.cshtml" />
     </ItemGroup>
 </Project>
