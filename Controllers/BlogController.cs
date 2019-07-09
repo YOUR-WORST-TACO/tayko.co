@@ -19,7 +19,7 @@ namespace Tayko.co.Controllers
             if (article != null)
             {
                 var foundArticle = blogs.Articles.FirstOrDefault(
-                    x => (Path.GetFileNameWithoutExtension(x.FilePath) == article)
+                    x => (x.Name == article)
                 );
 
                 if (foundArticle == null)
@@ -30,7 +30,7 @@ namespace Tayko.co.Controllers
                 return View("Blog", foundArticle);
             }
 
-            return View("Articles", blogs);
+            return View("BlogOverview", blogs);
         }
     }
 }

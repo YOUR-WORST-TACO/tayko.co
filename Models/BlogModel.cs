@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.Extensions.FileProviders;
 
 namespace Tayko.co.Models
@@ -19,8 +20,11 @@ namespace Tayko.co.Models
             {
                 if (!item.IsDirectory)
                 {
-                    Article article = new Article(item.Name, item.PhysicalPath);
-                    
+                    Article article = new Article(
+                        Path.GetFileNameWithoutExtension(item.PhysicalPath),
+                        item.PhysicalPath
+                    );
+
                     Articles.Add(article);
                 }
             }
