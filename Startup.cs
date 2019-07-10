@@ -38,18 +38,17 @@ namespace Tayko.co
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            /*if (env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                //app.UseExceptionHandler("/Home/Error");
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
                 app.UseHsts();
-            }*/
-            app.UseDeveloperExceptionPage();
-
-            //app.UseStatusCodePages();
+            }
+            //app.UseDeveloperExceptionPage();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             //app.UseCookiePolicy();
@@ -65,10 +64,13 @@ namespace Tayko.co
                     template: "Blog/{*article}",
                     new {controller = "Blog", action="LoadBlog"});
                 routes.MapRoute(
+                    name: "error",
+                    template: "Error/{error}",
+                    new {controller = "Error", action="HandleError"});
+                routes.MapRoute(
                     "NotFound",
                     "{*url}",
-                    new { controller = "Error", action = "PageNotFound" }
-                );
+                    new { controller = "Error", action = "HandleError", error=404});
             });
         }
     }
