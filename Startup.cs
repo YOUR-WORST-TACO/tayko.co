@@ -38,7 +38,7 @@ namespace Tayko.co
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            /*if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -47,7 +47,9 @@ namespace Tayko.co
                 //app.UseExceptionHandler("/Home/Error");
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
                 app.UseHsts();
-            }
+            }*/
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            
             //app.UseDeveloperExceptionPage();
             app.UseHttpsRedirection();
             app.UseStaticFiles();

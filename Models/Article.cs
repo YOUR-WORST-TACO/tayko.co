@@ -46,7 +46,7 @@ namespace Tayko.co.Models
                 var descriptionMatch = regexDescription.Match(Contents);
                 Description = descriptionMatch.Groups[1].Value;
             }
-            catch (FileLoadException e)
+            catch (FileLoadException)
             {
                 Title = "ARTICLE";
                 Contents = "FAILED TO LOAD FILE";

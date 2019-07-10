@@ -23,21 +23,21 @@ namespace Tayko.co.Controllers
 
             BlogModel blogs = new BlogModel(provider);
 
-            if (article != null)
+            if (article == null)
             {
-                var foundArticle = blogs.Articles.FirstOrDefault(
-                    x => (x.Name == article)
-                );
+                return View("BlogOverview", blogs);
+            }
+            
+            var foundArticle = blogs.Articles.FirstOrDefault(
+                x => (x.Name == article)
+            );
 
-                if (foundArticle == null)
-                {
-                    return NotFound();
-                }
-
-                return View("Blog", foundArticle);
+            if (foundArticle == null)
+            {
+                return StatusCode(404);
             }
 
-            return View("BlogOverview", blogs);
+            return View("Blog", foundArticle);
         }
     }
 }
