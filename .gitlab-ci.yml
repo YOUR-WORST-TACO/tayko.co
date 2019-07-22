@@ -19,6 +19,9 @@ build:
     - docker build -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
 run:
+  before_script:
+    - doctl auth init -t $DOCTL_PASS
+    - doctl kubernetes cluster kubeconfig save cerberus
   stage: run
   tags:
     - shell
