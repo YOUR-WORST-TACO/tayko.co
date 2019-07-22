@@ -14,10 +14,10 @@ build:
   variables: 
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
-    IMAGE_TAG: tayko/tayko.co
+    IMAGE_TAG: tayko/tayko.co:$CI_JOB_ID
   script:
     - docker build -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG:$CI_JOB_ID
+    - docker push $IMAGE_TAG
 run:
   before_script:
     - doctl auth init -t $DOCTL_PASS
