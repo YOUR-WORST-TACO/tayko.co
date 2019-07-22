@@ -26,5 +26,6 @@ run:
   tags:
     - shell
   script: 
+    - sleep 120
     - cd charts/
     - helm upgrade tayko-co tayko-co
