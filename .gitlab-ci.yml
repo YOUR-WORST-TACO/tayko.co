@@ -14,14 +14,11 @@ build:
   variables: 
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
-    IMAGE_TAG: tayko/tayko.co:$CI_JOB_ID
+    IMAGE_TAG: tayko/tayko.co:$CI_COMMIT_REF_SLUG
   script:
     - docker build -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
-    - $(export DOCKER_IMAGE_ID="$(echo "$CI_JOB_ID")") >> image_tag
-  artifacts:
-    paths:
-      - image_tag
+
 run:
   before_script:
     - doctl auth init -t $DOCTL_PASS
@@ -30,6 +27,5 @@ run:
   tags:
     - shell
   script:
-    - source image_tag
     - cd charts/
-    - helm upgrade tayko-co tayko-co --set=image.tag=$DOCKER_IMAGE_ID
+    - helm upgrade tayko-co tayko-co --set=image.tag=$CI_COMMIT_REF_SLUG
