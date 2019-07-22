@@ -14,7 +14,7 @@ build:
   variables: 
     DOCKER_HOST: tcp://docker:2375
     DOCKER_DRIVER: overlay2
-    IMAGE_TAG: tayko/tayko.co:$CI_COMMIT_REF_SLUG
+    IMAGE_TAG: tayko/tayko.co:$CI_COMMIT_SHORT_SHA
   script:
     - docker build -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
@@ -28,4 +28,4 @@ run:
     - shell
   script:
     - cd charts/
-    - helm upgrade tayko-co tayko-co --set=image.tag=$CI_COMMIT_REF_SLUG
+    - helm upgrade tayko-co tayko-co --set=image.tag=$CI_COMMIT_SHORT_SHA
