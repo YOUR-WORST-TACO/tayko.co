@@ -18,6 +18,10 @@ build:
   script:
     - docker build -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
+    - `export DOCKER_IMAGE_ID="$(echo "$CI_JOB_ID")"` >> image_tag
+  artifacts:
+    paths:
+      - image_tag
 run:
   before_script:
     - doctl auth init -t $DOCTL_PASS
@@ -25,6 +29,7 @@ run:
   stage: run
   tags:
     - shell
-  script: 
+  script:
+    - source image_tag
     - cd charts/
-    - helm upgrade tayko-co tayko-co --set=image.tag=$CI_JOB_ID
+    - helm upgrade tayko-co tayko-co --set=image.tag=$DOCKER_IMAGE_ID
