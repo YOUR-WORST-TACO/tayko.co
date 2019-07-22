@@ -19,12 +19,9 @@ build:
     - docker build -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
 run:
-  before_script:
-    - cp docker-compose.yml $SITE_DIR/docker-compose.yml
-    - docker-compose down || true
   stage: run
   tags:
     - shell
   script: 
-    - docker-compose pull
-    - docker-compose up -d
+    - cd charts/
+    - helm upgrade tayko-co tayko-co
