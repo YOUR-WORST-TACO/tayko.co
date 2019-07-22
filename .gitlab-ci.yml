@@ -17,7 +17,7 @@ build:
     IMAGE_TAG: tayko/tayko.co
   script:
     - docker build -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG
+    - docker push $IMAGE_TAG:$CI_JOB_ID
 run:
   before_script:
     - doctl auth init -t $DOCTL_PASS
@@ -27,4 +27,4 @@ run:
     - shell
   script: 
     - cd charts/
-    - helm upgrade tayko-co tayko-co --set=image.tag=latest
+    - helm upgrade tayko-co tayko-co --set=image.tag=$CI_JOB_ID
