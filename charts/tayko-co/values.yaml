@@ -7,7 +7,7 @@ replicaCount: 2
 image:
   repository: tayko/tayko.co
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 imagePullSecrets: []
 nameOverride: ""
