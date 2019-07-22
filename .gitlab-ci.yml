@@ -18,7 +18,7 @@ build:
   script:
     - docker build -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
-    - `export DOCKER_IMAGE_ID="$(echo "$CI_JOB_ID")"` >> image_tag
+    - $(export DOCKER_IMAGE_ID="$(echo "$CI_JOB_ID")") >> image_tag
   artifacts:
     paths:
       - image_tag
