@@ -1,0 +1,41 @@
+%skill {
+  text-align: right; /* Right-align text */
+  padding-top: 1px; /* Add top padding */
+  padding-bottom: 1px; /* Add bottom padding */
+  color: white; /* White text color */
+}
+
+.skillbar {
+  width: 100%; /* Full width */
+  background-color: $color-background-3; /* Grey background */
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.html {
+  @extend %skill;
+  
+  width: 90%;
+  background-color: #4CAF50;
+}
+
+.css {
+  @extend %skill;
+  
+  width: 80%;
+  background-color: #2196F3;
+}
+
+.js {
+  @extend %skill;
+  
+  width: 65%;
+  background-color: #f44336;
+}
+
+.php {
+  @extend %skill;
+  
+  width: 60%;
+  background-color: #808080;
+}
