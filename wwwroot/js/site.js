@@ -15,7 +15,7 @@ function skillbarAnimation() {
     $skillboxes.each(function(){
         let animationSpeed = (Math.floor(Math.random() * 1000 ) + 500);
         let originalWidthBar = $(this).data("originalWidthBar");
-        let originalWidthDot = $(this).data("originalWidthDot");
+        
         $(this).find('.bar').each(function() {
             $(this).animate({
                 width:originalWidthBar
@@ -23,7 +23,7 @@ function skillbarAnimation() {
         });
         $(this).find('.skill-dot-bar').each(function() {
             $(this).animate({
-                width:originalWidthDot
+                width:(parseInt(originalWidthBar)+10).toString() + "px"
             },animationSpeed);
         })
     });
@@ -47,18 +47,14 @@ function check_if_in_view() {
 $(document).ready(function(){
     $skillboxes.each(function(){
         let originalWidthBar = 0;
-        let originalWidthDot = 0;
         $(this).find('.bar').each(function() {
-            //parent.data("originalWidth", $(this).css("width"));
             originalWidthBar = $(this).css("width");
-            $(this).css("width", "15px");
+            $(this).css("width", "10px");
         });
         $(this).find('.skill-dot-bar').each(function() {
-            originalWidthDot = $(this).css("width");
-            $(this).css("width", "30px");
+            $(this).css("width", "20px");
         });
         $(this).data("originalWidthBar", originalWidthBar);
-        $(this).data("originalWidthDot", originalWidthDot);
     });
 
     $window.on('scroll resize', check_if_in_view);

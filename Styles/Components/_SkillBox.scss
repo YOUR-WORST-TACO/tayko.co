@@ -1,8 +1,8 @@
 .bar {
   text-align: right; /* Right-align text */
   color: white; /* White text color */
-  height: 20px;
-  border-radius: 20px;
+  height: 10px;
+  border-radius: 10px;
   background-color: $color-4;
 }
 
@@ -19,9 +19,21 @@
   }
 }
 
+
+.skill {
+  display: flex;
+}
+
+.skill-desc {
+  float:left;
+  min-width: 120px;
+  //width: 30%;
+}
+
 .skill-box {
+  float:right;
   width: 100%;
-  height: 30px;
+  height: 20px;
   padding: 5px;
   position: relative;
 }
@@ -35,17 +47,18 @@
 }
 
 .skill-dot-bar {
+  padding-left:20px;
   top: 0;
   left: 0;
   position: absolute;
   width: 90%;
-  height: 30px;
+  height: 20px;
 }
 
 .skill-dot {
   background-color: $color-4;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   right: 0;
   top: 0;
   position: absolute;
@@ -53,7 +66,7 @@
 }
 
 .html {
-   @include skill_mixin(90%, $color-2);
+   @include skill_mixin(100%, $color-2);
  }
 
 .css {
@@ -65,5 +78,5 @@
 }
 
 .php {
-  @include skill_mixin(70%, $color-5);
+  @include skill_mixin(0%, $color-5);
 }
