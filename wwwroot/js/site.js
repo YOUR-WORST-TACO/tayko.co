@@ -2,10 +2,10 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-var $skillbox = $('.skill-container:first');
-var $skillboxes = $('.skill-box');
-var $window = $(window);
-var animated = false;
+let $skillbox = $('.skill-container:first');
+let $skillboxes = $('.skill-box');
+let $window = $(window);
+let animated = false;
 
 function skillbarAnimation() {
     if (animated) {
@@ -13,15 +13,15 @@ function skillbarAnimation() {
     }
     animated = true;
     $skillboxes.each(function(){
-        var animationSpeed = (Math.floor(Math.random() * 1000 ) + 500);
-        var originalWidthBar = $(this).data("originalWidthBar");
-        var originalWidthDot = $(this).data("originalWidthDot");
-        $(this).find('.bar').each(function( index, value, parent = $(this) ) {
+        let animationSpeed = (Math.floor(Math.random() * 1000 ) + 500);
+        let originalWidthBar = $(this).data("originalWidthBar");
+        let originalWidthDot = $(this).data("originalWidthDot");
+        $(this).find('.bar').each(function() {
             $(this).animate({
                 width:originalWidthBar
             },animationSpeed);
         });
-        $(this).find('.skill-dot-bar').each(function( index, value, parent = $(this) ) {
+        $(this).find('.skill-dot-bar').each(function() {
             $(this).animate({
                 width:originalWidthDot
             },animationSpeed);
@@ -30,13 +30,13 @@ function skillbarAnimation() {
 }
 
 function check_if_in_view() {
-    var window_height = $window.height();
-    var window_top_position = $window.scrollTop();
-    var window_bottom_position = (window_top_position + window_height);
+    let window_height = $window.height();
+    let window_top_position = $window.scrollTop();
+    let window_bottom_position = (window_top_position + window_height);
     
-    var skillbox_height = $skillbox.outerHeight();
-    var skillbox_top_position = $skillbox.offset().top;
-    var skillbox_bottom_position = (skillbox_top_position + skillbox_height);
+    let skillbox_height = $skillbox.outerHeight();
+    let skillbox_top_position = $skillbox.offset().top;
+    let skillbox_bottom_position = (skillbox_top_position + skillbox_height);
 
     if ((skillbox_bottom_position >= window_top_position) &&
         (skillbox_top_position <= window_bottom_position)) {
@@ -46,14 +46,14 @@ function check_if_in_view() {
 
 $(document).ready(function(){
     $skillboxes.each(function(){
-        var originalWidthBar;
-        var originalWidthDot;
-        $(this).find('.bar').each(function( index, value, parent = $(this) ) {
+        let originalWidthBar = 0;
+        let originalWidthDot = 0;
+        $(this).find('.bar').each(function() {
             //parent.data("originalWidth", $(this).css("width"));
             originalWidthBar = $(this).css("width");
             $(this).css("width", "15px");
         });
-        $(this).find('.skill-dot-bar').each(function( index, value, parent = $(this) ) {
+        $(this).find('.skill-dot-bar').each(function() {
             originalWidthDot = $(this).css("width");
             $(this).css("width", "30px");
         });
