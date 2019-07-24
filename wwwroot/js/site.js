@@ -2,8 +2,8 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-var $skillbox = $('.skillbox:first');
-var $skillbars = $('.skillbar');
+var $skillbox = $('.skill-container:first');
+var $skillboxes = $('.skill-box');
 var $window = $(window);
 var animated = false;
 
@@ -11,18 +11,21 @@ function skillbarAnimation() {
     if (animated) {
         return;
     }
-    
     animated = true;
-    
-    $skillbars.each(function(){
-        $(this).find('.bar').each(function( index ) {
-            
-            var animationSpeed = (Math.floor(Math.random() * 1000 ) + 500);
-            $(this).css("width", "0px");
+    $skillboxes.each(function(){
+        var animationSpeed = (Math.floor(Math.random() * 1000 ) + 500);
+        var originalWidthBar = $(this).data("originalWidthBar");
+        var originalWidthDot = $(this).data("originalWidthDot");
+        $(this).find('.bar').each(function( index, value, parent = $(this) ) {
             $(this).animate({
-                width:$(this).data("originalWidth")
+                width:originalWidthBar
             },animationSpeed);
         });
+        $(this).find('.skill-dot-bar').each(function( index, value, parent = $(this) ) {
+            $(this).animate({
+                width:originalWidthDot
+            },animationSpeed);
+        })
     });
 }
 
@@ -42,11 +45,20 @@ function check_if_in_view() {
 }
 
 $(document).ready(function(){
-    $('.skillbar').each(function(){
-        $(this).find('.bar').each(function( index ) {
-            $(this).data("originalWidth", $(this).css("width"));
-            $(this).css("width", "0px");
+    $skillboxes.each(function(){
+        var originalWidthBar;
+        var originalWidthDot;
+        $(this).find('.bar').each(function( index, value, parent = $(this) ) {
+            //parent.data("originalWidth", $(this).css("width"));
+            originalWidthBar = $(this).css("width");
+            $(this).css("width", "15px");
         });
+        $(this).find('.skill-dot-bar').each(function( index, value, parent = $(this) ) {
+            originalWidthDot = $(this).css("width");
+            $(this).css("width", "30px");
+        });
+        $(this).data("originalWidthBar", originalWidthBar);
+        $(this).data("originalWidthDot", originalWidthDot);
     });
 
     $window.on('scroll resize', check_if_in_view);
