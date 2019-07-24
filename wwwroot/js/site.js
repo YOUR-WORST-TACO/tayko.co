@@ -5,7 +5,7 @@
 let $skillbox = $('.skill-container:first');
 let $skillboxes = $('.skill-box');
 let $window = $(window);
-let animated = false;
+let animated = false;%
 
 function skillbarAnimation() {
     if (animated) {
