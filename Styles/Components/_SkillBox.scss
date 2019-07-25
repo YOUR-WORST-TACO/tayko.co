@@ -65,6 +65,19 @@
   border-radius: 20px;
 }
 
+/*
+C++
+SQL
+Python
+Lua
+Java
+Javascript
+dotnet core
+asp.net core
+web frontend
+web backend
+ */
+
 .html {
    @include skill_mixin(100%, $color-2);
  }
@@ -78,5 +91,5 @@
 }
 
 .php {
-  @include skill_mixin(0%, $color-5);
+  @include skill_mixin(25%, $color-5);
 }

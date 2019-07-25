@@ -29,6 +29,25 @@ function skillbarAnimation() {
     });
 }
 
+function skillbarReset() {
+    if (!animated) {
+        return;
+    }
+    
+    animated = false;
+
+    $skillboxes.each(function(){
+        $(this).find('.bar').each(function() {
+            $(this).stop();
+            $(this).css("width", "10px");
+        });
+        $(this).find('.skill-dot-bar').each(function() {
+            $(this).stop();
+            $(this).css("width", "20px");
+        });
+    });
+}
+
 function check_if_in_view() {
     let window_height = $window.height();
     let window_top_position = $window.scrollTop();
@@ -41,6 +60,8 @@ function check_if_in_view() {
     if ((skillbox_bottom_position >= window_top_position) &&
         (skillbox_top_position <= window_bottom_position)) {
         skillbarAnimation();
+    } else {
+        skillbarReset();
     }
 }
 
