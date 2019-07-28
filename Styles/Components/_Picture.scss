@@ -1,0 +1,26 @@
+.picture {
+  $size: 200px;
+  
+  
+  
+  height: $size;
+  width: $size;
+  overflow: hidden;
+  
+  img {
+    width: $size;
+    height: $size;
+  }
+
+  &.pic-left {
+    float: left;
+    margin-right: 10px;
+  }
+  &.pic-right {
+    float: right;
+    margin-left: 20px;
+  }
+  &.rounded {
+    border-radius: $size;
+  }
+}
