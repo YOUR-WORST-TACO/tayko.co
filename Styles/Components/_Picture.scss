@@ -19,6 +19,9 @@
     margin-left: 20px;
   }
   &.rounded {
+    
+    shape-margin: 10px;
+    shape-outside: circle();
     border-radius: $size;
   }
 }
