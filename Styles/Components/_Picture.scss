@@ -1,13 +1,14 @@
 .picture {
-  $size: 200px;
+  $size: 220px;
   
   height: $size;
   width: $size;
   overflow: hidden;
   
   img {
-    width: $size;
-    height: $size;
+    margin: 10px;
+    width: ($size - 20px);
+    height: ($size - 20px);
   }
 
   &.pic-left {
@@ -19,9 +20,10 @@
     margin-left: 20px;
   }
   &.rounded {
-    
-    shape-margin: 10px;
-    shape-outside: circle();
+    margin-right: 0px;
+    shape-margin: 20px;
+    shape-outside: circle(40%);
+    clip-path: circle(40%);
     border-radius: $size;
   }
 }
