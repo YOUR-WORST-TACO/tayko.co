@@ -9,6 +9,7 @@
     margin: 10px;
     width: ($size - 20px);
     height: ($size - 20px);
+    border-radius: $size;
   }
 
   &.pic-left {
@@ -23,7 +24,6 @@
     margin-right: 0px;
     shape-margin: 20px;
     shape-outside: circle(40%);
-    clip-path: circle(40%);
     border-radius: $size;
   }
 }
