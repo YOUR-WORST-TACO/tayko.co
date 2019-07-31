@@ -28,4 +28,4 @@ run:
     - shell
   script:
     - cd charts/
-    - helm upgrade tayko-co tayko-co --set=image.tag=$CI_COMMIT_SHORT_SHA
+    - helm upgrade tayko-co tayko-co --install --set=image.tag=$CI_COMMIT_SHORT_SHA
