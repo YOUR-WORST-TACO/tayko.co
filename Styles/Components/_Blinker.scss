@@ -1,8 +1,7 @@
 .blinker::after {
-  content: "";
-  width: 5px;
-  height: 60px;
-  background-color: $color-foreground;
+  content: "|";
+  //border: 5px  solid $color-foreground;
+  //background-color: $color-foreground;
   display: inline-block;
 }
 
@@ -15,7 +14,7 @@
 }
 
 @keyframes blinker-animation {
-  0% {width: 5px;}
-  50% {width: 0;}
-  100% {width: 5px;}
+  0% {opacity: 1;}
+  50% {opacity: 0;}
+  100% {opacity: 1;}
 }

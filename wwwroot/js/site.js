@@ -86,30 +86,55 @@ $(document).ready(function(){
 
 //$('#title').html("Who is &lt;author>");
 
-function animate_index_title( step ) {
-    let prefix = "Who is <span class=\"blinker-highlight\">";
-    let postfix = "</span>";
-    let title_steps = ["&lt;author>","&lt;author","&lt;autho","&lt;auth","&lt;aut","&lt;au","&lt;a", "&lt;", "",
-                        "S", "St", "Ste", "Step", "Steph", "Stephe", "Stephen", "Stephen?"];
-    let $title = $('#title');
-    let newContent = prefix + title_steps[step] + postfix;
-    $title.removeClass("blinker-animate");
-    $title.html(newContent);
+function swapText(element = null, startText = "", endText = "", prefix = "", postfix = "", oncomplete = null) {
     
-    if (step < 16) {
-        let animationSpeed = (Math.floor(Math.random() * 200 ) + 100);
-        setTimeout(function () {
-            animate_index_title(step+1)
-        }, animationSpeed);
-    } else {
-        $title.addClass("blinker-animate");
+    let steps = [];
+    for (let i = 0; i < startText.length; i++) {
+        steps.push(startText.substring(0, startText.length - i))
     }
     
+    for (let i = 0; i <= endText.length; i++) {
+        steps.push(endText.substring(0, i))
+    }
+    
+    let callBack = function(fn, elm, next, pre, post, callback) {
+        let newContent = pre + next[0] + post;
+        elm.html(newContent);
+        
+        next.shift();
+        
+        if (next.length > 0) {
+            let animationSpeed = (Math.floor(Math.random() * 200 ) + 100);
+            setTimeout(function() {
+                fn(fn, elm, next, pre, post, callback)
+            }, animationSpeed);
+        } else {
+            callback();
+        }
+    };
+    
+    callBack(callBack, element, steps, prefix, postfix, oncomplete);
+}
+
+function animate_index_title() {
+    let $title = $('#title');
+
+    $title.removeClass("blinker-animate");
+    
+    swapText(
+        $title, 
+        "@author?", 
+        "Stephen?", 
+        "Who is <span class=\"blinker-highlight\">", 
+        "</span>",
+        function() {
+            $title.addClass("blinker-animate");
+        }
+    );
 }
 
 $(document).ready(function() {
-   setTimeout(function() {
-       animate_index_title(0)
-   }, 2000);
-   console.log("test")
+    setTimeout(function() {
+        animate_index_title()
+    }, 2000);
 });
