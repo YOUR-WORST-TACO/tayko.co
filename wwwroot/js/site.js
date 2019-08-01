@@ -2,7 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-let $skillbox = $('.skill-container:first');
+/*let $skillbox = $('.skill-container:first');
 let $skillboxes = $('.skill-box');
 let $window = $(window);
 let animated = false;
@@ -80,4 +80,35 @@ $(document).ready(function(){
 
     $window.on('scroll resize', check_if_in_view);
     $window.trigger('scroll');
+});*/
+
+
+
+//$('#title').html("Who is &lt;author>");
+
+function animate_index_title( step ) {
+    let prefix = "Who is ";
+    let title_steps = ["&lt;author>","&lt;author","&lt;autho","&lt;auth","&lt;aut","&lt;au","&lt;a", "&lt;", "",
+                        "S", "St", "Ste", "Step", "Steph", "Stephe", "Stephen", "Stephen?"];
+    let $title = $('#title');
+    let newContent = prefix + title_steps[step];
+    $title.removeClass("blinker-animate");
+    $title.html(newContent);
+    
+    if (step < 16) {
+        let animationSpeed = (Math.floor(Math.random() * 200 ) + 100);
+        setTimeout(function () {
+            animate_index_title(step+1)
+        }, animationSpeed);
+    } else {
+        $title.addClass("blinker-animate");
+    }
+    
+}
+
+$(document).ready(function() {
+   setTimeout(function() {
+       animate_index_title(0)
+   }, 2000);
+   console.log("test")
 });

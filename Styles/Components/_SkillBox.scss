@@ -6,6 +6,10 @@
   background-color: $color-4;
 }
 
+.skill-container {
+  padding-top: 20px;
+}
+
 @mixin skill_mixin($width, $color) {
   .bar {
     width: $width;
@@ -21,17 +25,17 @@
 }
 
 .skill {
-  display: flex;
+  //display: flex;
 }
 
 $skill-desc-width: 120px;
 
 .skill-header {
-  display: flex;
+  //display: flex;
 }
 
 .skill-header-pad {
-  float: left;
+  //float: left;
   width: $skill-desc-width;
 }
 
@@ -55,13 +59,16 @@ $skill-desc-width: 120px;
 }
 
 .skill-desc {
-  float: left;
+  //float: left;
   width: $skill-desc-width;
+  padding-left: 5px;
+  padding-top: 10px;
+  margin: 0;
   //width: 30%;
 }
 
 .skill-box {
-  float: right;
+  //float: right;
   width: 100%;
   height: 20px;
   padding: 5px;

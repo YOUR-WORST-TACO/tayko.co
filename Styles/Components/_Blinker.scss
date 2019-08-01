@@ -1,0 +1,19 @@
+
+
+.blinker::after {
+  content: "";
+  width: 5px;
+  height: 60px;
+  background-color: $color-foreground;
+  display: inline-block;
+}
+
+.blinker-animate::after {
+  animation: blinker-animation 1.5s steps(1) infinite;
+}
+
+@keyframes blinker-animation {
+  0% {width: 5px;}
+  50% {width: 0;}
+  100% {width: 5px;}
+}
