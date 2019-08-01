@@ -86,7 +86,15 @@ $(document).ready(function(){
 
 //$('#title').html("Who is &lt;author>");
 
-function swapText(element = null, startText = "", endText = "", prefix = "", postfix = "", oncomplete = null) {
+function swapText(element = null, startText = null, endText = "", prefix = "", postfix = "", oncomplete = null) {
+    
+    if (element == null) {
+        throw "No swap text element provided!";
+    }
+    
+    if (startText == null) {
+        startText = element.html();
+    }
     
     let steps = [];
     for (let i = 0; i < startText.length; i++) {
@@ -104,7 +112,7 @@ function swapText(element = null, startText = "", endText = "", prefix = "", pos
         next.shift();
         
         if (next.length > 0) {
-            let animationSpeed = (Math.floor(Math.random() * 200 ) + 100);
+            let animationSpeed = (Math.floor(Math.random() * 10 ) + 10);
             setTimeout(function() {
                 fn(fn, elm, next, pre, post, callback)
             }, animationSpeed);
@@ -123,8 +131,8 @@ function animate_index_title() {
     
     swapText(
         $title, 
-        "@author?", 
-        "Stephen?", 
+        "@author?",
+        "Stephen?",
         "Who is <span class=\"blinker-highlight\">", 
         "</span>",
         function() {
@@ -137,4 +145,5 @@ $(document).ready(function() {
     setTimeout(function() {
         animate_index_title()
     }, 2000);
+    
 });
