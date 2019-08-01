@@ -87,11 +87,12 @@ $(document).ready(function(){
 //$('#title').html("Who is &lt;author>");
 
 function animate_index_title( step ) {
-    let prefix = "Who is ";
+    let prefix = "Who is <span class=\"blinker-highlight\">";
+    let postfix = "</span>";
     let title_steps = ["&lt;author>","&lt;author","&lt;autho","&lt;auth","&lt;aut","&lt;au","&lt;a", "&lt;", "",
                         "S", "St", "Ste", "Step", "Steph", "Stephe", "Stephen", "Stephen?"];
     let $title = $('#title');
-    let newContent = prefix + title_steps[step];
+    let newContent = prefix + title_steps[step] + postfix;
     $title.removeClass("blinker-animate");
     $title.html(newContent);
     

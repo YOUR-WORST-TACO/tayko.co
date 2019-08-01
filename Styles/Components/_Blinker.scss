@@ -1,11 +1,13 @@
-
-
 .blinker::after {
   content: "";
   width: 5px;
   height: 60px;
   background-color: $color-foreground;
   display: inline-block;
+}
+
+.blinker-highlight {
+  color: $color-3;
 }
 
 .blinker-animate::after {
