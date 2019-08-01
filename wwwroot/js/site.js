@@ -112,7 +112,7 @@ function swapText(element = null, startText = null, endText = "", prefix = "", p
         next.shift();
         
         if (next.length > 0) {
-            let animationSpeed = (Math.floor(Math.random() * 10 ) + 10);
+            let animationSpeed = (Math.floor(Math.random() * 200 ) + 100);
             setTimeout(function() {
                 fn(fn, elm, next, pre, post, callback)
             }, animationSpeed);
