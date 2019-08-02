@@ -131,7 +131,7 @@ function animate_index_title() {
     
     swapText(
         $title, 
-        "@author?",
+        "@author",
         "Stephen?",
         "Who is <span class=\"blinker-highlight\">", 
         "</span>",

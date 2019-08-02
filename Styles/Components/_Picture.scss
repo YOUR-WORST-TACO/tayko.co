@@ -1,15 +1,26 @@
 .picture {
   $size: 250px;
+  $compressed-size: 200px;
   
   height: $size;
   width: $size;
   overflow: hidden;
   
+  @media screen and (max-width: $page-response-width) {
+    width: ($compressed-size);
+    height: ($compressed-size);
+  }
+  
   img {
     margin: 10px;
     width: ($size - 20px);
     height: ($size - 20px);
-    border-radius: $size;
+
+    @media screen and (max-width: $page-response-width) {
+      width: ($compressed-size - 20px);
+      height: ($compressed-size - 20px);
+      
+    }
   }
 
   &.pic-left {
@@ -27,5 +38,19 @@
     height: $size;
     shape-outside: ellipse(40% 38%);
     border-radius: $size;
+    
+    img {
+      border-radius: $size;
+    }
+
+    @media screen and (max-width: $page-response-width) {
+      width: ($compressed-size);
+      height: ($compressed-size);
+      border-radius: $compressed-size;
+      
+      img {
+        border-radius: $compressed-size;
+      }
+    }
   }
 }
