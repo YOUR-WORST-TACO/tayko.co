@@ -40,10 +40,15 @@ p {
     left: 0;
     position: absolute;
     float: left;
-    font-size: 100px;
-    line-height: 77px;
+    font-size: 4.5em;
+    line-height: 0.85em;
     padding-right: 5px;
     padding-top: 5px;
     color: $color-5;
+    
+    @media screen and (max-width: $page-response-width) {
+      font-size: 3em;
+      line-height: 0.85em;
+    }
   }
 }
