@@ -5,15 +5,14 @@ using Microsoft.Extensions.FileProviders;
 
 namespace Tayko.co.Models
 {
-    public class BlogModel
+    public class BlogDataManager
     {
         private readonly IFileProvider _fileProvider;
         public IDirectoryContents DirectoryContents { get; set; }
         public List<Article> Articles { get; set; }
 
-        public BlogModel(IFileProvider fileProvider)
+        public BlogDataManager(IFileProvider fileProvider)
         {
-            Console.Write("\n\n\n\n Running through BlogModel \n\n\n\n\n");
             _fileProvider = fileProvider;
             DirectoryContents = _fileProvider.GetDirectoryContents("/Blog");
             Articles = new List<Article>();

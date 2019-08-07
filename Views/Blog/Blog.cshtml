@@ -1,6 +1,31 @@
 @model Article
 @{
-    ViewData["Title"] = Model.Title;
+    ViewData["Title"] = Model;
 }
 
 @Html.Raw(Model.Contents);
+
+@{
+        foreach (var comment in Model.Comments)
+        {
+            <h2>@comment.Author</h2>
+            <p>@comment.Text</p>
+            <p>@comment.PostDate.ToShortTimeString()</p>
+        }
+}
+
+<form asp-controller="Blog" asp-action="PostComment" method="POST">
+    
+    <label asp-for="CommentModel.Author"></label>
+    <input asp-for="CommentModel.Author" placeholder="Your name goes here"/>
+    
+    <label asp-for="CommentModel.AuthorEmail"></label>
+    <input asp-for="CommentModel.AuthorEmail" placeholder="Your name goes here"/>
+    
+    <label asp-for="CommentModel.Text"></label>
+    <textarea asp-for="CommentModel.Text" placeholder="Your name goes here"></textarea>
+    
+    <input asp-for="CommentModel.Article" value="@Model.Name"/>
+    
+    <input type="submit"/>
+</form>
