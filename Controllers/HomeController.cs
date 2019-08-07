@@ -10,6 +10,7 @@ namespace Tayko.co.Controllers
 {
     public class HomeController : Controller
     {
+        // all methods in this class just return default matching views.
         public IActionResult Index()
         {
             return View();
@@ -29,11 +30,5 @@ namespace Tayko.co.Controllers
         {
             return View();
         }
-
-        /*[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
-        }*/
     }
 }

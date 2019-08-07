@@ -13,6 +13,7 @@ namespace Tayko.co.Controllers
 {
     public class BlogController : Controller
     {
+        // store all private variables for runtime operation
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly CommentDbContext _context;
         private readonly IHttpContextAccessor _accessor;
@@ -29,28 +30,37 @@ namespace Tayko.co.Controllers
         
         public IActionResult LoadBlog(string article)
         {
+            // get default root folder for hossting
             var provider = _hostingEnvironment.ContentRootFileProvider;
 
+            // instantiate new BlogDataManager to load blogs
             BlogDataManager blogs = new BlogDataManager(provider);
 
+            // if no article was passed
             if (article == null)
             {
+                // return the BlogOverview view
                 return View("BlogOverview", blogs);
             }
             
+            // finds first article that matches the lambda
             var foundArticle = blogs.Articles.FirstOrDefault(
                 x => (x.Name == article)
             );
 
+            // if article is not found
             if (foundArticle == null)
             {
+                // go to error page
                 return StatusCode(404);
             }
 
+            // attempt to find comments related to article
             foundArticle.Comments = _context.Comments
                 .Where(b => b.Article.Equals(foundArticle.Name))
                 .ToList();
 
+            // return Blog view with foundArticle model
             return View("Blog", foundArticle);
         }
         
@@ -68,16 +78,20 @@ namespace Tayko.co.Controllers
                 PostIp = _accessor.HttpContext.Connection.RemoteIpAddress.ToString()
             };
 
+            // attempt to validate comment specifiers
             TryValidateModel(newComment);
 
+            // if valid model
             if (ModelState.IsValid)
             {
+                // add to dbContext and save
                 _context.Add(newComment);
                 _context.SaveChanges();
             }
 
-            //ViewData[""];
+            // ViewData[""];
 
+            // send user back to where they came from
             return LocalRedirect($"/Blog/{newComment.Article}");
         }
     }

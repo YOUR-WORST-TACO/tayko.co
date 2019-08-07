@@ -9,6 +9,7 @@ namespace Tayko.co.Data
         {
         }
 
+        // Define Comments dbSet
         public DbSet<CommentModel> Comments { get; set; }
     }
 }

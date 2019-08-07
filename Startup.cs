@@ -23,26 +23,29 @@ namespace Tayko.co
             HostingEnvironment = environment;
         }
 
+        // Stores config options
         public IConfiguration Configuration { get; }
+        
+        // Stores hosting environment variables needed for Blogs
         public IHostingEnvironment HostingEnvironment { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
+            // Plan to remove cookies completely
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // If development, use sqlite
             if (HostingEnvironment.IsDevelopment())
             {
                 services.AddDbContext<CommentDbContext>(options =>
                     options.UseSqlite(
                         Configuration.GetConnectionString("DefaultConnection")));
             }
-            else
+            else // implement postgresql
             {
                 
             }
@@ -50,17 +53,17 @@ namespace Tayko.co
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // Development Exception handling pages
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
+            else // Production Exception handling pages
             {
-                //app.UseExceptionHandler("/Home/Error");
+                // Uses error controller and error code to handle errors
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
                 app.UseHsts();
             }
@@ -68,6 +71,12 @@ namespace Tayko.co
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            /* ROUTES
+             * - default drops its name and uses just its actions,
+             * - blog sends all requests to LoadBlog
+             * - error sends all requests to HandleError
+             * - notfound sends Error 404
+             */
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

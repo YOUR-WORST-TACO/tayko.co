@@ -7,8 +7,10 @@ namespace Tayko.co.Controllers
     {
         public IActionResult HandleError(int error)
         {
+            // retrieve the status code
             var statusCodeData = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
 
+            // switch handler matches code to correct view
             switch (error)
             {
                 case 404:
