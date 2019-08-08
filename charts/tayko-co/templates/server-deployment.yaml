@@ -6,6 +6,7 @@ metadata:
 {{ include "tayko-co.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "tayko-co.name" . }}
