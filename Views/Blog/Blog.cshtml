@@ -1,31 +1,37 @@
 @model Article
 @{
-    ViewData["Title"] = Model;
+    ViewData["Title"] = Model.Name;
 }
 
-@Html.Raw(Model.Contents);
+<div class="blog-container">
+    @Html.Raw(Model.Contents);
+</div>
 
-@{
-        foreach (var comment in Model.Comments)
-        {
-            <h2>@comment.Author</h2>
-            <p>@comment.Text</p>
-            <p>@comment.PostDate.ToShortTimeString()</p>
-        }
-}
+<h3>Leave a comment</h3>
+<form class="blog-comment-form" asp-controller="Blog" asp-action="PostComment" method="POST">
+    <div class="top-entry">
+        <!--<label asp-for="CommentModel.Author"></label>-->
+        <input asp-for="CommentModel.Author" placeholder="Full name"/>
 
-<form asp-controller="Blog" asp-action="PostComment" method="POST">
+        <!--<label asp-for="CommentModel.AuthorEmail"></label>-->
+        <input asp-for="CommentModel.AuthorEmail" placeholder="Email address"/>
+    </div>
     
-    <label asp-for="CommentModel.Author"></label>
-    <input asp-for="CommentModel.Author" placeholder="Your name goes here"/>
-    
-    <label asp-for="CommentModel.AuthorEmail"></label>
-    <input asp-for="CommentModel.AuthorEmail" placeholder="Your name goes here"/>
-    
-    <label asp-for="CommentModel.Text"></label>
-    <textarea asp-for="CommentModel.Text" placeholder="Your name goes here"></textarea>
+    <!--<label asp-for="CommentModel.Text"></label>-->
+    <textarea asp-for="CommentModel.Text" placeholder="What's on your mind?"></textarea>
     
     <input asp-for="CommentModel.Article" value="@Model.Name"/>
     
-    <input type="submit"/>
+    <div>
+        <button type="submit">Post</button>
+    </div>
 </form>
+
+@{
+    foreach (var comment in Model.Comments)
+    {
+        <h2>@comment.Author</h2>
+        <p>@comment.Text</p>
+        <p>@comment.PostDate.ToShortTimeString()</p>
+    }
+}

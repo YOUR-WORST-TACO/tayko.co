@@ -250,7 +250,7 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   border-radius: 1em;
-  background-color: #615E55;
+  background-color: #7b7879;
   outline: 1px solid slategrey;
 }
 
@@ -531,26 +531,16 @@ web backend
 }
 
 @keyframes carousel_animation {
-  0.33333% {
+  1.11111% {
     opacity: 1;
   }
-  0.83333% {
-    left: 0;
-  }
-  15.83333% {
-    left: 0;
+  10% {
     opacity: 1;
   }
-  16.33333% {
-    left: 100%;
-    opacity: 0;
-  }
-  16.66667% {
-    left: -100%;
+  11.11111% {
     opacity: 0;
   }
   100% {
-    left: -100%;
     opacity: 0;
   }
 }
@@ -573,9 +563,9 @@ web backend
 
 .carousel-list > li:nth-child(1) {
   position: absolute;
-  left: -100%;
+  opacity: 0;
   animation-name: carousel_animation;
-  animation-duration: 36s;
+  animation-duration: 27s;
   animation-delay: 0s;
   animation-iteration-count: infinite;
   color: #fff;
@@ -584,10 +574,10 @@ web backend
 
 .carousel-list > li:nth-child(2) {
   position: absolute;
-  left: -100%;
+  opacity: 0;
   animation-name: carousel_animation;
-  animation-duration: 36s;
-  animation-delay: 6s;
+  animation-duration: 27s;
+  animation-delay: 3s;
   animation-iteration-count: infinite;
   color: #fff;
   width: 100%;
@@ -595,10 +585,10 @@ web backend
 
 .carousel-list > li:nth-child(3) {
   position: absolute;
-  left: -100%;
+  opacity: 0;
   animation-name: carousel_animation;
-  animation-duration: 36s;
-  animation-delay: 12s;
+  animation-duration: 27s;
+  animation-delay: 6s;
   animation-iteration-count: infinite;
   color: #fff;
   width: 100%;
@@ -606,10 +596,10 @@ web backend
 
 .carousel-list > li:nth-child(4) {
   position: absolute;
-  left: -100%;
+  opacity: 0;
   animation-name: carousel_animation;
-  animation-duration: 36s;
-  animation-delay: 18s;
+  animation-duration: 27s;
+  animation-delay: 9s;
   animation-iteration-count: infinite;
   color: #fff;
   width: 100%;
@@ -617,10 +607,10 @@ web backend
 
 .carousel-list > li:nth-child(5) {
   position: absolute;
-  left: -100%;
+  opacity: 0;
   animation-name: carousel_animation;
-  animation-duration: 36s;
-  animation-delay: 24s;
+  animation-duration: 27s;
+  animation-delay: 12s;
   animation-iteration-count: infinite;
   color: #fff;
   width: 100%;
@@ -628,10 +618,43 @@ web backend
 
 .carousel-list > li:nth-child(6) {
   position: absolute;
-  left: -100%;
+  opacity: 0;
   animation-name: carousel_animation;
-  animation-duration: 36s;
-  animation-delay: 30s;
+  animation-duration: 27s;
+  animation-delay: 15s;
+  animation-iteration-count: infinite;
+  color: #fff;
+  width: 100%;
+}
+
+.carousel-list > li:nth-child(7) {
+  position: absolute;
+  opacity: 0;
+  animation-name: carousel_animation;
+  animation-duration: 27s;
+  animation-delay: 18s;
+  animation-iteration-count: infinite;
+  color: #fff;
+  width: 100%;
+}
+
+.carousel-list > li:nth-child(8) {
+  position: absolute;
+  opacity: 0;
+  animation-name: carousel_animation;
+  animation-duration: 27s;
+  animation-delay: 21s;
+  animation-iteration-count: infinite;
+  color: #fff;
+  width: 100%;
+}
+
+.carousel-list > li:nth-child(9) {
+  position: absolute;
+  opacity: 0;
+  animation-name: carousel_animation;
+  animation-duration: 27s;
+  animation-delay: 24s;
   animation-iteration-count: infinite;
   color: #fff;
   width: 100%;
@@ -640,6 +663,80 @@ web backend
 .carousel-list > liafter {
   content: none;
   padding: 0;
+}
+
+.popup {
+  position: fixed;
+  opacity: 0;
+}
+
+.popup:target {
+  opacity: 1;
+}
+
+.blog-comment-form {
+  width: 70%;
+  padding-top: 15px;
+}
+
+.blog-comment-form input[type=text] {
+  background-color: #0A0F13;
+  border: none;
+  padding: 5px;
+  color: #fff;
+}
+
+.blog-comment-form ::placeholder {
+  color: #7b7879;
+}
+
+.blog-comment-form textarea {
+  background-color: #0A0F13;
+  width: 100%;
+  height: 150px;
+  resize: horizontal;
+  border: none;
+  padding: 5px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.blog-comment-form button {
+  width: 80px;
+  background-color: #0A0F13;
+  border: none;
+  color: #7b7879;
+  padding: 2px;
+}
+
+.blog-comment-form button:hover {
+  color: #fff;
+  background-color: #2a2c34;
+}
+
+.blog-comment-form .top-entry {
+  display: inline-flex;
+  width: 100%;
+  padding-bottom: 15px;
+}
+
+.blog-comment-form .top-entry input {
+  display: inline-block;
+  width: 100%;
+}
+
+.blog-comment-form .top-entry input:first-child {
+  margin-right: 15px;
+}
+
+@media screen and (max-width: 1070px) {
+  .blog-comment-form .top-entry {
+    display: block;
+  }
+  .blog-comment-form .top-entry input:first-child {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
 }
 
 .errorCode {

@@ -59,7 +59,7 @@ namespace Tayko.co
             // Development Exception handling pages
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
             }
             else // Production Exception handling pages
             {
@@ -67,6 +67,9 @@ namespace Tayko.co
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
                 app.UseHsts();
             }
+            
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            app.UseHsts();
             
             app.UseHttpsRedirection();
             app.UseStaticFiles();

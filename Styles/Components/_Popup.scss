@@ -1,0 +1,12 @@
+.popup {
+  position: fixed;
+  opacity: 0;
+}
+
+.popup:target {
+  opacity: 1;
+}
+
+.notification {
+  
+}
