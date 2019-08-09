@@ -103,13 +103,11 @@ namespace Tayko.co
                     new { controller = "Error", action = "HandleError", error=404});
             });
             
-            UpdateDatabase(app);
-        }
-
-        private static void UpdateDatabase(IApplicationBuilder app)
-        {
-            var context = app.ApplicationServices.GetService<CommentDbContext>();
-            context.Database.Migrate();
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<CommentDbContext>();
+                context.Database.Migrate();
+            }
         }
     }
 }
