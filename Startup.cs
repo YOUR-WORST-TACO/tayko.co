@@ -103,13 +103,13 @@ namespace Tayko.co
                     new { controller = "Error", action = "HandleError", error=404});
             });
             
-            /*using (var serviceScope = app.ApplicationServices.CreateScope())
+            using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 using (var context = serviceScope.ServiceProvider.GetService<CommentDbContext>())
                 {
                     context.Database.Migrate();
                 }
-            }*/
+            }
         }
     }
 }
