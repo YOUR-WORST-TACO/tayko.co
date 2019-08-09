@@ -50,7 +50,7 @@ namespace Tayko.co
             }
             else // implement postgresql
             {
-                var redis = ConnectionMultiplexer.Connect("redis-master");
+                var redis = ConnectionMultiplexer.Connect("redis-master:6379");
                 services.AddDataProtection()
                     .PersistKeysToStackExchangeRedis(redis, "DataProtection-Keys");
             }
