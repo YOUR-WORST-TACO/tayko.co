@@ -15,5 +15,9 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 # ENTRYPOINT ["dotnet", "Tayko.co.dll"]
 
+RUN echo $(pwd)
+
+RUN echo $(ls -l)
+
 RUN chmod +x ./entrypoint.sh
 CMD /bin/bash ./entrypoint.sh
