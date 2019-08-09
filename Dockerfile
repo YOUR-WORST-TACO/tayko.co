@@ -13,12 +13,4 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.1
 WORKDIR /app
 COPY --from=build-env /app/out .
-# ENTRYPOINT ["dotnet", "Tayko.co.dll"]
-
-RUN echo $(pwd)
-
-RUN echo $(ls -l)
-
-COPY entrypoint.sh ./
-RUN chmod +x ./entrypoint.sh
-CMD /bin/bash ./entrypoint.sh
+ENTRYPOINT ["dotnet", "Tayko.co.dll"]
