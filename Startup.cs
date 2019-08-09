@@ -44,14 +44,16 @@ namespace Tayko.co
                 //services.AddDbContext<CommentDbContext>(options =>
                 //    options.UseSqlite(
                 //        Configuration.GetConnectionString("DefaultConnection")));
-                services.AddDbContext<CommentDbContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("PgSql")));
+                
             }
             else // implement postgresql
             {
                 
             }
 
+            services.AddDbContext<CommentDbContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("PgSql")));
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
