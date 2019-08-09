@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 using Tayko.co.Data;
 
 namespace Tayko.co
@@ -48,7 +50,9 @@ namespace Tayko.co
             }
             else // implement postgresql
             {
-                
+                var redis = ConnectionMultiplexer.Connect("redis-master");
+                services.AddDataProtection()
+                    .PersistKeysToStackExchangeRedis(redis, "DataProtection-Keys");
             }
 
             services.AddDbContext<CommentDbContext>(options =>
