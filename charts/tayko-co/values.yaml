@@ -13,6 +13,9 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+database:
+  connectionstring: ""
+
 service:
   type: ClusterIP
   port: 80

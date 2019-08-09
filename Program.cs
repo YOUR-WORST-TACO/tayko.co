@@ -14,7 +14,8 @@ namespace Tayko.co
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args).ConfigureAppConfiguration(builder =>
+                builder.AddEnvironmentVariables()).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

@@ -41,9 +41,11 @@ namespace Tayko.co
             // If development, use sqlite
             if (HostingEnvironment.IsDevelopment())
             {
+                //services.AddDbContext<CommentDbContext>(options =>
+                //    options.UseSqlite(
+                //        Configuration.GetConnectionString("DefaultConnection")));
                 services.AddDbContext<CommentDbContext>(options =>
-                    options.UseSqlite(
-                        Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseNpgsql(Configuration.GetConnectionString("PgSql")));
             }
             else // implement postgresql
             {
