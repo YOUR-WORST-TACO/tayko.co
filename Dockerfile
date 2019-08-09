@@ -19,5 +19,6 @@ RUN echo $(pwd)
 
 RUN echo $(ls -l)
 
+COPY entrypoint.sh ./
 RUN chmod +x ./entrypoint.sh
 CMD /bin/bash ./entrypoint.sh
