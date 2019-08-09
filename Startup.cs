@@ -105,8 +105,10 @@ namespace Tayko.co
             
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                var context = serviceScope.ServiceProvider.GetService<CommentDbContext>();
-                context.Database.Migrate();
+                using (var context = serviceScope.ServiceProvider.GetService<CommentDbContext>())
+                {
+                    context.Database.Migrate();
+                }
             }
         }
     }
