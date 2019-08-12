@@ -711,6 +711,7 @@ web backend
   border: none;
   color: #7b7879;
   padding: 2px;
+  z-index: 20;
 }
 
 .blog-comment-form button:hover {
