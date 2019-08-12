@@ -6,6 +6,7 @@ namespace Tayko.co.Models
 {
     public class CommentModel
     {
+        [HiddenInput]
         public int Id { get; set; }
         
         [Required]

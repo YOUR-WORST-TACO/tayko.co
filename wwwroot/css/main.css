@@ -202,6 +202,12 @@ nav > .navbar-list > li:last-child:after {
   }
 }
 
+.logout-button {
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
 .body-content {
   margin-left: 30vw;
   background-color: #14191B;

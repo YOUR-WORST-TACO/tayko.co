@@ -28,22 +28,28 @@
 
 <div id="main">
     <nav class="navbar navbar-content">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form class="logout-button" asp-controller="Auth" asp-action="Logout">
+                <button type="submit">Log out</button>
+            </form>
+        }
         <h1>
             <a asp-controller="Home" asp-action="Index">Stephen Tafoya</a>
         </h1>
         <!--<h2>Developer - Artist - Creator</h2>-->
         <div class="carousel-container">
-        <ul class="carousel-list">
-            <li>Developer</li>
-            <li>Artist</li>
-            <li>Creator</li>
-            <li>Web Designer</li>
-            <li>Information Technician</li>
-            <li>Human</li>
-            <li>Drinks Water</li>
-            <li>Linux Enthusiast</li>
-            <li>Fixes Computers</li>
-        </ul>
+            <ul class="carousel-list">
+                <li>Developer</li>
+                <li>Artist</li>
+                <li>Creator</li>
+                <li>Web Designer</li>
+                <li>Information Technician</li>
+                <li>Human</li>
+                <li>Drinks Water</li>
+                <li>Linux Enthusiast</li>
+                <li>Fixes Computers</li>
+            </ul>
         </div>
 
         <ul class="navbar-list">

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
@@ -12,8 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using StackExchange.Redis;
 using Tayko.co.Data;
+using Tayko.co.Models;
 
 namespace Tayko.co
 {
@@ -40,19 +41,13 @@ namespace Tayko.co
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            // If development, use sqlite
-            if (HostingEnvironment.IsDevelopment())
-            {
-                //services.AddDbContext<CommentDbContext>(options =>
-                //    options.UseSqlite(
-                //        Configuration.GetConnectionString("DefaultConnection")));
-                
-            }
-            else // implement postgresql
-            {
-                
-            }
-
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
+                    options =>
+                    {
+                        options.AccessDeniedPath = new PathString("/auth/denied");
+                    });
+            
             services.AddDbContext<CommentDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("PgSql")));
 
@@ -80,6 +75,7 @@ namespace Tayko.co
             
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
             app.UseHsts();
+            app.UseAuthentication();
             
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -96,7 +92,6 @@ namespace Tayko.co
                     name: "default",
                     template: "{action=Index}/{id?}",
                     new { controller = "Home"});
-                
                 routes.MapRoute(
                     name: "blog",
                     template: "Blog/{*article}",
@@ -105,6 +100,9 @@ namespace Tayko.co
                     name: "error",
                     template: "Error/{error}",
                     new {controller = "Error", action="HandleError"});
+                routes.MapRoute(
+                    "authentication",
+                    "{controller=Auth}/{action=Login}");
                 routes.MapRoute(
                     "NotFound",
                     "{*url}",

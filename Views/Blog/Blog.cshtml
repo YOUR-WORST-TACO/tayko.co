@@ -27,11 +27,21 @@
     </div>
 </form>
 
+
+
 @{
     foreach (var comment in Model.Comments)
     {
         <h2>@comment.Author</h2>
         <p>@comment.Text</p>
         <p>@comment.PostDate.ToShortTimeString()</p>
+                                                
+        @if (User.Identity.IsAuthenticated)
+         {
+             <form asp-controller="Blog" asp-action="Delete" method="POST">
+                 <input asp-for="CommentModel.Id" value="@comment.Id"/>
+                 <button type="submit">Delete</button>
+             </form>
+         }
     }
 }

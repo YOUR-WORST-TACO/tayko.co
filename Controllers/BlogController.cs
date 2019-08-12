@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Tayko.co.Models;
@@ -92,7 +93,22 @@ namespace Tayko.co.Controllers
             // ViewData[""];
 
             // send user back to where they came from
-            return LocalRedirect($"/Blog/{newComment.Article}");
+            return Redirect(Request.Headers["Referer"]);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken, Authorize]
+        [Route("Blog/Delete")]
+        public IActionResult Delete(Article model)
+        {
+            var comment = model.CommentModel;
+
+            if (comment != null)
+            {
+                _context.Comments.Remove(comment);
+                _context.SaveChanges();
+            }
+            
+            return Redirect(Request.Headers["Referer"]);
         }
     }
 }
