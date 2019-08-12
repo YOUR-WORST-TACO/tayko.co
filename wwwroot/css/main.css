@@ -679,6 +679,10 @@ web backend
   padding-top: 15px;
 }
 
+.blog-comment-form input {
+  z-index: 20;
+}
+
 .blog-comment-form input[type=text] {
   background-color: #0A0F13;
   border: none;
