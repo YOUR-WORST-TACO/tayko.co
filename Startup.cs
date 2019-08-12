@@ -50,13 +50,15 @@ namespace Tayko.co
             }
             else // implement postgresql
             {
-                var redis = ConnectionMultiplexer.Connect("redis-master:6379");
-                services.AddDataProtection()
-                    .PersistKeysToStackExchangeRedis(redis, "DataProtection-Keys");
+                
             }
 
             services.AddDbContext<CommentDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("PgSql")));
+
+
+            services.AddDataProtection()
+                .PersistKeysToDbContext<CommentDbContext>();
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

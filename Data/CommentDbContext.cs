@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Tayko.co.Models;
 
 namespace Tayko.co.Data
 {
-    public class CommentDbContext : DbContext
+    public class CommentDbContext : DbContext, IDataProtectionKeyContext
     {
         public CommentDbContext(DbContextOptions options) : base(options)
         {
@@ -11,5 +12,7 @@ namespace Tayko.co.Data
 
         // Define Comments dbSet
         public DbSet<CommentModel> Comments { get; set; }
+        
+        public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
     }
 }
