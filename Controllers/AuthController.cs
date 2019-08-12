@@ -25,6 +25,9 @@ namespace Tayko.co.Controllers
         {
             var environmentUsername = Environment.GetEnvironmentVariable("TAYKO_AUTH_USER") ?? "Admin";
             var environmentPassword = Environment.GetEnvironmentVariable("TAYKO_AUTH_PASS") ?? "Denver*123";
+            
+            Console.WriteLine(environmentUsername);
+            Console.WriteLine(environmentPassword);
 
             if (username == environmentUsername && password == environmentPassword)
             {
