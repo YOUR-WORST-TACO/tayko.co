@@ -13,13 +13,6 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-auth:
-  username: "Admin"
-  password: "ChangeMe"
-
-database:
-  connectionstring: ""
-
 service:
   type: ClusterIP
   port: 80
