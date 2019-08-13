@@ -7,14 +7,12 @@ namespace Tayko.co.Models
 {
     public class BlogDataManager
     {
-        private readonly IFileProvider _fileProvider;
-        public IDirectoryContents DirectoryContents { get; set; }
+        private IDirectoryContents DirectoryContents { get; set; }
         public List<Article> Articles { get; set; }
 
         public BlogDataManager(IFileProvider fileProvider)
         {
-            _fileProvider = fileProvider;
-            DirectoryContents = _fileProvider.GetDirectoryContents("/Blog");
+            DirectoryContents = fileProvider.GetDirectoryContents("/Blog");
             Articles = new List<Article>();
 
             foreach (var item in DirectoryContents)

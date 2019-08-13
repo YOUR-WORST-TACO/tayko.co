@@ -13,10 +13,6 @@ namespace Tayko.co.Models
         public string Description { get; private set; }
         public string FilePath { get; private set; }
         public string Contents { get; private set; }
-        
-        //public CommentModel CommentModel { get; set; }
-        
-        //public List<CommentModel> Comments { get; set; }
 
         public Article()
         {}
