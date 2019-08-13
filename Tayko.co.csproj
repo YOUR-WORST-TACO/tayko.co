@@ -32,5 +32,7 @@
       <_ContentIncludedByDefault Remove="Views\Blog\Articles\articles-how-to.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Blog\Articles\how-to-article.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Blog\Articles\my-test-article.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Auth\Denied.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Auth\Login.cshtml" />
     </ItemGroup>
 </Project>
