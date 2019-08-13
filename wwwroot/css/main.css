@@ -89,8 +89,7 @@ pre {
 footer {
   margin-left: 30vw;
   padding-top: 50px;
-  height: 150px;
-  background-color: #14191B;
+  background-color: #0A0F13;
 }
 
 @media screen and (max-width: 1300px) {
@@ -102,6 +101,52 @@ footer {
 @media screen and (max-width: 1070px) {
   footer {
     margin-left: 0;
+  }
+}
+
+.footer-content {
+  width: 750px;
+  padding: 25px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.footer-content a {
+  font-size: 16px;
+}
+
+.footer-content a:link, .footer-content a:visited {
+  color: #fff;
+}
+
+.footer-content a:hover, .footer-content a:focus {
+  color: #B1ADA0;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.footer-content a:link:active, .footer-content a:visited:active {
+  color: #B1ADA0;
+}
+
+.footer-content div.footer-projects, .footer-content div.footer-contact {
+  max-width: 350px;
+  min-width: 50px;
+  min-height: 50px;
+  padding: 10px 25px;
+  flex: 1;
+}
+
+@media screen and (max-width: 1300px) {
+  .footer-content {
+    width: 650px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .footer-content {
+    width: 100%;
+    display: block;
   }
 }
 
@@ -738,4 +783,8 @@ p.drop-cap::first-letter {
     font-size: 3em;
     line-height: 0.85em;
   }
+}
+
+div.clear {
+  clear: both;
 }
