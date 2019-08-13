@@ -8,7 +8,7 @@ using Tayko.co.Models;
 using Microsoft.AspNetCore.Mvc;
 
 using Microsoft.Extensions.FileProviders;
-using Tayko.co.Data;
+//using Tayko.co.Data;
 
 namespace Tayko.co.Controllers
 {
@@ -16,16 +16,15 @@ namespace Tayko.co.Controllers
     {
         // store all private variables for runtime operation
         private readonly IHostingEnvironment _hostingEnvironment;
-        private readonly CommentDbContext _context;
+        //private readonly CommentDbContext _context;
         private readonly IHttpContextAccessor _accessor;
 
         public BlogController(
             IHostingEnvironment hostingEnvironment,
-            CommentDbContext context,
             IHttpContextAccessor accessor)
         {
             _hostingEnvironment = hostingEnvironment;
-            _context = context;
+            //_context = context;
             _accessor = accessor;
         }
         
@@ -57,15 +56,15 @@ namespace Tayko.co.Controllers
             }
 
             // attempt to find comments related to article
-            foundArticle.Comments = _context.Comments
+            /*foundArticle.Comments = _context.Comments
                 .Where(b => b.Article.Equals(foundArticle.Name))
-                .ToList();
+                .ToList();*/
 
             // return Blog view with foundArticle model
             return View("Blog", foundArticle);
         }
         
-        [HttpPost, ValidateAntiForgeryToken]
+        /*[HttpPost, ValidateAntiForgeryToken]
         [Route("Blog/Comment")]
         public IActionResult PostComment(Article model)
         {
@@ -109,6 +108,6 @@ namespace Tayko.co.Controllers
             }
             
             return Redirect(Request.Headers["Referer"]);
-        }
+        }*/
     }
 }

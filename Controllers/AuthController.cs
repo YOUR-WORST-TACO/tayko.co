@@ -1,4 +1,4 @@
-
+/*
 
 using System;
 using System.Collections.Generic;
@@ -75,4 +75,4 @@ namespace Tayko.co.Controllers
             return Redirect(Request.Headers["Referer"]);
         }
     }
-}
+}*/

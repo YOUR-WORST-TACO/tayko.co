@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Tayko.co.Data;
+//using Tayko.co.Data;
 using Tayko.co.Models;
 
 namespace Tayko.co
@@ -35,25 +35,25 @@ namespace Tayko.co
         public void ConfigureServices(IServiceCollection services)
         {
             // Plan to remove cookies completely
-            services.Configure<CookiePolicyOptions>(options =>
+            /*services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+            });*/
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            /*services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
                     options =>
                     {
                         options.AccessDeniedPath = new PathString("/auth/denied");
-                    });
+                    });*/
             
-            services.AddDbContext<CommentDbContext>(options =>
+            /*services.AddDbContext<CommentDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("PgSql")));
 
 
             services.AddDataProtection()
-                .PersistKeysToDbContext<CommentDbContext>();
+                .PersistKeysToDbContext<CommentDbContext>();*/
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -109,13 +109,13 @@ namespace Tayko.co
                     new { controller = "Error", action = "HandleError", error=404});
             });
             
-            using (var serviceScope = app.ApplicationServices.CreateScope())
+            /*using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 using (var context = serviceScope.ServiceProvider.GetService<CommentDbContext>())
                 {
                     context.Database.Migrate();
                 }
-            }
+            }*/
         }
     }
 }

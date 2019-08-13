@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿/*using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Tayko.co.Migrations
@@ -28,4 +28,4 @@ namespace Tayko.co.Migrations
                 name: "DataProtectionKeys");
         }
     }
-}
+}*/

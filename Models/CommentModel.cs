@@ -1,3 +1,4 @@
+/*
 using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
@@ -27,4 +28,4 @@ namespace Tayko.co.Models
         public DateTime PostDate { get; set; }
         public string PostIp { get; set; }
     }
-}
+}*/
