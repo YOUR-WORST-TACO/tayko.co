@@ -1,0 +1,27 @@
+.article-overview {
+  list-style: none;
+  
+  h2 {
+    padding: 0;
+    font-size: 30px;
+  }
+}
+
+.article-date {
+  float: right;
+  font-size: 16px;
+}
+
+.article-description {
+  div {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top,
+            rgba($color-background, 1) 20%,
+            rgba($color-background, 0) 80%
+    );
+  }
+  position: relative;
+}

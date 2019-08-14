@@ -5,16 +5,34 @@
 
 <h1>Articles below</h1>
 <hr/>
-<ul>
+<ul class="article-overview">
     @{
         foreach (var article in Model.Articles)
         {
-            <li><a asp-controller="Blog" asp-action="LoadBlog" asp-route-article="@article.Name"><h2>@article.Title</h2>
-                @if (article.Date != DateTime.MinValue)
-                {
-                    <p><b>@article.Date.ToString("M/d/yy")</b></p>
-                }
-                <p>@article.Description</p></a></li>
+            <li>
+                <a asp-controller="Blog" asp-action="LoadBlog" asp-route-article="@article.Name">
+                    
+                    @if (article.Date != DateTime.MinValue)
+                    {
+                        <p class="article-date">
+                            <b>@article.Date.ToString("D")</b>
+                        </p>
+                    }
+                    <h2>@article.Title</h2>
+
+                    @{
+                        var articleDescription = article.Description;
+                        if (articleDescription.Length > 250)
+                        {
+                            articleDescription = articleDescription.Substring(0, 250);
+                        }
+                    }
+                    <div class="article-description">
+                        <div></div>
+                        <p>@articleDescription</p>
+                    </div>
+                </a>
+            </li>
         }
     }
 </ul>

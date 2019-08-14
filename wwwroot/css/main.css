@@ -729,6 +729,32 @@ web backend
   font-size: 150px;
 }
 
+.article-overview {
+  list-style: none;
+}
+
+.article-overview h2 {
+  padding: 0;
+  font-size: 30px;
+}
+
+.article-date {
+  float: right;
+  font-size: 16px;
+}
+
+.article-description {
+  position: relative;
+}
+
+.article-description div {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, #14191b 20%, rgba(20, 25, 27, 0) 80%);
+}
+
 * {
   margin: 0;
   padding: 0;
