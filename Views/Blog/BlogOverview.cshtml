@@ -15,7 +15,7 @@
                     @if (article.Date != DateTime.MinValue)
                     {
                         <p class="article-date">
-                            <b>@article.Date.ToString("D")</b>
+                            @article.Date.ToString("D")
                         </p>
                     }
                     <h2>@article.Title</h2>
