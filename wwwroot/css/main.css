@@ -809,6 +809,24 @@ web backend
   background: linear-gradient(to top, #14191b 20%, rgba(20, 25, 27, 0) 80%);
 }
 
+.privacy {
+  font-size: 18px;
+  padding-bottom: 20px;
+}
+
+.privacy-list {
+  color: #fff;
+  font-size: 18px;
+  line-height: 28px;
+  list-style-type: disc;
+  margin-left: 1em;
+}
+
+.privacy-list ul {
+  list-style-type: circle;
+  margin-left: 2em;
+}
+
 * {
   margin: 0;
   padding: 0;

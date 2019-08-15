@@ -1,0 +1,19 @@
+.privacy {
+  font-size: 18px;
+  padding-bottom: 20px;
+}
+
+.privacy-list {
+  @include default_text;
+
+  font-size: 18px;
+  line-height: 28px;
+  
+  list-style-type: disc;
+  margin-left: 1em;
+  
+  ul {
+    list-style-type: circle;
+    margin-left: 2em;
+  }
+}
