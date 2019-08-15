@@ -35,11 +35,11 @@ namespace Tayko.co
         public void ConfigureServices(IServiceCollection services)
         {
             // Plan to remove cookies completely
-            /*services.Configure<CookiePolicyOptions>(options =>
+            services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
-            });*/
+            });
 
             /*services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
@@ -76,7 +76,8 @@ namespace Tayko.co
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
             app.UseHsts();
             app.UseAuthentication();
-            
+
+            app.UseCookiePolicy();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

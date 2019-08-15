@@ -256,7 +256,6 @@ nav > .navbar-list > li:last-child:after {
 .body-content {
   margin-left: 30vw;
   background-color: #14191B;
-  padding-top: 100px;
   min-height: 100vh;
 }
 
@@ -275,8 +274,8 @@ nav > .navbar-list > li:last-child:after {
 .primary-content {
   height: 100%;
   width: 750px;
-  padding: 25px;
   margin: 0 auto;
+  padding: 100px 25px 25px;
 }
 
 @media screen and (max-width: 1300px) {
@@ -288,6 +287,7 @@ nav > .navbar-list > li:last-child:after {
 @media screen and (max-width: 650px) {
   .primary-content {
     width: 100%;
+    padding: 30px 25px 25px;
   }
 }
 
@@ -723,6 +723,60 @@ web backend
 
 .popup:target {
   opacity: 1;
+}
+
+.consent-container {
+  z-index: 999;
+  position: fixed;
+  width: 400px;
+  background-color: #2A7299;
+  color: #eeeeee;
+  font-size: 16px;
+  bottom: 15px;
+  right: 15px;
+  box-shadow: 4px 5px 10px 5px rgba(0, 0, 0, 0.38);
+}
+
+@media screen and (max-width: 450px) {
+  .consent-container {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+.consent-message {
+  width: 100%;
+  padding: 25px 60px;
+}
+
+.consent-message a:link, .consent-message a:visited {
+  color: #90d2f5;
+}
+
+.consent-message a:hover, .consent-message a:focus {
+  color: #75b2d4;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.consent-message a:link:active, .consent-message a:visited:active {
+  color: #90d2f5;
+}
+
+.consent-button {
+  background-color: #308fbb;
+}
+
+.consent-button button {
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  background: none;
+  padding: 5px 10px;
+  border: none;
+  font-size: 25px;
+  text-align: center;
 }
 
 .errorCode {

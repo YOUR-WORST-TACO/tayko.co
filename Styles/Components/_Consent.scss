@@ -1,0 +1,56 @@
+.consent-container {
+  z-index: 999;
+  position: fixed;
+  width: 400px;
+  background-color: #2A7299;
+  
+  color: #eeeeee;
+  font-size: 16px;
+  
+  bottom: 15px;
+  right: 15px;
+  box-shadow: 4px 5px 10px 5px rgba(0,0,0,0.38);
+
+  @media screen and (max-width: 450px) {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+  }
+}
+
+.consent-message {
+  width: 100%;
+  padding: 25px 60px;
+  
+  a {
+    &:link, &:visited {
+      color: #90d2f5;
+    }
+    &:hover, &:focus {
+      color: #75b2d4;
+      font-style: normal;
+      text-decoration: none;
+    }
+    &:link:active, &:visited:active
+    {
+      color: #90d2f5;
+    }
+  }
+}
+
+.consent-button {
+  background-color: #308fbb;
+  button {
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    background: none;
+    padding: 5px 10px;
+    
+    border: none;
+
+    font-size: 25px;
+    text-align: center;
+  }
+}

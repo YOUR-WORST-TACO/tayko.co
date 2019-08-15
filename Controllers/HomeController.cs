@@ -31,5 +31,10 @@ namespace Tayko.co.Controllers
         {
             return View();
         }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
     }
 }

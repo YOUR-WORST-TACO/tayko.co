@@ -3,7 +3,7 @@ $top-padding: 100px;
 .body-content {
   margin-left: 30vw;
   background-color: $color-background;
-  padding-top: $top-padding;
+  
   //padding: $top-padding 100px 100px;
   min-height: 100vh;
 
@@ -21,14 +21,16 @@ $top-padding: 100px;
 .primary-content {
   height: 100%;
   width: 750px;
-  padding: 25px;
   margin: 0 auto;
-  
+  padding: $top-padding 25px 25px;
+
   @media screen and (max-width: $page-transition-width) {
     width: 650px;
   }
   
   @media screen and (max-width: $page-smallest-width) {
     width: 100%;
+
+    padding: 30px 25px 25px;
   }
 }
