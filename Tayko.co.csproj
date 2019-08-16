@@ -35,4 +35,8 @@
       <_ContentIncludedByDefault Remove="Views\Auth\Denied.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Auth\Login.cshtml" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Service" />
+    </ItemGroup>
 </Project>

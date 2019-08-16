@@ -19,13 +19,24 @@ namespace Tayko.co.Controllers
         //private readonly CommentDbContext _context;
         private readonly IHttpContextAccessor _accessor;
 
+        private readonly BlogDataManager _dataManager;
+
         public BlogController(
             IHostingEnvironment hostingEnvironment,
-            IHttpContextAccessor accessor)
+            IHttpContextAccessor accessor,
+            BlogDataManager dataManager)
         {
             _hostingEnvironment = hostingEnvironment;
             //_context = context;
             _accessor = accessor;
+            _dataManager = dataManager;
+        }
+
+        [Route("/Blog/Image")]
+        public IActionResult Image()
+        {
+            var file = _hostingEnvironment.ContentRootFileProvider.GetFileInfo( "/Blog/hollowknight.jpg");
+            return File(file.CreateReadStream(), "image/jpeg");
         }
         
         public IActionResult LoadBlog(string article)
@@ -34,17 +45,16 @@ namespace Tayko.co.Controllers
             var provider = _hostingEnvironment.ContentRootFileProvider;
 
             // instantiate new BlogDataManager to load blogs
-            BlogDataManager blogs = new BlogDataManager(provider);
 
             // if no article was passed
             if (article == null)
             {
                 // return the BlogOverview view
-                return View("BlogOverview", blogs);
+                return View("BlogOverview", _dataManager);
             }
-            
+
             // finds first article that matches the lambda
-            var foundArticle = blogs.Articles.FirstOrDefault(
+            var foundArticle = _dataManager.Articles.FirstOrDefault(
                 x => (x.Name == article)
             );
 

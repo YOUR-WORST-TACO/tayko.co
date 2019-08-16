@@ -57,6 +57,9 @@ namespace Tayko.co
             
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddSingleton<BlogDataManager>();
+            services.AddSingleton(s => new BlogDataManager(HostingEnvironment));
+            //services.AddSingleton(provider => new {Provider})
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
