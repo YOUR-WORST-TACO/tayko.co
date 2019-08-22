@@ -59,6 +59,7 @@ namespace Tayko.co
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //services.AddSingleton<BlogDataManager>();
             services.AddSingleton(s => new BlogDataManager(HostingEnvironment));
+            services.AddSingleton(s => new Blogerator(HostingEnvironment));
             //services.AddSingleton(provider => new {Provider})
         }
         

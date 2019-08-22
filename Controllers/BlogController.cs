@@ -21,15 +21,19 @@ namespace Tayko.co.Controllers
 
         private readonly BlogDataManager _dataManager;
 
+        private readonly Blogerator _blogerator;
+
         public BlogController(
             IHostingEnvironment hostingEnvironment,
             IHttpContextAccessor accessor,
-            BlogDataManager dataManager)
+            BlogDataManager dataManager,
+            Blogerator blogerator)
         {
             _hostingEnvironment = hostingEnvironment;
             //_context = context;
             _accessor = accessor;
             _dataManager = dataManager;
+            _blogerator = blogerator;
         }
 
         [Route("/Blog/Image")]
