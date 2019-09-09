@@ -76,7 +76,9 @@ namespace Tayko.co
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
                 app.UseHsts();
             }
-            
+
+            var blogerator = app.ApplicationServices.GetService<Blogerator>();
+
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
             app.UseHsts();
             app.UseAuthentication();

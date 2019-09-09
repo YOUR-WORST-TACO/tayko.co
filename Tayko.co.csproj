@@ -18,22 +18,15 @@
         <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.6" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.4" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.1" />
     </ItemGroup>
-    
+
     <ItemGroup>
         <Content Include="Blog\**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-    </ItemGroup>
-    
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="Views\Blog\Articles\articles-how-to.cshtml" />
-      <_ContentIncludedByDefault Remove="Views\Blog\Articles\how-to-article.cshtml" />
-      <_ContentIncludedByDefault Remove="Views\Blog\Articles\my-test-article.cshtml" />
-      <_ContentIncludedByDefault Remove="Views\Auth\Denied.cshtml" />
-      <_ContentIncludedByDefault Remove="Views\Auth\Login.cshtml" />
     </ItemGroup>
     
     <ItemGroup>

@@ -8,32 +8,56 @@ namespace Tayko.co.Models
 {
     public class Blogerator
     {
-        private IFileInfo RootDirectory { get; set; }
+        private DirectoryInfo RootDirectory { get; set; }
+        private string ContentFileName = "content.html";
+        private string MetaConfigFileName = "meta.conf";
 
         public Blogerator(IHostingEnvironment hostingEnvironment)
         {
-            RootDirectory = hostingEnvironment.ContentRootFileProvider.GetFileInfo("/Blog");
+            RootDirectory = new DirectoryInfo(hostingEnvironment.ContentRootPath + "/Blog");
+            
+            BlogInitializer();
+            
+            BlogeratorStarted();
+        }
 
-            /*foreach (var item in DirectoryContents)
+        public void BlogeratorStarted()
+        {
+            Console.WriteLine("Blogerator successfully initialized!");
+        }
+        
+        private void BlogInitializer()
+        {
+            foreach (var subDirectory in RootDirectory.GetDirectories())
             {
-                if (item.IsDirectory)
+                var articleDirectory = new DirectoryInfo(subDirectory.FullName);
+                Console.WriteLine($"{subDirectory.Name}");
+
+                foreach (var file in articleDirectory.GetFiles())
                 {
-                    Console.WriteLine($"Directory: {item.Name}");
-                    foreach (var item2 in hostingEnvironment.ContentRootFileProvider.GetDirectoryContents(
-                        $"/Blog/${item.Name}"))
+                    if (file.Name.Equals(ContentFileName))
                     {
-                        Console.WriteLine($"\t File: {item2.Name}");
-                        if (!item2.IsDirectory)
+                        Console.WriteLine($"\tcontent file: {file.Name}");
+                    } else if (file.Name.Equals(MetaConfigFileName))
+                    {
+                        Console.WriteLine($"\tmeta file: {file.Name}");
+                    }
+                }
+
+                foreach (var directory in articleDirectory.GetDirectories())
+                {
+                    if (directory.Name.Equals("resources"))
+                    {
+                        var resourceDirectory = new DirectoryInfo(directory.FullName);
+                        Console.WriteLine($"\t{directory.Name}");
+
+                        foreach (var resource in resourceDirectory.GetFiles())
                         {
-                            
+                            Console.WriteLine($"\t\t{resource.Name}");
                         }
                     }
                 }
-                else
-                {
-                    Console.WriteLine($"File: {item.Name}");
-                }
-            }*/
+            }
         }
     }
 }
