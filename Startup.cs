@@ -98,15 +98,15 @@ namespace Tayko.co
                 routes.MapRoute(
                     name: "default",
                     template: "{action=Index}/{id?}",
-                    new { controller = "Home"});
+                    defaults: new { controller = "Home"});
                 routes.MapRoute(
                     name: "blog",
                     template: "Blog/{*article}",
-                    new {controller = "Blog", action="LoadBlog"});
+                    defaults: new {controller = "Blog", action="LoadBlog"});
                 routes.MapRoute(
                     name: "error",
                     template: "Error/{error}",
-                    new {controller = "Error", action="HandleError"});
+                    defaults: new {controller = "Error", action="HandleError"});
                 routes.MapRoute(
                     "authentication",
                     "{controller=Auth}/{action=Login}");

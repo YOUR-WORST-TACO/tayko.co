@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
+using Newtonsoft.Json;
 
 namespace Tayko.co.Models
 {
@@ -12,13 +13,31 @@ namespace Tayko.co.Models
         private string ContentFileName = "content.html";
         private string MetaConfigFileName = "meta.conf";
 
+        public List<PostModel> Posts { get; set; }
+
         public Blogerator(IHostingEnvironment hostingEnvironment)
         {
             RootDirectory = new DirectoryInfo(hostingEnvironment.ContentRootPath + "/Blog");
             
-            BlogInitializer();
+            Posts = new List<PostModel>();
             
-            BlogeratorStarted();
+            /*PostModel test = new PostModel();
+            test.PostDate = DateTime.Now;
+            test.PostName = "Magic Name";
+            test.PostTitle = "Magical thingy";
+            test.PostEditDate = DateTime.MinValue;
+
+            string json = JsonConvert.SerializeObject(test);
+
+            PostModel test2 = JsonConvert.DeserializeObject<PostModel>(json);
+            
+            
+            
+            Console.Write(json + "\n");*/
+            
+            
+            
+            BlogInitializer();
         }
 
         public void BlogeratorStarted()
@@ -32,6 +51,10 @@ namespace Tayko.co.Models
             {
                 var articleDirectory = new DirectoryInfo(subDirectory.FullName);
                 Console.WriteLine($"{subDirectory.Name}");
+
+                PostModel placeholderPost = new PostModel();
+
+                placeholderPost.PostName = articleDirectory.Name;
 
                 foreach (var file in articleDirectory.GetFiles())
                 {
@@ -58,6 +81,7 @@ namespace Tayko.co.Models
                     }
                 }
             }
+            BlogeratorStarted();
         }
     }
 }
