@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tayko-co-ingress
+  labels:
+    app: tayko-co
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: tayko.co
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: tayko-co-service
+            servicePort: 80
+  - host: www.tayko.co
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: tayko-co-service
+            servicePort: 80
