@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -13,6 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
+using Npgsql.PostgresTypes;
 //using Tayko.co.Data;
 using Tayko.co.Models;
 
@@ -87,6 +90,19 @@ namespace Tayko.co
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            foreach (var post in blogerator.Posts)
+            {
+                if (post.PostResourceDirectory != null)
+                {
+                    app.UseStaticFiles(new StaticFileOptions
+                    {
+                        FileProvider = new PhysicalFileProvider(
+                            post.PostResourceDirectory.FullName),
+                        RequestPath = $"/Blog/{post.PostName}"
+                    });
+                }
+            }
+            
             /* ROUTES
              * - default drops its name and uses just its actions,
              * - blog sends all requests to LoadBlog
