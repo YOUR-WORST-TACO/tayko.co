@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
+using Newtonsoft.Json;
 
 namespace Tayko.co.Models
 {
@@ -12,13 +13,31 @@ namespace Tayko.co.Models
         private string ContentFileName = "content.html";
         private string MetaConfigFileName = "meta.conf";
 
+        public List<PostModel> Posts { get; set; }
+
         public Blogerator(IHostingEnvironment hostingEnvironment)
         {
             RootDirectory = new DirectoryInfo(hostingEnvironment.ContentRootPath + "/Blog");
             
-            BlogInitializer();
+            Posts = new List<PostModel>();
             
-            BlogeratorStarted();
+            /*PostModel test = new PostModel();
+            test.PostDate = DateTime.Now;
+            test.PostName = "Magic Name";
+            test.PostTitle = "Magical thingy";
+            test.PostEditDate = DateTime.MinValue;
+
+            string json = JsonConvert.SerializeObject(test);
+
+            PostModel test2 = JsonConvert.DeserializeObject<PostModel>(json);
+            
+            
+            
+            Console.Write(json + "\n");*/
+            
+            
+            
+            BlogInitializer();
         }
 
         public void BlogeratorStarted()
@@ -31,33 +50,60 @@ namespace Tayko.co.Models
             foreach (var subDirectory in RootDirectory.GetDirectories())
             {
                 var articleDirectory = new DirectoryInfo(subDirectory.FullName);
-                Console.WriteLine($"{subDirectory.Name}");
+
+                FileInfo contentFile = null;
+                FileInfo metaFile = null;
 
                 foreach (var file in articleDirectory.GetFiles())
                 {
                     if (file.Name.Equals(ContentFileName))
                     {
-                        Console.WriteLine($"\tcontent file: {file.Name}");
+                        contentFile = file;
                     } else if (file.Name.Equals(MetaConfigFileName))
                     {
-                        Console.WriteLine($"\tmeta file: {file.Name}");
+                        metaFile = file;
                     }
                 }
 
-                foreach (var directory in articleDirectory.GetDirectories())
+                if (contentFile != null && metaFile != null)
                 {
-                    if (directory.Name.Equals("resources"))
-                    {
-                        var resourceDirectory = new DirectoryInfo(directory.FullName);
-                        Console.WriteLine($"\t{directory.Name}");
+                    string metaFileContents = File.ReadAllText(metaFile.FullName);
 
-                        foreach (var resource in resourceDirectory.GetFiles())
-                        {
-                            Console.WriteLine($"\t\t{resource.Name}");
-                        }
+                    PostModel temporaryPost = null;
+
+                    try
+                    {
+                        temporaryPost = JsonConvert.DeserializeObject<PostModel>(metaFileContents);
                     }
+                    catch (JsonReaderException e)
+                    {
+                        Console.Write($"Meta file for article: {articleDirectory.Name} is invalid, skipping...\n {e.Message}");
+                        continue;
+                    }
+
+                    temporaryPost.PostMetaFile = metaFile;
+                    temporaryPost.PostContentFile = contentFile;
+                    temporaryPost.PostName = articleDirectory.Name;
+                    temporaryPost.PostContent = File.ReadAllText(contentFile.FullName);
+                    temporaryPost.PostRoot = articleDirectory;
+
+                    temporaryPost.PostResourceDirectory = null;
+                    foreach (var directory in articleDirectory.GetDirectories())
+                    {
+                        if (directory.Name.Equals("resources"))
+                        {
+                            temporaryPost.PostResourceDirectory = new DirectoryInfo(directory.FullName);
+                        }
+                    }   
+                    Console.Write($"Successfully Loaded Article: {articleDirectory.Name}\n");
+                    Posts.Add(temporaryPost);
+                }
+                else
+                {
+                    Console.Write($"Article: {articleDirectory.Name} is malformed, skipping!\n");
                 }
             }
+            BlogeratorStarted();
         }
     }
 }
