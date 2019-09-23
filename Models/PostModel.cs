@@ -38,6 +38,7 @@ namespace Tayko.co.Models
         public void LoadCache(DirectoryInfo rootDirectory)
         {
             var currentPostHash = GetContentMd5Hash();
+            
             var postCacheFile = Path.Combine(rootDirectory.FullName, ".cache", PostName + ".cache");
             var postHashFile = Path.Combine(rootDirectory.FullName, ".cache", PostName);
 
@@ -46,11 +47,17 @@ namespace Tayko.co.Models
                 var previousPostHash = File.ReadAllText(postHashFile);
                 if (previousPostHash != currentPostHash)
                 {
-                    
+                    File.WriteAllText(postHashFile, currentPostHash);
+                    Console.WriteLine("Rebuilding Content Cache");
+                    // Parse Content into Cache
                 }
             }
-
-            
+            else
+            {
+                File.WriteAllText(postHashFile, currentPostHash);
+                File.Create(postCacheFile);
+                // Parse Content into Cache
+            }
         }
     }
 }
