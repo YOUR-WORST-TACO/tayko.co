@@ -36,13 +36,6 @@ namespace Tayko.co.Controllers
             _blogerator = blogerator;
         }
 
-        [Route("/Blog/Image")]
-        public IActionResult Image()
-        {
-            var file = _hostingEnvironment.ContentRootFileProvider.GetFileInfo( "/Blog/hollowknight.jpg");
-            return File(file.CreateReadStream(), "image/jpeg");
-        }
-        
         public IActionResult LoadBlog(string article)
         {
             // get default root folder for hossting
