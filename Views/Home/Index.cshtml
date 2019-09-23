@@ -6,7 +6,18 @@
     <h1 class="blinker blinker-animate" id="title">Who is Stephen?</h1>
 </div>
 <script>
-document.getElementById("title").innerHTML = "Who is <span class=\"blinker-highlight\">@@author?</span>";
+let possibleNames = [
+  "@@author",
+  "{author}",
+  "<< author",
+  "$author",
+  "Null",
+  "*author",
+  "temp",
+  "N.A.",
+  "$(author)"
+];
+document.getElementById("title").innerHTML = "Who is <span class=\"blinker-highlight\">" + possibleNames[Math.floor(Math.random()*possibleNames.length)] + "</span>";
 </script>
 <hr/>
 

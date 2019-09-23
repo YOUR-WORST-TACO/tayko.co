@@ -41,9 +41,11 @@ function animate_index_title() {
 
     $title.removeClass("blinker-animate");
     
+    let $startText = $('.blinker-highlight');
+    
     swapText(
         $title, 
-        "@author",
+        $startText.text(),
         "Stephen?",
         "Who is <span class=\"blinker-highlight\">", 
         "</span>",
