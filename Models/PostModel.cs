@@ -35,7 +35,7 @@ namespace Tayko.co.Models
             }
         }
         
-        public bool LoadCache(DirectoryInfo rootDirectory)
+        public void LoadCache(DirectoryInfo rootDirectory)
         {
             var currentPostHash = GetContentMd5Hash();
             var postCacheFile = Path.Combine(rootDirectory.FullName, ".cache", PostName + ".cache");
@@ -46,11 +46,11 @@ namespace Tayko.co.Models
                 var previousPostHash = File.ReadAllText(postHashFile);
                 if (previousPostHash != currentPostHash)
                 {
-                    return true;
+                    
                 }
             }
 
-            return false;
+            
         }
     }
 }
