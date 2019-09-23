@@ -88,12 +88,7 @@ namespace Tayko.co.Models
                     }
                 }
 
-                if (PostCacheValid(temporaryPost))
-                {
-                }
-                else
-                {
-                }
+                temporaryPost.LoadCache(RootDirectory);
 
                 Console.Write($"Successfully Loaded Article: {postDirectory.Name}\n");
                 return temporaryPost;
@@ -135,24 +130,6 @@ namespace Tayko.co.Models
         public void BlogeratorStarted()
         {
             Console.WriteLine("Blogerator successfully initialized!");
-        }
-
-        public bool PostCacheValid(PostModel post)
-        {
-            var currentPostHash = post.GetContentMd5Hash();
-            var postCacheFile = Path.Combine(RootDirectory.FullName, ".cache", post.PostName + ".cache");
-            var postHashFile = Path.Combine(RootDirectory.FullName, ".cache", post.PostName);
-
-            if (File.Exists(postHashFile) && File.Exists(postCacheFile))
-            {
-                var previousPostHash = File.ReadAllText(postHashFile);
-                if (previousPostHash != currentPostHash)
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         public PostModel GetPost(string postName)

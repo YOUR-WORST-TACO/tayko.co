@@ -34,5 +34,23 @@ namespace Tayko.co.Models
                 }
             }
         }
+        
+        public bool LoadCache(DirectoryInfo rootDirectory)
+        {
+            var currentPostHash = GetContentMd5Hash();
+            var postCacheFile = Path.Combine(rootDirectory.FullName, ".cache", PostName + ".cache");
+            var postHashFile = Path.Combine(rootDirectory.FullName, ".cache", PostName);
+
+            if (File.Exists(postHashFile) && File.Exists(postCacheFile))
+            {
+                var previousPostHash = File.ReadAllText(postHashFile);
+                if (previousPostHash != currentPostHash)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
