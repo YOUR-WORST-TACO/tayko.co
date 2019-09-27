@@ -31,10 +31,10 @@ namespace Tayko.co
 
         // Stores config options
         public IConfiguration Configuration { get; }
-        
+
         // Stores hosting environment variables needed for Blogs
         public IHostingEnvironment HostingEnvironment { get; }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             // Plan to remove cookies completely
@@ -50,14 +50,14 @@ namespace Tayko.co
                     {
                         options.AccessDeniedPath = new PathString("/auth/denied");
                     });*/
-            
+
             /*services.AddDbContext<CommentDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("PgSql")));
 
 
             services.AddDataProtection()
                 .PersistKeysToDbContext<CommentDbContext>();*/
-            
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //services.AddSingleton<BlogDataManager>();
@@ -65,7 +65,7 @@ namespace Tayko.co
             services.AddSingleton(s => new Blogerator(HostingEnvironment));
             //services.AddSingleton(provider => new {Provider})
         }
-        
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             // Development Exception handling pages
@@ -90,19 +90,19 @@ namespace Tayko.co
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            foreach (var post in blogerator.Posts)
-            {
-                if (post.PostResourceDirectory != null)
+            blogerator.Posts
+                .Where(p => p.PostResourceDirectory != null)
+                .ToList()
+                .ForEach(p =>
                 {
                     app.UseStaticFiles(new StaticFileOptions
                     {
                         FileProvider = new PhysicalFileProvider(
-                            post.PostResourceDirectory.FullName),
-                        RequestPath = $"/Blog/{post.PostName}"
+                            p.PostResourceDirectory.FullName),
+                        RequestPath = $"/Blog/{p.PostName}"
                     });
-                }
-            }
-            
+                });
+
             /* ROUTES
              * - default drops its name and uses just its actions,
              * - blog sends all requests to LoadBlog
@@ -114,31 +114,23 @@ namespace Tayko.co
                 routes.MapRoute(
                     name: "default",
                     template: "{action=Index}/{id?}",
-                    defaults: new { controller = "Home"});
+                    defaults: new {controller = "Home"});
                 routes.MapRoute(
                     name: "blog",
                     template: "Blog/{*article}",
-                    defaults: new {controller = "Blog", action="LoadBlog"});
+                    defaults: new {controller = "Blog", action = "LoadBlog"});
                 routes.MapRoute(
                     name: "error",
                     template: "Error/{error}",
-                    defaults: new {controller = "Error", action="HandleError"});
+                    defaults: new {controller = "Error", action = "HandleError"});
                 routes.MapRoute(
                     "authentication",
                     "{controller=Auth}/{action=Login}");
                 routes.MapRoute(
                     "NotFound",
                     "{*url}",
-                    new { controller = "Error", action = "HandleError", error=404});
+                    new {controller = "Error", action = "HandleError", error = 404});
             });
-            
-            /*using (var serviceScope = app.ApplicationServices.CreateScope())
-            {
-                using (var context = serviceScope.ServiceProvider.GetService<CommentDbContext>())
-                {
-                    context.Database.Migrate();
-                }
-            }*/
         }
     }
 }
