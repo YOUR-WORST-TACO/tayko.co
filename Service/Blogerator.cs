@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json;
@@ -43,7 +44,6 @@ namespace Tayko.co.Models
         public PostModel LoadBlogPost(DirectoryInfo postDirectory)
         {
             FileInfo contentFile = null;
-            FileInfo metaFile = null;
 
             foreach (var file in postDirectory.GetFiles())
             {
@@ -51,35 +51,26 @@ namespace Tayko.co.Models
                 {
                     contentFile = file;
                 }
-                else if (file.Name.Equals(MetaConfigFileName))
-                {
-                    metaFile = file;
-                }
             }
 
-            if (contentFile != null && metaFile != null)
+            if (contentFile != null)
             {
-                string metaFileContents = File.ReadAllText(metaFile.FullName);
+                string storageRegEx = @"---.*title:(?<title>.*?)\r\nauthor:(?<author>.*?)\r\npostDate:(?<postDate>.*?)\r\neditDate:(?<editDate>.*?)\r\n---\r\n(?<content>.*)";
+                
+                var storageFileSplit = new Regex(storageRegEx, RegexOptions.Singleline )
+                    .Match(File.ReadAllText(contentFile.FullName)).Groups;
 
-                PostModel temporaryPost = null;
-
-                try
+                PostModel temporaryPost = new PostModel
                 {
-                    temporaryPost = JsonConvert.DeserializeObject<PostModel>(metaFileContents);
-                }
-                catch (JsonReaderException e)
-                {
-                    Console.Write($"Meta file for article: {postDirectory.Name} is invalid, skipping...\n {e.Message}");
-                    return null;
-                }
+                    PostStorageFile = contentFile,
+                    PostContent = storageFileSplit["context"].Value,
+                    PostTitle = storageFileSplit["title"].Value,
+                    PostAuthor = storageFileSplit["author"].Value,
+                    PostName = postDirectory.Name,
+                    PostRoot = postDirectory,
+                    PostResourceDirectory = null
+                };
 
-                temporaryPost.PostMetaFile = metaFile;
-                temporaryPost.PostContentFile = contentFile;
-                temporaryPost.PostName = postDirectory.Name;
-                temporaryPost.PostContent = File.ReadAllText(contentFile.FullName);
-                temporaryPost.PostRoot = postDirectory;
-
-                temporaryPost.PostResourceDirectory = null;
                 foreach (var directory in postDirectory.GetDirectories())
                 {
                     if (directory.Name.Equals("resources"))
