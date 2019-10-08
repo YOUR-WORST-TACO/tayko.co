@@ -8,5 +8,15 @@
       "enabled": true,
       "renameLocals": true
     }
+  },
+  {
+    "outputFileName": "wwwroot/js/blinker.min.js",
+    "inputFiles": [
+      "wwwroot/js/blinker.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
   }
 ]

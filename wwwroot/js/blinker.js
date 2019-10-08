@@ -1,10 +1,9 @@
-﻿/*function swapText(element = null, startText = null, endText = "", prefix = "", postfix = "", oncomplete = null) {
+﻿function swapText(element = null, startText = null, endText = "", prefix = "", postfix = "", oncomplete = null) {
     
     if (element == null) {
         throw "No swap text element provided!";
     }
-    */
-/*
+    
     if (startText == null) {
         startText = element.html();
     }
@@ -66,4 +65,4 @@ $(document).ready(function() {
         animate_index_title()
     }, 2000);
     
-});*/
+});

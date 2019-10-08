@@ -12,9 +12,10 @@ namespace Tayko.co.Controllers
     public class HomeController : Controller
     {
         // all methods in this class just return default matching views.
-        public IActionResult Index()
+        public IActionResult Index(string mode)
         {
-            return View();
+            bool showMyFace = mode == "lyze";
+            return View(showMyFace);
         }
 
         public IActionResult Code()

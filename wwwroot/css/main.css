@@ -255,7 +255,7 @@ nav > .navbar-list > li:last-child:after {
 
 .body-content {
   margin-left: 30vw;
-  background-color: #14191B;
+  background-color: #0d1011;
   min-height: 100vh;
 }
 
@@ -296,7 +296,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background-color: #14191B;
+  background-color: #0d1011;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -806,7 +806,7 @@ web backend
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, #14191b 20%, rgba(20, 25, 27, 0) 80%);
+  background: linear-gradient(to top, #0d1011 20%, rgba(13, 16, 17, 0) 80%);
 }
 
 .privacy {

@@ -112,8 +112,12 @@ namespace Tayko.co
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    "LyzeRoute",
+                    "Lyze",
+                    new {action= "Index", mode="lyze", controller = "Home"});
+                routes.MapRoute(
                     name: "default",
-                    template: "{action=Index}/{id?}",
+                    template: "{action=Index}/{*mode}",
                     defaults: new {controller = "Home"});
                 routes.MapRoute(
                     name: "blog",
