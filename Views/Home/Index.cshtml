@@ -1,6 +1,6 @@
-﻿@model bool
-@{
+﻿@{
     ViewData["Title"] = "Home";
+    string lyzeCookie = Context.Request.Cookies["LyzeCookie"];
 }
 
 <div class="blinker-container">
@@ -21,9 +21,8 @@ let possibleNames = [
 document.getElementById("title").innerHTML = "Who is <span class=\"blinker-highlight\">" + possibleNames[Math.floor(Math.random()*possibleNames.length)] + "</span>";
 </script>
 <hr/>
-
 <div class="picture pic-left rounded">
-    @if (Model == true)
+    @if (lyzeCookie != null)
     {
         <img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/83/83eba440315493c434fc59f7dd3287ac8b458d48_full.jpg" asp-append-version="true"/>
     }

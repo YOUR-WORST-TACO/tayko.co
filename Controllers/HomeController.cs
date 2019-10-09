@@ -22,10 +22,11 @@ namespace Tayko.co.Controllers
         {
             CookieOptions option = new CookieOptions();
             option.Expires = DateTime.Now.AddYears(1);
+            option.IsEssential = true;
 
             Response.Cookies.Append("LyzeCookie", "1", option);
             
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         public IActionResult Code()
