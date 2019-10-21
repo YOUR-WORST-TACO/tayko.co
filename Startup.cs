@@ -18,6 +18,7 @@ using Microsoft.Extensions.FileProviders;
 using Npgsql.PostgresTypes;
 //using Tayko.co.Data;
 using Tayko.co.Models;
+using Tayko.co.Service;
 
 namespace Tayko.co
 {

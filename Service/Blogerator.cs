@@ -6,14 +6,14 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json;
+using Tayko.co.Models;
 
-namespace Tayko.co.Models
+namespace Tayko.co.Service
 {
     public class Blogerator
     {
         private DirectoryInfo RootDirectory { get; set; }
-        private string ContentFileName = "content.html";
-        private string MetaConfigFileName = "meta.conf";
+        private string ContentFileName = "content.md";
 
         public List<PostModel> Posts { get; set; }
 
@@ -63,7 +63,7 @@ namespace Tayko.co.Models
                 PostModel temporaryPost = new PostModel
                 {
                     PostStorageFile = contentFile,
-                    PostContent = storageFileSplit["context"].Value,
+                    PostContent = storageFileSplit["content"].Value,
                     PostTitle = storageFileSplit["title"].Value,
                     PostAuthor = storageFileSplit["author"].Value,
                     PostName = postDirectory.Name,

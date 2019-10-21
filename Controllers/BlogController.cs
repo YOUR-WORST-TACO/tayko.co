@@ -8,6 +8,8 @@ using Tayko.co.Models;
 using Microsoft.AspNetCore.Mvc;
 
 using Microsoft.Extensions.FileProviders;
+using Tayko.co.Service;
+
 //using Tayko.co.Data;
 
 namespace Tayko.co.Controllers
@@ -19,26 +21,21 @@ namespace Tayko.co.Controllers
         //private readonly CommentDbContext _context;
         private readonly IHttpContextAccessor _accessor;
 
-        private readonly BlogDataManager _dataManager;
-
         private readonly Blogerator _blogerator;
 
         public BlogController(
             IHostingEnvironment hostingEnvironment,
             IHttpContextAccessor accessor,
-            BlogDataManager dataManager,
             Blogerator blogerator)
         {
             _hostingEnvironment = hostingEnvironment;
-            //_context = context;
             _accessor = accessor;
-            _dataManager = dataManager;
             _blogerator = blogerator;
         }
 
         public IActionResult LoadBlog(string article)
         {
-            // get default root folder for hossting
+            // get default root folder for hosting
             var provider = _hostingEnvironment.ContentRootFileProvider;
 
             // instantiate new BlogDataManager to load blogs
@@ -47,7 +44,7 @@ namespace Tayko.co.Controllers
             if (article == null)
             {
                 // return the BlogOverview view
-                return View("BlogOverview", _dataManager);
+                return View("BlogOverview", _blogerator.Posts);
             }
 
             // finds first article that matches the lambda

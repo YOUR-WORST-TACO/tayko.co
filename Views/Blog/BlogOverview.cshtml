@@ -1,4 +1,4 @@
-@model BlogDataManager
+@model List<PostModel>
 @{
     ViewData["Title"] = "Blog";
     Layout = "_BlogLayout";
@@ -8,21 +8,21 @@
 <hr/>
 <ul class="article-overview">
     @{
-        foreach (var article in Model.Articles)
+        foreach (var post in Model )
         {
             <li>
-                <a asp-controller="Blog" asp-action="LoadBlog" asp-route-article="@article.Name">
+                <a asp-controller="Blog" asp-action="LoadBlog" asp-route-article="@post.PostName">
                     
-                    @if (article.Date != DateTime.MinValue)
+                    @if (post.PostEditDate != DateTime.MinValue)
                     {
                         <p class="article-date">
-                            @article.Date.ToString("D")
+                            @post.PostEditDate.ToString("D")
                         </p>
                     }
-                    <h2>@article.Title</h2>
+                    <h2>@post.PostTitle</h2>
 
                     @{
-                        var articleDescription = article.Description;
+                        var articleDescription = post.PostContent;
                         if (articleDescription.Length > 250)
                         {
                             articleDescription = articleDescription.Substring(0, 250);
