@@ -71,7 +71,7 @@ namespace Tayko.co.Service
                     PostResourceDirectory = null
                 };
 
-                Console.Write($"Article {temporaryPost.PostName}\n\tTitle:{temporaryPost.PostTitle}\n\tContent:{temporaryPost.PostContent}");
+                Console.Write($"{File.ReadAllText(contentFile.FullName)}");
                 
                 foreach (var directory in postDirectory.GetDirectories())
                 {
