@@ -55,7 +55,7 @@ namespace Tayko.co.Service
 
             if (contentFile != null)
             {
-                string storageRegEx = @"---.*title:(?<title>.*?)\r\nauthor:(?<author>.*?)\r\npostDate:(?<postDate>.*?)\r\neditDate:(?<editDate>.*?)\r\n---\r\n(?<content>.*)";
+                string storageRegEx = @"---.*title:(?<title>.*?)\s+author:(?<author>.*?)\s+postDate:(?<postDate>.*?)\s+editDate:(?<editDate>.*?)\s+---\s+(?<content>.*)";
                 
                 var storageFileSplit = new Regex(storageRegEx, RegexOptions.Singleline )
                     .Match(File.ReadAllText(contentFile.FullName)).Groups;
