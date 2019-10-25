@@ -10,7 +10,6 @@ spec:
   selector:
     matchLabels:
       app: tayko-co
-  serviceName: tayko-co-service
   template:
     metadata:
       labels:
