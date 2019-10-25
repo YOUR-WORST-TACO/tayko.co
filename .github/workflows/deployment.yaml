@@ -1,0 +1,55 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  build:
+    name: Build, push, deploy cwb110-project
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Checkout master
+      uses: actions/checkout@master
+      
+    - name: Build the Container image
+      run: docker build -t tayko/cwb110-project:$(echo $GITHUB_SHA | head -c7) .
+        
+    - name: Docker Login
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASS }}
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        
+    - name: Push docker image
+      run: docker push tayko/cwb110-project
+        
+    - name: Update kubernetes deployment file
+      run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's|<IMAGE>|tayko/cwb110-project:'${TAG}'|' $GITHUB_WORKSPACE/kubernetes/deployment-apache-cwb110.yaml
+      
+    - name: Pull DigitalOcean kubeconfig
+      uses: digitalocean/action-doctl@master
+      env:
+        DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      with:
+        args: kubernetes cluster kubeconfig show cerberus > $GITHUB_WORKSPACE/.kubeconfig
+        
+    - name: Deploy updated deployment to DigitalOcean
+      uses: docker://lachlanevenson/k8s-kubectl
+      with:
+        args: --kubeconfig=/github/workspace/.kubeconfig apply -f /github/workspace/kubernetes/deployment-apache-cwb110.yaml
+        
+    - name: Verify cwb110 deployment
+      uses: docker://lachlanevenson/k8s-kubectl
+      with:
+        args: --kubeconfig=/github/workspace/.kubeconfig rollout status deployment/cwb110-project
+        
+    - name: Purge cache
+      uses: jakejarvis/cloudflare-purge-action@master
+      env:
+        CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
+        CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
+        CLOUDFLARE_KEY: ${{ secrets.CLOUDFLARE_KEY }}
