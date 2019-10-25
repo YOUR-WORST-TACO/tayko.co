@@ -17,14 +17,14 @@ namespace Tayko.co.Controllers
     public class BlogController : Controller
     {
         // store all private variables for runtime operation
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         //private readonly CommentDbContext _context;
         private readonly IHttpContextAccessor _accessor;
 
         private readonly Blogerator _blogerator;
 
         public BlogController(
-            IHostingEnvironment hostingEnvironment,
+            IWebHostEnvironment hostingEnvironment,
             IHttpContextAccessor accessor,
             Blogerator blogerator)
         {
@@ -48,8 +48,8 @@ namespace Tayko.co.Controllers
             }
 
             // finds first article that matches the lambda
-            var foundArticle = _dataManager.Articles.FirstOrDefault(
-                x => (x.Name == article)
+            var foundArticle = _blogerator.Posts.FirstOrDefault(
+                x => (x.PostName == article)
             );
 
             // if article is not found

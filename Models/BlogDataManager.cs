@@ -12,7 +12,7 @@ namespace Tayko.co.Models
         private IDirectoryContents DirectoryContents { get; set; }
         public List<Article> Articles { get; set; }
 
-        public BlogDataManager(IHostingEnvironment hostingEnvironment)
+        public BlogDataManager(IWebHostEnvironment hostingEnvironment)
         {
             
             DirectoryContents = hostingEnvironment.ContentRootFileProvider.GetDirectoryContents("/Blog");

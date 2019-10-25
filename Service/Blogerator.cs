@@ -17,7 +17,7 @@ namespace Tayko.co.Service
 
         public List<PostModel> Posts { get; set; }
 
-        public Blogerator(IHostingEnvironment hostingEnvironment)
+        public Blogerator(IWebHostEnvironment hostingEnvironment)
         {
             RootDirectory = new DirectoryInfo(hostingEnvironment.ContentRootPath + "/Blog");
 

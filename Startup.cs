@@ -3,20 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Npgsql.PostgresTypes;
-//using Tayko.co.Data;
+using Microsoft.Extensions.Hosting;
 using Tayko.co.Models;
 using Tayko.co.Service;
 
@@ -24,7 +18,7 @@ namespace Tayko.co
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment environment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
             HostingEnvironment = environment;
@@ -34,7 +28,7 @@ namespace Tayko.co
         public IConfiguration Configuration { get; }
 
         // Stores hosting environment variables needed for Blogs
-        public IHostingEnvironment HostingEnvironment { get; }
+        public IWebHostEnvironment HostingEnvironment { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -45,29 +39,13 @@ namespace Tayko.co
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            /*services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme,
-                    options =>
-                    {
-                        options.AccessDeniedPath = new PathString("/auth/denied");
-                    });*/
-
-            /*services.AddDbContext<CommentDbContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("PgSql")));
-
-
-            services.AddDataProtection()
-                .PersistKeysToDbContext<CommentDbContext>();*/
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //services.AddSingleton<BlogDataManager>();
             services.AddSingleton(s => new BlogDataManager(HostingEnvironment));
             services.AddSingleton(s => new Blogerator(HostingEnvironment));
-            //services.AddSingleton(provider => new {Provider})
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // Development Exception handling pages
             if (env.IsDevelopment())

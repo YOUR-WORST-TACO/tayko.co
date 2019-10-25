@@ -1,9 +1,9 @@
-@model Article
+@model PostModel
 @{
-    ViewData["Title"] = Model.Name;
+    ViewData["Title"] = Model.PostName;
     Layout = "_BlogLayout";
 }
 
 <div class="blog-container">
-    @Html.Raw(Model.Contents);
+    @Html.Raw(Model.PostContent);
 </div>
