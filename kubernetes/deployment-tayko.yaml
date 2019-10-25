@@ -34,7 +34,7 @@ spec:
         volumeMounts:
           - mountPath: /app/Blog
             name: blog-data
-    volumes:
+      volumes:
       - name: blog-data
         persistentVolumeClaim:
           claimName: 'tayko-co-pvc'
