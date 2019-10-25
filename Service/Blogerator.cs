@@ -71,8 +71,6 @@ namespace Tayko.co.Service
                     PostResourceDirectory = null
                 };
 
-                Console.Write($"{File.ReadAllText(contentFile.FullName)}");
-                
                 foreach (var directory in postDirectory.GetDirectories())
                 {
                     if (directory.Name.Equals("resources"))
