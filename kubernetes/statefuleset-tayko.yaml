@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: tayko-co
   labels:
@@ -33,8 +33,14 @@ spec:
             port: http
         volumeMounts:
           - mountPath: /app/Blog
-            name: blog-data
-      volumes:
-      - name: blog-data
-        persistentVolumeClaim:
-          claimName: 'tayko-co-pvc'
+            name: tayko-blog-data
+  volumeClaimTemplates:
+  - metadata:
+      name: tayko-blog-data
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 8Gi
+      storageClassName: do-block-storage
