@@ -71,6 +71,8 @@ namespace Tayko.co.Service
                     PostResourceDirectory = null
                 };
 
+                Console.Write($"Article {temporaryPost.PostName}\n\tTitle:{temporaryPost.PostTitle}\n\tContent:{temporaryPost.PostContent}");
+                
                 foreach (var directory in postDirectory.GetDirectories())
                 {
                     if (directory.Name.Equals("resources"))
