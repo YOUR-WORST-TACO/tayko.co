@@ -5,7 +5,7 @@ metadata:
   labels:
     app: tayko-co
 spec:
-  storageClassName: tayko-data
+  storageClassName: slow
   accessModes:
     - ReadWriteMany
   resources:

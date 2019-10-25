@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: tayko-co-ingress
   labels:
-    app: tayko-co
+    app: tayko-co-app
   annotations:
     kubernetes.io/ingress.class: traefik
 spec:

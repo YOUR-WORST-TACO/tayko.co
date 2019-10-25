@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tayko-co-deployment
+  name: tayko-co
   labels:
-    app: tayko-co
+    app: tayko-co-app
 spec:
   replicas: 3
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: tayko-co
+      app: tayko-co-app
   template:
     metadata:
       labels:
-        app: tayko-co
+        app: tayko-co-app
     spec:
       containers:
-      - name: tayko-co
+      - name: tayko-co-site
         image: tayko/tayko-co:b6d6eef2
         imagePullPolicy: Always
         ports:

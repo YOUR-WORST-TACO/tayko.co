@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: tayko-co-service
   labels:
-    app: tayko-co
+    app: tayko-co-app
 spec:
   type: ClusterIP
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: tayko-co
+    app: tayko-co-app
