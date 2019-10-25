@@ -103,12 +103,9 @@ namespace Tayko.co
                     template: "Error/{error}",
                     defaults: new {controller = "Error", action = "HandleError"});
                 routes.MapRoute(
-                    "authentication",
-                    "{controller=Auth}/{action=Login}");
-                routes.MapRoute(
-                    "NotFound",
-                    "{*url}",
-                    new {controller = "Error", action = "HandleError", error = 404});
+                    name: "NotFound",
+                    template:"{*url}",
+                    defaults: new {controller = "Error", action = "HandleError", error = 404});
             });
         }
     }

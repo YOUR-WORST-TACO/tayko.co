@@ -20,24 +20,8 @@ namespace Tayko.co.Service
         public Blogerator(IWebHostEnvironment hostingEnvironment)
         {
             RootDirectory = new DirectoryInfo(hostingEnvironment.ContentRootPath + "/Blog");
-
             Posts = new List<PostModel>();
-
-            /*PostModel test = new PostModel();
-            test.PostDate = DateTime.Now;
-            test.PostName = "Magic Name";
-            test.PostTitle = "Magical thingy";
-            test.PostEditDate = DateTime.MinValue;
-
-            string json = JsonConvert.SerializeObject(test);
-
-            PostModel test2 = JsonConvert.DeserializeObject<PostModel>(json);
             
-            
-            
-            Console.Write(json + "\n");*/
-
-
             BlogInitializer();
         }
 

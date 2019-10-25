@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: tayko-co-site
-        image: tayko/tayko.co:v_8ae79829
+        image: <IMAGE>
         imagePullPolicy: Always
         ports:
           - name: http
