@@ -15,24 +15,24 @@ spec:
       labels:
         app: tayko-co
     containers:
-      - name: tayko-co
-        image: tayko/tayko-co:b6d6eef2
-        imagePullPolicy: Always
-        ports:
-          - name: http
-            containerPort: 80
-            protocol: TCP
-        livenessProbe:
-          httpGet:
-            path: /
-            port: http
-        readinessProbe:
-          httpGet:
-            path: /
-            port: http
-        volumeMounts:
-          - mountPath: /app/Blog
-            name: blog-data
+    - name: tayko-co
+      image: tayko/tayko-co:b6d6eef2
+      imagePullPolicy: Always
+      ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+      livenessProbe:
+        httpGet:
+          path: /
+          port: http
+      readinessProbe:
+        httpGet:
+          path: /
+          port: http
+      volumeMounts:
+        - mountPath: /app/Blog
+          name: blog-data
     volumes:
       - name: blog-data
         persistentVolumeClaim:
