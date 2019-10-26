@@ -41,7 +41,6 @@ namespace Tayko.co
 
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton(s => new BlogDataManager(HostingEnvironment));
             services.AddSingleton(s => new Blogerator(HostingEnvironment));
         }
 
