@@ -13,6 +13,5 @@
 
     <ItemGroup>
       <PackageReference Include="BuildBundlerMinifier" Version="3.2.435" />
-      <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     </ItemGroup>
 </Project>
