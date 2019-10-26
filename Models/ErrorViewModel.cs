@@ -1,4 +1,3 @@
-using System;
 
 namespace Tayko.co.Models
 {

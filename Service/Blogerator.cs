@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.FileProviders;
-using Newtonsoft.Json;
 using Tayko.co.Models;
 
 namespace Tayko.co.Service
@@ -62,8 +59,6 @@ namespace Tayko.co.Service
                         temporaryPost.PostResourceDirectory = new DirectoryInfo(directory.FullName);
                     }
                 }
-
-                temporaryPost.LoadCache(RootDirectory);
 
                 Console.Write($"Successfully Loaded Article: {postDirectory.Name}\n");
                 return temporaryPost;

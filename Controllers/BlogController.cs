@@ -1,16 +1,9 @@
-using System;
-using System.IO;
 using System.Linq;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Tayko.co.Models;
 using Microsoft.AspNetCore.Mvc;
-
-using Microsoft.Extensions.FileProviders;
 using Tayko.co.Service;
-
-//using Tayko.co.Data;
 
 namespace Tayko.co.Controllers
 {
