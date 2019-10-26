@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -49,7 +47,7 @@ namespace Tayko.co
             // Development Exception handling pages
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();
             }
             else // Production Exception handling pages
             {
@@ -59,8 +57,7 @@ namespace Tayko.co
             }
 
             var blogerator = app.ApplicationServices.GetService<Blogerator>();
-
-            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            
             app.UseHsts();
             app.UseAuthentication();
 
