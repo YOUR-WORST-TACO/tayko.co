@@ -41,10 +41,12 @@ namespace Tayko.co.Service
                 var storageFileSplit = new Regex(storageRegEx, RegexOptions.Singleline )
                     .Match(File.ReadAllText(contentFile.FullName)).Groups;
 
+                var markdown = new MarkdownSharp.Markdown();
+
                 PostModel temporaryPost = new PostModel
                 {
                     PostStorageFile = contentFile,
-                    PostContent = storageFileSplit["content"].Value,
+                    PostContent = markdown.Transform(storageFileSplit["content"].Value),
                     PostTitle = storageFileSplit["title"].Value,
                     PostAuthor = storageFileSplit["author"].Value,
                     PostName = postDirectory.Name,
