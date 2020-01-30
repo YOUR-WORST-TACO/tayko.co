@@ -25,6 +25,13 @@
   height: 400px; 
   overflow: hidden;
   width: 100%;
+  
+  @media screen and (max-width: $page-response-width)
+  {
+    -webkit-box-shadow: inset 0px -11px 38px -7px rgba(0,0,0,1);
+    -moz-box-shadow: inset 0px -11px 38px -7px rgba(0,0,0,1);
+    box-shadow: inset 0px -11px 38px -7px rgba(0,0,0,1);
+  }
 }
 
 .blog-content {

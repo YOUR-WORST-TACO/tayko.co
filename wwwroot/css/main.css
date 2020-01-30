@@ -807,6 +807,14 @@ web backend
   width: 100%;
 }
 
+@media screen and (max-width: 1070px) {
+  .blog-image {
+    -webkit-box-shadow: inset 0px -11px 38px -7px black;
+    -moz-box-shadow: inset 0px -11px 38px -7px black;
+    box-shadow: inset 0px -11px 38px -7px black;
+  }
+}
+
 .blog-content {
   height: 100%;
   width: 750px;

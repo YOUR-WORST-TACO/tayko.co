@@ -58,6 +58,8 @@ namespace Tayko.co
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
                 app.UseHsts();
             }
+            
+            Console.WriteLine($"Garsh look at what I found: {Environment.GetEnvironmentVariable("TESTING_123_123")}");
 
             var blogerator = app.ApplicationServices.GetService<Blogerator>();
             

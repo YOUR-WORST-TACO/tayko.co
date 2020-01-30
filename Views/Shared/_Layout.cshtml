@@ -18,65 +18,66 @@
 </head>
 <body>
 
+<div id="main">
 <header>
     <nav class="navbar navbar-content">
-            <h1>
-                <a asp-controller="Home" asp-action="Index">Stephen Tafoya</a>
-            </h1>
-    
-            <div class="carousel-container">
-                <ul class="carousel-list">
-                    <li>Developer</li>
-                    <li>Artist</li>
-                    <li>Creator</li>
-                    <li>Web Designer</li>
-                    <li>Information Technician</li>
-                    <li>Autodidact</li>
-                    <li>Drinks Water</li>
-                    <li>Linux Enthusiast</li>
-                    <li>Fixes Computers</li>
-                </ul>
-            </div>
-    
-            <ul class="navbar-list">
+        <h1>
+            <a asp-controller="Home" asp-action="Index">Stephen Tafoya</a>
+        </h1>
+
+        <div class="carousel-container">
+            <ul class="carousel-list">
+                <li>Developer</li>
+                <li>Artist</li>
+                <li>Creator</li>
+                <li>Web Designer</li>
+                <li>Information Technician</li>
+                <li>Autodidact</li>
+                <li>Drinks Water</li>
+                <li>Linux Enthusiast</li>
+                <li>Fixes Computers</li>
+            </ul>
+        </div>
+
+        <ul class="navbar-list">
+            <li>
+                <a asp-controller="Home" asp-action="Index">HOME</a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="Contact">CONTACT</a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="Projects">PROJECTS</a>
+            </li>
+            <li>
+                <a asp-controller="Blog" asp-action="LoadBlog" asp-route-article="">BLOG</a>
+            </li>
+        </ul>
+
+        <div class="codebuttons">
+            <ul>
                 <li>
-                    <a asp-controller="Home" asp-action="Index">HOME</a>
+                    <a href="https://github.com/your-worst-taco">
+                        <img src="~/images/github-white.svg"/>
+                    </a>
                 </li>
                 <li>
-                    <a asp-controller="Home" asp-action="Contact">CONTACT</a>
+                    <a href="https://gitlab.com/your-worst-taco">
+                        <img src="~/images/gitlab-white.svg"/>
+                    </a>
                 </li>
                 <li>
-                    <a asp-controller="Home" asp-action="Projects">PROJECTS</a>
-                </li>
-                <li>
-                    <a asp-controller="Blog" asp-action="LoadBlog" asp-route-article="">BLOG</a>
+                    <a href="https://www.google.com">
+                        <img src="~/images/linkedin-white.svg"/>
+                    </a>
                 </li>
             </ul>
-    
-            <div class="codebuttons">
-                <ul>
-                    <li>
-                        <a href="https://github.com/your-worst-taco">
-                            <img src="~/images/github-white.svg"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://gitlab.com/your-worst-taco">
-                            <img src="~/images/gitlab-white.svg"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.google.com">
-                            <img src="~/images/linkedin-white.svg"/>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        </div>
+    </nav>
 </header>
 
-<main id="main" role="main">
-    <partial name="_CookieConsentPartial" />
+<main role="main">
+    <partial name="_CookieConsentPartial"/>
 
     <section class="body-content">
         <div class="primary-content">
@@ -91,9 +92,15 @@
             <p>Look around</p>
             <hr/>
             <ul>
-                <li><a href="#">Github</a></li>
-                <li><a href="#">Gitlab</a></li>
-                <li><a href="#">Linkin</a></li>
+                <li>
+                    <a href="#">Github</a>
+                </li>
+                <li>
+                    <a href="#">Gitlab</a>
+                </li>
+                <li>
+                    <a href="#">Linkin</a>
+                </li>
             </ul>
         </div>
         <div class="footer-projects">
@@ -107,11 +114,13 @@
 <div class="copyright">
     <p>&copy; @DateTime.Now.Year - Tayko.co</p>
 </div>
-
+</div>
 <environment include="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script> <!-- JQuery -->
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script> <!-- Bootstrap -->
 
+    <script src="~/lib/smoothstate/jquery.smoothState.js" asp-append-version="true"></script>
+    
     <script src="~/js/site.js" asp-append-version="true"></script> <!-- Site.js -->
 </environment>
 <environment exclude="Development">
@@ -120,14 +129,16 @@
             asp-fallback-test="window.jQuery"
             crossorigin="anonymous"
             integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                    crossorigin="anonymous"
-                    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
-            </script>
+            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+            crossorigin="anonymous"
+            integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+    </script>
 
+    <script src="~/lib/smoothstate/jquery.smoothState.min.js" asp-append-version="true"></script>
+    
     <script src="~/js/site.min.js" asp-append-version="true"></script>
 </environment>
 

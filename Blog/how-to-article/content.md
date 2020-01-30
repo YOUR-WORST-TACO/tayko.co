@@ -1,17 +1,46 @@
 ---
-title:Smol Explanation
+title:Writing an Article
 author:Stephen Tafoya
-postDate:20200101
-description:Test 123
+postDate:20200129
+description:A simple intro to writing an article
 ---
-<p>your explanation is too small. I don`t know which language you wanna use but I recommend you to use trim function to remove any spaces from beginning and end of a string. but if you insist on use regex, here is a regular expression for your intend:</p>
-<p>your explanation is too small. I don`t know which language you wanna use but I recommend you to use trim function to remove any spaces from beginning and end of a string. but if you insist on use regex, here is a regular expression for your intend:</p>
-<p>your explanation is too small. I don`t know which language you wanna use but I recommend you to use trim function to remove any spaces from beginning and end of a string. but if you insist on use regex, here is a regular expression for your intend:</p>
-<p>your explanation is too small. I don`t know which language you wanna use but I recommend you to use trim function to remove any spaces from beginning and end of a string. but if you insist on use regex, here is a regular expression for your intend:</p>
-<p>your explanation is too small. I don`t know which language you wanna use but I recommend you to use trim function to remove any spaces from beginning and end of a string. but if you insist on use regex, here is a regular expression for your intend:</p>
----
-title:My Article
-author:Stephen Tafoya
-postDate:12121212
-editDate:13131313
----
+
+# Writing an Article
+
+----
+
+Writing an article is not always the easiest thing ever, and this post is no exception.
+
+## For Starters
+### General Formatting
+You should always make user of headings, headings help determine different sections in your article.
+
+> This is of course assuming you write complex articles
+
+### Inserting Code
+
+You can insert code by doing the following:
+
+<pre><code data-language="csharp">// The best person class ever written
+public class Person
+{
+    public string FirstName { get; set; }
+    public string Lastname { get; set; }
+    public int Gender { get; set; }
+    public DateTime Age { get; set; }
+
+    public Person()
+    {}
+
+    public string GetName()
+    {
+        return $"{FirstName} {Lastname}";
+    }
+}
+</code>
+</pre>
+
+### Final Words
+In summation, This was a very short temp blog post.
+
+Thank you,

@@ -18,6 +18,7 @@
 </head>
 <body>
 
+<div id="main">
 <header>
     <nav class="navbar navbar-content">
             <h1>
@@ -75,7 +76,7 @@
         </nav>
 </header>
 
-<main id="main" role="main">
+<main role="main">
     <partial name="_CookieConsentPartial" />
     <section class="body-content">
         @RenderBody()
@@ -104,10 +105,12 @@
 <div class="copyright">
     <p>&copy; @DateTime.Now.Year - Tayko.co</p>
 </div>
-
+</div>
 <environment include="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script> <!-- JQuery -->
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script> <!-- Bootstrap -->
+    
+    <script src="~/lib/smoothstate/jquery.smoothState.js" asp-append-version="true"></script>
 
     <script src="~/js/site.js" asp-append-version="true"></script> <!-- Site.js -->
 </environment>
@@ -125,6 +128,8 @@
                     integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
             </script>
 
+    <script src="~/lib/smoothstate/jquery.smoothState.min.js" asp-append-version="true"></script>
+    
     <script src="~/js/site.min.js" asp-append-version="true"></script>
 </environment>
 

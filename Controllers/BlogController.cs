@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,8 +37,9 @@ namespace Tayko.co.Controllers
             // if no article was passed
             if (article == null)
             {
-                // return the BlogOverview view
-                return View("BlogOverview", _blogerator.Posts);
+                // return the BlogOverview view (FOR NOW IT IS SORTED)
+                return View("BlogOverview", 
+                    _blogerator.Posts.OrderByDescending(item => item.PostDate).ToList());
             }
 
             // finds first article that matches the lambda
