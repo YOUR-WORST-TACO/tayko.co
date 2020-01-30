@@ -13,15 +13,33 @@
 }
 
 .article-description {
-  div {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top,
-            rgba($color-background, 1) 20%,
-            rgba($color-background, 0) 80%
-    );
+}
+
+.blog-image {
+  -webkit-box-shadow: inset 10px -9px 22px -13px rgba(0,0,0,1);
+  -moz-box-shadow: inset 10px -9px 22px -13px rgba(0,0,0,1);
+  box-shadow: inset 10px -9px 22px -13px rgba(0,0,0,1);
+  
+  background-size: cover;
+  
+  height: 400px; 
+  overflow: hidden;
+  width: 100%;
+}
+
+.blog-content {
+  height: 100%;
+  width: 750px;
+  margin: 0 auto;
+  padding: 0 25px 25px;
+
+  @media screen and (max-width: $page-transition-width) {
+    width: 650px;
   }
-  position: relative;
+
+  @media screen and (max-width: $page-smallest-width) {
+    width: 100%;
+
+    padding: 30px 25px 25px;
+  }
 }

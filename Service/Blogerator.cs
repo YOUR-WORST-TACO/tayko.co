@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Hosting;
 using Tayko.co.Models;
@@ -36,7 +37,7 @@ namespace Tayko.co.Service
 
             if (contentFile != null)
             {
-                string storageRegEx = @"---.*title:(?<title>.*?)\s+author:(?<author>.*?)\s+postDate:(?<postDate>.*?)\s+editDate:(?<editDate>.*?)\s+---\s+(?<content>.*)";
+                string storageRegEx = @"---.*title:(?<title>.*?)\s+author:(?<author>.*?)\s+postDate:(?<postDate>.*?)\s+description:(?<description>.*?)\s+---\s+(?<content>.*)";
                 
                 var storageFileSplit = new Regex(storageRegEx, RegexOptions.Singleline )
                     .Match(File.ReadAllText(contentFile.FullName)).Groups;
@@ -49,8 +50,10 @@ namespace Tayko.co.Service
                     PostContent = markdown.Transform(storageFileSplit["content"].Value),
                     PostTitle = storageFileSplit["title"].Value,
                     PostAuthor = storageFileSplit["author"].Value,
+                    PostDescription = storageFileSplit["description"].Value,
                     PostName = postDirectory.Name,
                     PostRoot = postDirectory,
+                    PostDate = DateTime.ParseExact(storageFileSplit["postDate"].Value, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture),
                     PostResourceDirectory = null
                 };
 
@@ -59,6 +62,9 @@ namespace Tayko.co.Service
                     if (directory.Name.Equals("resources"))
                     {
                         temporaryPost.PostResourceDirectory = new DirectoryInfo(directory.FullName);
+
+                        temporaryPost.PostCover = temporaryPost.PostResourceDirectory.GetFiles()
+                            .FirstOrDefault(file => Path.GetFileNameWithoutExtension(file.Name) == "cover");
                     }
                 }
 

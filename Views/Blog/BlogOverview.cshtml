@@ -1,7 +1,7 @@
 @model List<PostModel>
 @{
     ViewData["Title"] = "Blog";
-    Layout = "_BlogLayout";
+    Layout = "_Layout";
 }
 
 <h1>Blog</h1>
@@ -13,20 +13,16 @@
             <li>
                 <a asp-controller="Blog" asp-action="LoadBlog" asp-route-article="@post.PostName">
                     
-                    @if (post.PostEditDate != DateTime.MinValue)
+                    @if (post.PostDate != DateTime.MinValue)
                     {
                         <p class="article-date">
-                            @post.PostEditDate.ToString("D")
+                            @post.PostDate.ToString("D")
                         </p>
                     }
                     <h2>@post.PostTitle</h2>
 
                     @{
-                        var articleDescription = post.PostContent;
-                        if (articleDescription.Length > 250)
-                        {
-                            articleDescription = articleDescription.Substring(0, 250);
-                        }
+                        var articleDescription = post.PostDescription;
                     }
                     <div class="article-description">
                         <div></div>

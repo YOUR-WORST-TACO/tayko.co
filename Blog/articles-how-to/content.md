@@ -1,41 +1,22 @@
 ---
 title:My Article
 author:Stephen Tafoya
-postDate:12121212
-editDate:13131313
+postDate:20200102
+description:An article that details life the universe and everything
 ---
 
 # Markdown: Syntax
 
-*   [Overview](#overview)
-    *   [Philosophy](#philosophy)
-    *   [Inline HTML](#html)
-    *   [Automatic Escaping for Special Characters](#autoescape)
-*   [Block Elements](#block)
-    *   [Paragraphs and Line Breaks](#p)
-    *   [Headers](#header)
-    *   [Blockquotes](#blockquote)
-    *   [Lists](#list)
-    *   [Code Blocks](#precode)
-    *   [Horizontal Rules](#hr)
-*   [Span Elements](#span)
-    *   [Links](#link)
-    *   [Emphasis](#em)
-    *   [Code](#code)
-    *   [Images](#img)
-*   [Miscellaneous](#misc)
-    *   [Backslash Escapes](#backslash)
-    *   [Automatic Links](#autolink)
-
-
 **Note:** This document is itself written using Markdown; you
-can [see the source for it by adding '.text' to the URL](/projects/markdown/syntax.text).
+can [see the source for it by adding '.text' to the URL](#test).
 
 ----
 
 ## Overview
 
 ### Philosophy
+
+<a href="#test">test</a>
 
 Markdown is intended to be as easy-to-read and easy-to-write as is feasible.
 
@@ -111,7 +92,7 @@ adding additional levels of `>`:
 
 Blockquotes can contain other Markdown elements, including headers, lists,
 and code blocks:
-
+<a name="test"></a>
 > ## This is a header.
 > 
 > 1.   This is the first list item.

@@ -797,16 +797,34 @@ web backend
   font-size: 16px;
 }
 
-.article-description {
-  position: relative;
+.blog-image {
+  -webkit-box-shadow: inset 10px -9px 22px -13px black;
+  -moz-box-shadow: inset 10px -9px 22px -13px black;
+  box-shadow: inset 10px -9px 22px -13px black;
+  background-size: cover;
+  height: 400px;
+  overflow: hidden;
+  width: 100%;
 }
 
-.article-description div {
-  position: absolute;
-  top: 0;
-  width: 100%;
+.blog-content {
   height: 100%;
-  background: linear-gradient(to top, #181f23 20%, rgba(24, 31, 35, 0) 80%);
+  width: 750px;
+  margin: 0 auto;
+  padding: 0 25px 25px;
+}
+
+@media screen and (max-width: 1300px) {
+  .blog-content {
+    width: 650px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .blog-content {
+    width: 100%;
+    padding: 30px 25px 25px;
+  }
 }
 
 .privacy {
