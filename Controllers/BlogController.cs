@@ -28,7 +28,7 @@ namespace Tayko.co.Controllers
             _blogerator = blogerator;
         }
 
-        public IActionResult LoadBlog(string article, string resource)
+        public IActionResult LoadBlog(string article)
         {
             // get default root folder for hosting
 
@@ -54,24 +54,33 @@ namespace Tayko.co.Controllers
                 return StatusCode(404);
             }
 
-            if (resource != null && foundArticle.PostResourceDirectory != null)
+            // return Blog view with foundArticle model
+            return View("Blog", foundArticle);
+        }
+
+        public IActionResult LoadBlogResource(string article, string resource)
+        {
+            // finds first article that matches the lambda
+            var foundArticle = _blogerator.Posts.FirstOrDefault(
+                x => (x.PostName == article)
+            );
+
+            if (foundArticle?.PostResourceDirectory != null)
             {
                 var provider = new FileExtensionContentTypeProvider();
 
                 var resourceItem = foundArticle.PostResourceDirectory.FullName + "/" + resource;
                 var resourceItemContent = System.IO.File.OpenRead(resourceItem);
-                string resourceItemType;
 
-                if (!provider.TryGetContentType(resourceItem, out resourceItemType))
+                if (!provider.TryGetContentType(resourceItem, out var resourceItemType))
                 {
                     resourceItemType = "application/octet-stream";
                 }
 
                 return File(resourceItemContent, resourceItemType);
             }
-            
-            // return Blog view with foundArticle model
-            return View("Blog", foundArticle);
+
+            return NotFound();
         }
     }
 }
