@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="RUNNER" type="CompoundRunConfigurationType">
+    <toRun name="Tayko.co" type="LaunchSettings" />
+    <toRun name="watcher" type="js.build_tools.gulp" />
+    <method v="2" />
+  </configuration>
+</component>

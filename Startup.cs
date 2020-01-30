@@ -70,7 +70,7 @@ namespace Tayko.co
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            blogerator.Posts
+            /*blogerator.Posts
                 .Where(p => p.PostResourceDirectory != null)
                 .ToList()
                 .ForEach(p =>
@@ -81,7 +81,7 @@ namespace Tayko.co
                             p.PostResourceDirectory.FullName),
                         RequestPath = $"/Blog/{p.PostName}"
                     });
-                });
+                });*/
 
             /* ROUTES
              * - default drops its name and uses just its actions,
@@ -97,7 +97,7 @@ namespace Tayko.co
                     defaults: new {controller = "Home"});
                 routes.MapRoute(
                     name: "blog",
-                    template: "Blog/{*article}",
+                    template: "Blog/{article?}/{*resource}",
                     defaults: new {controller = "Blog", action = "LoadBlog"});
                 routes.MapRoute(
                     name: "error",
