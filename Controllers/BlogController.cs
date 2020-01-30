@@ -68,8 +68,13 @@ namespace Tayko.co.Controllers
             if (foundArticle?.PostResourceDirectory != null)
             {
                 var provider = new FileExtensionContentTypeProvider();
-
                 var resourceItem = foundArticle.PostResourceDirectory.FullName + "/" + resource;
+
+                if (!System.IO.File.Exists(resourceItem))
+                {
+                    return NotFound();
+                }
+                
                 var resourceItemContent = System.IO.File.OpenRead(resourceItem);
 
                 if (!provider.TryGetContentType(resourceItem, out var resourceItemType))

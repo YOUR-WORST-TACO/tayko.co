@@ -73,6 +73,7 @@ namespace Tayko.co
             /* ROUTES
              * - default drops its name and uses just its actions,
              * - blog sends all requests to LoadBlog
+             * - blog resources sends all requests to LoadBlogResource
              * - error sends all requests to HandleError
              * - notfound sends Error 404
              */
