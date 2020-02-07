@@ -8,7 +8,7 @@ on:
 jobs:
 
   build:
-    name: Build, push, deploy Tayko.co
+    name: Build, push and deploy Tayko.co
     runs-on: ubuntu-16.04
  
     steps:
