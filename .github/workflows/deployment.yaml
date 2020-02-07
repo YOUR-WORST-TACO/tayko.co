@@ -40,7 +40,7 @@ jobs:
     - name: Deploy updated deployment to DigitalOcean
       uses: docker://lachlanevenson/k8s-kubectl
       with:
-        args: --kubeconfig=/github/workspace/.kubeconfig apply -f /github/workspace/kubernetes/statefulset-tayko.yaml
+        args: --kubeconfig=$GITHUB_WORKSPACE/.kubeconfig apply -f $GITHUB_WORKSPACE/kubernetes/statefulset-tayko.yaml
         
     - name: Verify tayko.co deployment
       uses: docker://lachlanevenson/k8s-kubectl
