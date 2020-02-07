@@ -22,7 +22,7 @@ namespace Tayko.co
             HostingEnvironment = environment;
         }
 
-        // Stores config options
+        // Stores config options 
         public IConfiguration Configuration { get; }
 
         // Stores hosting environment variables needed for Blogs
