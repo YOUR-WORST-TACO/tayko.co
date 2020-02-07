@@ -9,7 +9,7 @@ jobs:
 
   build:
     name: Build, push and deploy Tayko.co
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
  
     steps:
     - name: Checkout master
@@ -38,10 +38,10 @@ jobs:
         args: kubernetes cluster kubeconfig show cerberus > $GITHUB_WORKSPACE/.kubeconfig
         
     - name: Deploy updated deployment to DigitalOcean
-      run: kubectl --kubeconfig=/github/workspace/.kubeconfig apply -f /github/workspace/kubernetes/statefulset-tayko.yaml
+      run: kubectl --kubeconfig=$GITHUB_WORKSPACE/.kubeconfig apply -f $GITHUB_WORKSPACE/kubernetes/statefulset-tayko.yaml
         
     - name: Verify tayko.co deployment
-      run: kubectl --kubeconfig=/github/workspace/.kubeconfig rollout status statefulset/tayko-co
+      run: kubectl --kubeconfig=$GITHUB_WORKSPACE/.kubeconfig rollout status statefulset/tayko-co
         
     - name: Purge cache
       uses: jakejarvis/cloudflare-purge-action@master
