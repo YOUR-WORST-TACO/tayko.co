@@ -12,15 +12,58 @@ namespace Tayko.co.Service
     {
         private DirectoryInfo RootDirectory { get; set; }
         private string ContentFileName = "content.md";
+        private FileSystemWatcher BlogWatcher { get; set; }
+
+        private int RootDirectoryDepth { get; set; }
 
         public List<PostModel> Posts { get; set; }
 
         public Blogerator(IWebHostEnvironment hostingEnvironment)
         {
             RootDirectory = new DirectoryInfo(hostingEnvironment.ContentRootPath + "/Blog");
+            RootDirectoryDepth = RootDirectory.FullName.Split(Path.DirectorySeparatorChar).Length - 1;
             Posts = new List<PostModel>();
-            
+
             BlogInitializer();
+        }
+
+        private void InitializeWatcher()
+        {
+            BlogWatcher = new FileSystemWatcher
+            {
+                Path = RootDirectory.FullName,
+                IncludeSubdirectories = true,
+                NotifyFilter = NotifyFilters.LastWrite
+                               | NotifyFilters.FileName
+                               | NotifyFilters.DirectoryName
+            };
+
+            BlogWatcher.Changed += OnChanged;
+            BlogWatcher.Created += OnChanged;
+            BlogWatcher.Deleted += OnChanged;
+            BlogWatcher.Renamed += OnRenamed;
+
+            BlogWatcher.EnableRaisingEvents = true;
+        }
+
+        private void OnChanged(object source, FileSystemEventArgs e)
+        {
+            if (!e.Name.EndsWith('~'))
+            {
+                Console.WriteLine($"File: {e.FullPath} {e.ChangeType}");
+                
+                string[] changedDirectories = e.FullPath.Split(Path.DirectorySeparatorChar);
+                if (changedDirectories.Length > RootDirectoryDepth)
+                {
+                    Console.WriteLine($"changed detected in article: {changedDirectories[RootDirectoryDepth+1]}");
+                }
+
+            }
+        }
+
+        private void OnRenamed(object source, RenamedEventArgs e)
+        {
+            Console.WriteLine($"File: {e.OldFullPath} changed to {e.FullPath}");
         }
 
         public PostModel LoadBlogPost(DirectoryInfo postDirectory)
@@ -37,9 +80,10 @@ namespace Tayko.co.Service
 
             if (contentFile != null)
             {
-                string storageRegEx = @"---.*title:(?<title>.*?)\s+author:(?<author>.*?)\s+postDate:(?<postDate>.*?)\s+description:(?<description>.*?)\s+---\s+(?<content>.*)";
-                
-                var storageFileSplit = new Regex(storageRegEx, RegexOptions.Singleline )
+                string storageRegEx =
+                    @"---.*title:(?<title>.*?)\s+author:(?<author>.*?)\s+postDate:(?<postDate>.*?)\s+description:(?<description>.*?)\s+---\s+(?<content>.*)";
+
+                var storageFileSplit = new Regex(storageRegEx, RegexOptions.Singleline)
                     .Match(File.ReadAllText(contentFile.FullName)).Groups;
 
                 var markdown = new MarkdownSharp.Markdown();
@@ -53,7 +97,8 @@ namespace Tayko.co.Service
                     PostDescription = storageFileSplit["description"].Value,
                     PostName = postDirectory.Name,
                     PostRoot = postDirectory,
-                    PostDate = DateTime.ParseExact(storageFileSplit["postDate"].Value, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture),
+                    PostDate = DateTime.ParseExact(storageFileSplit["postDate"].Value, "yyyyMMdd",
+                        System.Globalization.CultureInfo.InvariantCulture),
                     PostResourceDirectory = null
                 };
 
@@ -102,6 +147,7 @@ namespace Tayko.co.Service
                 }
             }
 
+            InitializeWatcher();
             BlogeratorStarted();
         }
 

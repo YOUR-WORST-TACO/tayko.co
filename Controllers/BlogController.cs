@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Tayko.co.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using Tayko.co.Service;
 
 namespace Tayko.co.Controllers
@@ -30,7 +31,6 @@ namespace Tayko.co.Controllers
         public IActionResult LoadBlog(string article)
         {
             // get default root folder for hosting
-            var provider = _hostingEnvironment.ContentRootFileProvider;
 
             // instantiate new BlogDataManager to load blogs
 
@@ -53,9 +53,39 @@ namespace Tayko.co.Controllers
                 // go to error page
                 return StatusCode(404);
             }
-            
+
             // return Blog view with foundArticle model
             return View("Blog", foundArticle);
+        }
+
+        public IActionResult LoadBlogResource(string article, string resource)
+        {
+            // finds first article that matches the lambda
+            var foundArticle = _blogerator.Posts.FirstOrDefault(
+                x => (x.PostName == article)
+            );
+
+            if (foundArticle?.PostResourceDirectory != null)
+            {
+                var provider = new FileExtensionContentTypeProvider();
+                var resourceItem = foundArticle.PostResourceDirectory.FullName + "/" + resource;
+
+                if (!System.IO.File.Exists(resourceItem))
+                {
+                    return NotFound();
+                }
+                
+                var resourceItemContent = System.IO.File.OpenRead(resourceItem);
+
+                if (!provider.TryGetContentType(resourceItem, out var resourceItemType))
+                {
+                    resourceItemType = "application/octet-stream";
+                }
+
+                return File(resourceItemContent, resourceItemType);
+            }
+
+            return NotFound();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Tayko.co
             HostingEnvironment = environment;
         }
 
-        // Stores config options
+        // Stores config options 
         public IConfiguration Configuration { get; }
 
         // Stores hosting environment variables needed for Blogs
@@ -70,22 +70,10 @@ namespace Tayko.co
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            blogerator.Posts
-                .Where(p => p.PostResourceDirectory != null)
-                .ToList()
-                .ForEach(p =>
-                {
-                    app.UseStaticFiles(new StaticFileOptions
-                    {
-                        FileProvider = new PhysicalFileProvider(
-                            p.PostResourceDirectory.FullName),
-                        RequestPath = $"/Blog/{p.PostName}"
-                    });
-                });
-
             /* ROUTES
              * - default drops its name and uses just its actions,
              * - blog sends all requests to LoadBlog
+             * - blog resources sends all requests to LoadBlogResource
              * - error sends all requests to HandleError
              * - notfound sends Error 404
              */
@@ -97,8 +85,12 @@ namespace Tayko.co
                     defaults: new {controller = "Home"});
                 routes.MapRoute(
                     name: "blog",
-                    template: "Blog/{*article}",
+                    template: "Blog/{article?}",
                     defaults: new {controller = "Blog", action = "LoadBlog"});
+                routes.MapRoute(
+                    name:"blog resources",
+                    template:"Blog/{article}/{*resource}",
+                    defaults:new {controller = "Blog", action = "LoadBlogResource"});
                 routes.MapRoute(
                     name: "error",
                     template: "Error/{error}",
