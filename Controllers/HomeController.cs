@@ -24,6 +24,11 @@ namespace Tayko.co.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult In()
+        {
+            return Redirect("https://www.linkedin.com/in/stephen-tafoya-8881bb1b0/");
+        }
+        
         public IActionResult Code()
         {
             return View();
