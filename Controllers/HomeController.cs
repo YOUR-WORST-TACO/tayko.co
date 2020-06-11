@@ -26,7 +26,7 @@ namespace Tayko.co.Controllers
 
         public IActionResult In()
         {
-            return Redirect("https://www.linkedin.com/in/stephen-tafoya-8881bb1b0/");
+            return Redirect("https://www.linkedin.com/in/stephen-tafoya-045a9aa0/");
         }
         
         public IActionResult Code()
