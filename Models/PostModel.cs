@@ -16,6 +16,5 @@ namespace Tayko.co.Models
         public FileInfo PostStorageFile { get; set; }                // physical location of content file
         public DirectoryInfo PostRoot { get; set; }                  // physical location of article root
         public DirectoryInfo PostResourceDirectory { get; set; }     // physical location of post resources
-        
     }
 }

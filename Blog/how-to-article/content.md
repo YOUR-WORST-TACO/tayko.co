@@ -37,10 +37,30 @@ public class Person
         return $"{FirstName} {Lastname}";
     }
 }
-</code>
-</pre>
+</code></pre>
+
+### Adding an image
+
+you can add an image by using the following syntax:
+
+    ![Cover Image](/Blog/how-to-article/cover.png)
+
+which results in an image similar to what is below
+
+![Cover Image](/Blog/how-to-article/cover.png)
+
+### Creating a list
+
+- first element of list
+- second element of list
+- third element of list
+    - sibling of third element
+        - sibling of third first element
+- fourth element of list
 
 ### Final Words
 In summation, This was a very short temp blog post.
+
+I will continue to expand it but that is only for development purposes.
 
 Thank you,

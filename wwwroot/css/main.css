@@ -13,7 +13,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 .hljs,
 .hljs-tag,
 .hljs-subst {
-  color: #fff;
+  color: #f5f5f5;
 }
 
 .hljs-strong,
@@ -116,7 +116,7 @@ footer {
 }
 
 .footer-content a:link, .footer-content a:visited {
-  color: #fff;
+  color: #f5f5f5;
 }
 
 .footer-content a:hover, .footer-content a:focus {
@@ -168,18 +168,18 @@ nav {
 }
 
 nav h1 {
-  color: #fff;
+  color: #f5f5f5;
   text-align: center;
   font-size: 50px;
 }
 
 nav h1 a:link, nav h1 a:visited, nav h1 a:hover, nav h1 a:focus, nav h1 a:link:active, nav h1 a:visited:active {
-  color: #fff;
+  color: #f5f5f5;
   text-decoration: none;
 }
 
 nav h2 {
-  color: #fff;
+  color: #f5f5f5;
   text-align: center;
   font-size: 20px;
   padding-top: 0;
@@ -208,7 +208,7 @@ nav > .navbar-list > li a {
 }
 
 nav > .navbar-list > li a:link, nav > .navbar-list > li a:visited {
-  color: #fff;
+  color: #f5f5f5;
 }
 
 nav > .navbar-list > li a:hover, nav > .navbar-list > li a:focus {
@@ -226,7 +226,7 @@ nav > .navbar-list > li a:hover {
 }
 
 nav > .navbar-list > li:after {
-  color: #fff;
+  color: #f5f5f5;
   content: "|";
   padding-left: 10px;
 }
@@ -308,7 +308,7 @@ body::-webkit-scrollbar-thumb {
 .copyright {
   width: 30vw;
   text-align: center;
-  color: #fff;
+  color: #f5f5f5;
   padding: 10px;
   position: fixed;
   bottom: 0;
@@ -378,7 +378,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .skill-header-labels p {
-  color: #fff;
+  color: #f5f5f5;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -619,7 +619,7 @@ web backend
   animation-duration: 27s;
   animation-delay: 0s;
   animation-iteration-count: infinite;
-  color: #fff;
+  color: #f5f5f5;
   width: 100%;
 }
 
@@ -630,7 +630,7 @@ web backend
   animation-duration: 27s;
   animation-delay: 3s;
   animation-iteration-count: infinite;
-  color: #fff;
+  color: #f5f5f5;
   width: 100%;
 }
 
@@ -641,7 +641,7 @@ web backend
   animation-duration: 27s;
   animation-delay: 6s;
   animation-iteration-count: infinite;
-  color: #fff;
+  color: #f5f5f5;
   width: 100%;
 }
 
@@ -652,7 +652,7 @@ web backend
   animation-duration: 27s;
   animation-delay: 9s;
   animation-iteration-count: infinite;
-  color: #fff;
+  color: #f5f5f5;
   width: 100%;
 }
 
@@ -663,7 +663,7 @@ web backend
   animation-duration: 27s;
   animation-delay: 12s;
   animation-iteration-count: infinite;
-  color: #fff;
+  color: #f5f5f5;
   width: 100%;
 }
 
@@ -674,7 +674,7 @@ web backend
   animation-duration: 27s;
   animation-delay: 15s;
   animation-iteration-count: infinite;
-  color: #fff;
+  color: #f5f5f5;
   width: 100%;
 }
 
@@ -685,7 +685,7 @@ web backend
   animation-duration: 27s;
   animation-delay: 18s;
   animation-iteration-count: infinite;
-  color: #fff;
+  color: #f5f5f5;
   width: 100%;
 }
 
@@ -696,7 +696,7 @@ web backend
   animation-duration: 27s;
   animation-delay: 21s;
   animation-iteration-count: infinite;
-  color: #fff;
+  color: #f5f5f5;
   width: 100%;
 }
 
@@ -707,7 +707,7 @@ web backend
   animation-duration: 27s;
   animation-delay: 24s;
   animation-iteration-count: infinite;
-  color: #fff;
+  color: #f5f5f5;
   width: 100%;
 }
 
@@ -818,8 +818,73 @@ web backend
 .blog-content {
   height: 100%;
   width: 750px;
-  margin: 0 auto;
+  margin: 60px auto 0;
   padding: 0 25px 25px;
+}
+
+.blog-content img {
+  width: 100%;
+}
+
+.blog-content h1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.blog-content h2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.blog-content h3 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 30px;
+}
+
+.blog-content p {
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.blog-content ul {
+  padding-left: 40px;
+  font-size: 20px;
+  color: #f5f5f5;
+  margin-bottom: 20px;
+}
+
+.blog-content ul ul, .blog-content ul ol {
+  margin-bottom: 0;
+}
+
+.blog-content ol {
+  padding-left: 40px;
+  font-size: 20px;
+  color: #f5f5f5;
+  margin-bottom: 20px;
+}
+
+.blog-content ol ul, .blog-content ol ol {
+  margin-bottom: 0;
+}
+
+.blog-content li:not(:last-child) {
+  padding-bottom: 5px;
+}
+
+.blog-content blockquote {
+  background-color: #12171a;
+}
+
+.blog-content blockquote p {
+  font-size: 18px;
+}
+
+.blog-content code {
+  background: #0A0F13;
+  color: #f5f5f5;
+  font-size: 16px;
 }
 
 @media screen and (max-width: 1300px) {
@@ -841,7 +906,7 @@ web backend
 }
 
 .privacy-list {
-  color: #fff;
+  color: #f5f5f5;
   font-size: 18px;
   line-height: 28px;
   list-style-type: disc;
@@ -868,25 +933,25 @@ body {
 
 h1 {
   font-size: 65px;
-  color: #fff;
+  color: #f5f5f5;
 }
 
 h2 {
   padding-top: 25px;
   font-size: 40px;
-  color: #fff;
+  color: #f5f5f5;
 }
 
 h3 {
-  color: #fff;
+  color: #f5f5f5;
 }
 
 h4 {
-  color: #fff;
+  color: #f5f5f5;
 }
 
 p {
-  color: #fff;
+  color: #f5f5f5;
   font-size: 20px;
   line-height: 28px;
 }
