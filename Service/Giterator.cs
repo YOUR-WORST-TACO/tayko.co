@@ -16,7 +16,7 @@ namespace Tayko.co.Service
 
         public bool Initialized;
 
-        private Mutex _lockMutex;
+        public Mutex _lockMutex;
 
         public Giterator(IHostEnvironment hostingEnvironment)
         {

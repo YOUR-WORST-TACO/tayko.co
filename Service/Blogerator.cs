@@ -43,8 +43,8 @@ namespace Tayko.co.Service
             
             Posts = new List<PostModel>();
             PostChangeTracker = new Dictionary<string, DateTime>();
-            
-            _lockMutex = new Mutex(false, "TaykoBlogLockMutex");
+
+            _lockMutex = giterator._lockMutex;
 
             BlogInitializer();
         }
