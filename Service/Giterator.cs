@@ -14,6 +14,8 @@ namespace Tayko.co.Service
         private Repository BlogRepository { get; set; }
         private DirectoryInfo RootDirectory { get; set; }
 
+        public bool Initialized;
+
         public Giterator(IHostEnvironment hostingEnvironment)
         {
             RootDirectory = new DirectoryInfo(hostingEnvironment.ContentRootPath + "/Blog");
@@ -21,11 +23,12 @@ namespace Tayko.co.Service
         
         public Task StartAsync(CancellationToken cancellationToken)
         {
+            Console.WriteLine("Starting Giterator");
             _timer = new Timer(
                 UpdateBlogRepository,
                 null,
                 TimeSpan.Zero,
-                TimeSpan.FromMinutes(10)
+                TimeSpan.FromMinutes(1)
             );
             
             return Task.CompletedTask;
@@ -38,7 +41,7 @@ namespace Tayko.co.Service
             return Task.CompletedTask;
         }
 
-        private void UpdateBlogRepository(object state)
+        public void UpdateBlogRepository(object state)
         {
             Console.WriteLine("Updated Blog Repo");
             try
@@ -61,6 +64,7 @@ namespace Tayko.co.Service
                     new Signature("my name", "my email", DateTimeOffset.Now), // I dont want to provide these
                     pullOptions
                 );
+                Initialized = true;
             }
             catch (RepositoryNotFoundException)
             {
@@ -80,6 +84,7 @@ namespace Tayko.co.Service
                 }
                 Repository.Clone(@"https://github.com/YOUR-WORST-TACO/tayko.co-blog.git", RootDirectory.FullName);
                 BlogRepository = new Repository(RootDirectory.FullName);
+                Initialized = true;
             }
         }
     }

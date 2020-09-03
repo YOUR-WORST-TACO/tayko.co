@@ -25,14 +25,18 @@ namespace Tayko.co.Service
         private FileSystemWatcher BlogWatcher { get; set; }
         private FileSystemWatcher BlogContentWatcher { get; set; }
 
+        private Giterator _giterator;
+
         private int RootDirectoryDepth { get; set; }
 
         public List<PostModel> Posts { get; set; }
 
         private Dictionary<string, DateTime> PostChangeTracker;
 
-        public Blogerator(IWebHostEnvironment hostingEnvironment, IHostedService hostedService)
+        public Blogerator(IWebHostEnvironment hostingEnvironment, Giterator giterator)
         {
+            _giterator = giterator;
+            
             RootDirectory = new DirectoryInfo(hostingEnvironment.ContentRootPath + "/Blog");
             RootDirectoryDepth = RootDirectory.FullName.Split(Path.DirectorySeparatorChar).Length - 1;
             
@@ -242,6 +246,7 @@ namespace Tayko.co.Service
             {
                 Directory.CreateDirectory(RootDirectory.FullName + "/.cache");
             }*/
+            _giterator.UpdateBlogRepository(null);
 
             foreach (var subDirectory in RootDirectory.GetDirectories())
             {
