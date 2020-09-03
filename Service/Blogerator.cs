@@ -111,7 +111,7 @@ namespace Tayko.co.Service
         {
             if (!e.Name.EndsWith('~') && !e.Name.Contains(".git"))
             {
-                _lockMutex.WaitOne();
+                _lockMutex.WaitOne(4000);
                 DateTime lastStoredChange;
                 var lastChange = File.GetLastWriteTime(e.FullPath);
                 lastChange = new DateTime(
