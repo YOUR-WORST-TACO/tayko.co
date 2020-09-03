@@ -16,9 +16,13 @@ namespace Tayko.co.Service
 
         public bool Initialized;
 
+        private Mutex _lockMutex;
+
         public Giterator(IHostEnvironment hostingEnvironment)
         {
             RootDirectory = new DirectoryInfo(hostingEnvironment.ContentRootPath + "/Blog");
+            
+            _lockMutex = new Mutex(false, "TaykoBlogLockMutex");
         }
         
         public Task StartAsync(CancellationToken cancellationToken)
@@ -43,7 +47,7 @@ namespace Tayko.co.Service
 
         public void UpdateBlogRepository(object state)
         {
-            Console.WriteLine("Updated Blog Repo");
+            _lockMutex.WaitOne();
             try
             {
                 BlogRepository = new Repository(RootDirectory.FullName);
@@ -65,6 +69,7 @@ namespace Tayko.co.Service
                     pullOptions
                 );
                 Initialized = true;
+                Console.WriteLine("Updated Blog Repo");
             }
             catch (RepositoryNotFoundException)
             {
@@ -86,11 +91,13 @@ namespace Tayko.co.Service
                 Repository.Clone(@"https://github.com/YOUR-WORST-TACO/tayko.co-blog.git", RootDirectory.FullName);
                 BlogRepository = new Repository(RootDirectory.FullName);
                 Initialized = true;
+                Console.WriteLine("Updated Blog Repo");
             }
             catch (LibGit2SharpException)
             {
                 Console.WriteLine("Unspecified Error occured, ignoring");
             }
+            _lockMutex.ReleaseMutex();
         }
     }
 }

@@ -26,6 +26,7 @@ namespace Tayko.co.Service
         private FileSystemWatcher BlogContentWatcher { get; set; }
 
         private Giterator _giterator;
+        private Mutex _lockMutex;
 
         private int RootDirectoryDepth { get; set; }
 
@@ -42,6 +43,8 @@ namespace Tayko.co.Service
             
             Posts = new List<PostModel>();
             PostChangeTracker = new Dictionary<string, DateTime>();
+            
+            _lockMutex = new Mutex(false, "TaykoBlogLockMutex");
 
             BlogInitializer();
         }
@@ -83,7 +86,8 @@ namespace Tayko.co.Service
             if (!e.Name.EndsWith('~') && !e.Name.Contains(".git"))
             {
                 //Console.WriteLine($"File in BLOG: {e.FullPath} {e.ChangeType}");
-
+                _lockMutex.WaitOne();
+                
                 string[] changedDirectories = e.FullPath.Split(Path.DirectorySeparatorChar);
                 if (changedDirectories.Length > RootDirectoryDepth)
                 {
@@ -94,6 +98,7 @@ namespace Tayko.co.Service
                     }
                     //Console.WriteLine($"changed detected in article: {changedDirectories[RootDirectoryDepth+1]}");
                 }
+                _lockMutex.ReleaseMutex();
             }
         }
 
@@ -106,6 +111,7 @@ namespace Tayko.co.Service
         {
             if (!e.Name.EndsWith('~') && !e.Name.Contains(".git"))
             {
+                _lockMutex.WaitOne();
                 DateTime lastStoredChange;
                 var lastChange = File.GetLastWriteTime(e.FullPath);
                 lastChange = new DateTime(
@@ -156,6 +162,7 @@ namespace Tayko.co.Service
 
                     PostChangeTracker[e.FullPath] = lastChange;
                 }
+                _lockMutex.ReleaseMutex();
             }
         }
 
