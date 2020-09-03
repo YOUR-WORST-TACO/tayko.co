@@ -45,10 +45,10 @@ namespace Tayko.co.Service
         {
             Console.WriteLine("Updated Blog Repo");
             try
-            { 
+            {
                 BlogRepository = new Repository(RootDirectory.FullName);
-                
-                Commands.Fetch(BlogRepository, "origin", new string[0], new FetchOptions(),null);
+
+                Commands.Fetch(BlogRepository, "origin", new string[0], new FetchOptions(), null);
 
                 var master = BlogRepository.Branches["master"];
                 PullOptions pullOptions = new PullOptions()
@@ -58,7 +58,7 @@ namespace Tayko.co.Service
                         FastForwardStrategy = FastForwardStrategy.Default
                     }
                 };
-                
+
                 MergeResult mergeResult = Commands.Pull(
                     BlogRepository,
                     new Signature("my name", "my email", DateTimeOffset.Now), // I dont want to provide these
@@ -82,9 +82,14 @@ namespace Tayko.co.Service
                         }
                     }
                 }
+
                 Repository.Clone(@"https://github.com/YOUR-WORST-TACO/tayko.co-blog.git", RootDirectory.FullName);
                 BlogRepository = new Repository(RootDirectory.FullName);
                 Initialized = true;
+            }
+            catch (LibGit2SharpException)
+            {
+                Console.WriteLine("Unspecified Error occured, ignoring");
             }
         }
     }
