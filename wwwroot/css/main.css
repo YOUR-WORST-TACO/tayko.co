@@ -243,7 +243,6 @@ nav > .navbar-list > li:last-child:after {
 @media screen and (max-width: 1070px) {
   .navbar-content {
     position: relative;
-    height: 300px;
   }
 }
 

@@ -40,6 +40,7 @@ namespace Tayko.co
             services.AddMvc(options => options.EnableEndpointRouting = false ).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<Blogerator>();
+            services.AddHostedService<Giterator>();
             //services.AddSingleton(s => new Blogerator(HostingEnvironment));
 
             services.AddRazorPages()

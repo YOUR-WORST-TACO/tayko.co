@@ -5,11 +5,14 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
+using LibGit2Sharp;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.VisualBasic;
 using Tayko.co.Models;
 
 namespace Tayko.co.Service
@@ -19,8 +22,6 @@ namespace Tayko.co.Service
         private DirectoryInfo RootDirectory { get; set; }
         private string ContentFileName = "content.md";
 
-        private int totalChanges = 0;
-        
         private FileSystemWatcher BlogWatcher { get; set; }
         private FileSystemWatcher BlogContentWatcher { get; set; }
 
@@ -30,7 +31,7 @@ namespace Tayko.co.Service
 
         private Dictionary<string, DateTime> PostChangeTracker;
 
-        public Blogerator(IWebHostEnvironment hostingEnvironment)
+        public Blogerator(IWebHostEnvironment hostingEnvironment, IHostedService hostedService)
         {
             RootDirectory = new DirectoryInfo(hostingEnvironment.ContentRootPath + "/Blog");
             RootDirectoryDepth = RootDirectory.FullName.Split(Path.DirectorySeparatorChar).Length - 1;
@@ -237,14 +238,14 @@ namespace Tayko.co.Service
 
         private void BlogInitializer()
         {
-            if (!Directory.Exists(RootDirectory.FullName + "/.cache"))
+            /*if (!Directory.Exists(RootDirectory.FullName + "/.cache"))
             {
                 Directory.CreateDirectory(RootDirectory.FullName + "/.cache");
-            }
+            }*/
 
             foreach (var subDirectory in RootDirectory.GetDirectories())
             {
-                if (subDirectory.Name == ".cache")
+                if (subDirectory.Name == ".git")
                 {
                     continue;
                 }
@@ -260,6 +261,36 @@ namespace Tayko.co.Service
 
             InitializeWatchers();
             BlogeratorStarted();
+        }
+
+        public void GitInitializer()
+        {
+            try
+            {
+                Repository blogRepository = new Repository(RootDirectory.FullName);
+                
+                Commands.Fetch(blogRepository, "origin", new string[0], new FetchOptions(),null);
+
+                var master = blogRepository.Branches["master"];
+                PullOptions pullOptions = new PullOptions()
+                {
+                    MergeOptions = new MergeOptions()
+                    {
+                        FastForwardStrategy = FastForwardStrategy.Default
+                    }
+                };
+                
+                MergeResult mergeResult = Commands.Pull(
+                    blogRepository,
+                    new Signature("my name", "my email", DateTimeOffset.Now), // I dont want to provide these
+                    pullOptions
+                );
+            }
+            catch (RepositoryNotFoundException)
+            {
+                Repository.Clone(@"https://github.com/YOUR-WORST-TACO/tayko.co-blog.git", RootDirectory.FullName);
+                //blogRepository = new Repository(RootDirectory.FullName);
+            }
         }
 
         public void BlogeratorStarted()

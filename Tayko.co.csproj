@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <PackageReference Include="BuildBundlerMinifier" Version="3.2.435" />
+      <PackageReference Include="LibGit2Sharp" Version="0.26.2" />
       <PackageReference Include="MarkdownSharp" Version="2.0.5" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.1" />
     </ItemGroup>
