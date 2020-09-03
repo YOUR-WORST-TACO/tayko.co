@@ -94,7 +94,6 @@ namespace Tayko.co.Service
                     }
                     //Console.WriteLine($"changed detected in article: {changedDirectories[RootDirectoryDepth+1]}");
                 }
-
             }
         }
 
@@ -242,10 +241,6 @@ namespace Tayko.co.Service
 
         private void BlogInitializer()
         {
-            /*if (!Directory.Exists(RootDirectory.FullName + "/.cache"))
-            {
-                Directory.CreateDirectory(RootDirectory.FullName + "/.cache");
-            }*/
             _giterator.UpdateBlogRepository(null);
 
             foreach (var subDirectory in RootDirectory.GetDirectories())

@@ -4,11 +4,54 @@
     Layout = "_BlogLayout";
 }
 
-<div class="blog-image" style="background-image: url(@Model.PostName/@Model.PostCover.Name)">
+<!--<div class="blog-image" style="background-image: url(@Model.PostName/@Model.PostCover.Name)">
 </div>
 <div class="blog-content">
     <div class="blog-container">
         @Html.Raw(Model.PostContent);
+    </div>
+</div>-->
+
+<div class="blog-content">
+    <div class="blog-container">
+        <table>
+            <tr>
+                <td>Description</td>
+                <td>@Model.PostDescription</td>
+            </tr>
+            <tr>
+                <td>Post Date</td>
+                <td>@Model.PostDate</td>
+            </tr>
+            <tr>
+                <td>Post Cover</td>
+                <td>@Model.PostCover</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>@Model.PostAuthor</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>@Model.PostName</td>
+            </tr>
+            <tr>
+                <td>Content</td>
+                <td>@Model.PostContent</td>
+            </tr>
+            <tr>
+                <td>Storage File</td>
+                <td>@Model.PostStorageFile</td>
+            </tr>
+            <tr>
+                <td>Root</td>
+                <td>@Model.PostRoot</td>
+            </tr>
+            <tr>
+                <td>Resource Directory</td>
+                <td>@Model.PostResourceDirectory</td>
+            </tr>
+        </table>
     </div>
 </div>
 

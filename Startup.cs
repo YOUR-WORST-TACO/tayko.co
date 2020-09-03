@@ -41,9 +41,9 @@ namespace Tayko.co
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             
             services.AddSingleton<Giterator>();
-            services.AddHostedService<ServiceStarter<Giterator>>();
             services.AddSingleton<Blogerator>();
-            //services.AddSingleton(s => new Blogerator(HostingEnvironment));
+            
+            services.AddHostedService<ServiceStarter<Giterator>>();
 
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();

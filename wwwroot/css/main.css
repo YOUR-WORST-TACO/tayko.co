@@ -880,6 +880,11 @@ web backend
   font-size: 18px;
 }
 
+.blog-content table {
+  font-size: 20px;
+  color: #f5f5f5;
+}
+
 .blog-content code {
   background: #0A0F13;
   color: #f5f5f5;
