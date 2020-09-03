@@ -64,6 +64,10 @@ namespace Tayko.co.Service
             }
             catch (RepositoryNotFoundException)
             {
+                if (Directory.Exists(RootDirectory.FullName))
+                {
+                    Directory.Delete(RootDirectory.FullName, true);
+                }
                 Repository.Clone(@"https://github.com/YOUR-WORST-TACO/tayko.co-blog.git", RootDirectory.FullName);
                 BlogRepository = new Repository(RootDirectory.FullName);
             }
