@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using AspNetCore.ServiceRegistration.Dynamic.Attributes;
+using AspNetCore.ServiceRegistration.Dynamic.Extensions;
+using AspNetCore.ServiceRegistration.Dynamic.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +14,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Tayko.co.Models;
 using Tayko.co.Service;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Tayko.co
 {
@@ -40,12 +44,8 @@ namespace Tayko.co
             services.AddMvc(options => options.EnableEndpointRouting = false ).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddSingleton<Changerator>();
-            services.AddSingleton<Giterator>();
             services.AddSingleton<Blogerator>();
-
-            services.AddHostedService<ServiceStarter<Changerator>>();
-            services.AddHostedService<ServiceStarter<Giterator>>();
+            services.AddHostedService<Serverator<Blogerator>>();
 
             services.AddRazorPages()
                 .AddRazorRuntimeCompilation();
@@ -65,9 +65,9 @@ namespace Tayko.co
                 app.UseHsts();
             }
             
-            Console.WriteLine($"Garsh look at what I found: {Environment.GetEnvironmentVariable("TESTING_123_123")}");
+            // Console.WriteLine($"Garsh look at what I found: {Environment.GetEnvironmentVariable("TESTING_123_123")}");
 
-            var blogerator = app.ApplicationServices.GetService<Blogerator>();
+            // var blogerator = app.ApplicationServices.GetService<Blogerator>();
             
             app.UseHsts();
             app.UseAuthentication();

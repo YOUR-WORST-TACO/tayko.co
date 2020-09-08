@@ -5,11 +5,13 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualBasic;
@@ -17,70 +19,207 @@ using Tayko.co.Models;
 
 namespace Tayko.co.Service
 {
-    public class Blogerator
+    public enum BlogChangeFlag
+    {
+        Create,
+        Modify,
+        Delete
+    }
+    public class Blogerator : IHostedService
     {
         private DirectoryInfo RootDirectory { get; set; }
         private string ContentFileName = "content.md";
 
         private FileSystemWatcher BlogWatcher { get; set; }
         private FileSystemWatcher BlogContentWatcher { get; set; }
+        private Repository BlogRepository { get; set; }
+        private string Remote { get; set; }
+        
+        private Timer _timer;
+        private int _updateDelayCount;
 
-        private Giterator _giterator;
-        private Mutex _lockMutex;
+        private static int counter;
 
         private int RootDirectoryDepth { get; set; }
 
         public List<PostModel> Posts { get; set; }
 
-        private Dictionary<string, DateTime> PostChangeTracker;
-
-        public Blogerator(IWebHostEnvironment hostingEnvironment, Giterator giterator)
+        public Blogerator(IWebHostEnvironment hostingEnvironment, IConfiguration configuration)
         {
-            _giterator = giterator;
-            
+            counter++;
             RootDirectory = new DirectoryInfo(hostingEnvironment.ContentRootPath + "/Blog");
             RootDirectoryDepth = RootDirectory.FullName.Split(Path.DirectorySeparatorChar).Length - 1;
             
             Posts = new List<PostModel>();
-            PostChangeTracker = new Dictionary<string, DateTime>();
+            _updateDelayCount = 0;
 
-            _lockMutex = giterator._lockMutex;
-
+            Remote = configuration["BlogRepository"];
+            
             BlogInitializer();
         }
-
-        private void InitializeWatchers()
+        
+        public Task StartAsync(CancellationToken cancellationToken)
         {
-            BlogWatcher = new FileSystemWatcher
-            {
-                Path = RootDirectory.FullName,
-                IncludeSubdirectories = false,
-                NotifyFilter = NotifyFilters.DirectoryName
-            };
+            _timer = new Timer(
+                BlogeratorThread,
+                null,
+                TimeSpan.FromSeconds(10),
+                TimeSpan.FromSeconds(10)
+            );
             
-            BlogWatcher.Deleted += OnBlogChanged;
-            BlogWatcher.Renamed += OnBlogRenamed;
-
-            BlogWatcher.EnableRaisingEvents = true;
-
-            BlogContentWatcher = new FileSystemWatcher
-            {
-                Path = RootDirectory.FullName,
-                IncludeSubdirectories = true,
-                NotifyFilter = NotifyFilters.LastWrite
-                               | NotifyFilters.FileName
-                               | NotifyFilters.DirectoryName
-                               | NotifyFilters.CreationTime
-            };
-
-            BlogContentWatcher.Filter = "content.md";
-
-            BlogContentWatcher.Changed += OnContentChanged;
-            BlogContentWatcher.Created += OnContentChanged;
-
-            BlogContentWatcher.EnableRaisingEvents = true;
+            return Task.CompletedTask;
         }
 
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            _timer?.Change(Timeout.Infinite, 0);
+
+            return Task.CompletedTask;
+        }
+
+        private void BlogeratorThread(object state)
+        {
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            if (_updateDelayCount < 5)
+            {
+                _updateDelayCount++;
+            }
+            else
+            {
+                UpdateBlogRepository();
+                _updateDelayCount = 0;
+            }
+            
+            ComputeChanges();
+            
+            stopWatch.Stop();
+            TimeSpan ts = stopWatch.Elapsed;
+
+            // Format and display the TimeSpan value.
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                ts.Hours, ts.Minutes, ts.Seconds,
+                ts.Milliseconds / 10);
+            Console.WriteLine("RunTime " + elapsedTime);
+        }
+        private void ComputeChanges()
+        {
+            var tempPosts = new List<PostModel>(Posts);
+            string[] tempChildDirectories = Directory.GetDirectories(RootDirectory.FullName);
+
+            // detect new folders
+            foreach (var childDirectory in tempChildDirectories)
+            {
+                string childName = Path.GetFileName(childDirectory);
+
+                if (tempPosts.All(post => post.PostRoot.FullName != childDirectory) && childName != ".git")
+                {
+                    var loadedPost = LoadBlogPost(new DirectoryInfo(childDirectory));
+                    if (loadedPost != null)
+                    {
+                        Console.WriteLine($"Loading Post {loadedPost.PostName}");
+                        Posts.Add(loadedPost);
+                    }
+                }
+            }
+
+            // detect missing folders
+            foreach (var post in tempPosts)
+            {
+                if (!Directory.Exists(post.PostRoot.FullName))
+                {
+                    Console.WriteLine($"Deleting(1) Post {post.PostName}");
+                    Posts.Remove(post);
+                }
+            }
+            
+            // update things that were changed by previous checks
+            tempPosts = new List<PostModel>(Posts);
+            
+            // compute file changes
+            foreach (var post in tempPosts)
+            {
+                if (File.Exists(post.PostStorageFile.FullName))
+                {
+                    if (!post.UpdateHash()) continue;
+                    var loadedPost = LoadBlogPost(post.PostRoot);
+
+                    if (loadedPost != null)
+                    {
+                        Console.WriteLine($"Updating Post {post.PostName}");
+                        post.PostContent = loadedPost.PostContent;
+                        post.PostAuthor = loadedPost.PostAuthor;
+                        post.PostDate = loadedPost.PostDate;
+                        post.PostTitle = loadedPost.PostTitle;
+                        post.PostDescription = loadedPost.PostDescription;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Deleting(2) Post {post.PostName}");
+                        Posts.Remove(post);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Deleting(3) Post {post.PostName}");
+                    Posts.Remove(post);
+                }
+            }
+        }
+
+        public void UpdateBlogRepository()
+        {
+            try
+            {
+                BlogRepository = new Repository(RootDirectory.FullName);
+
+                Commands.Fetch(BlogRepository, "origin", new string[0], new FetchOptions(), null);
+
+                var master = BlogRepository.Branches["master"];
+                PullOptions pullOptions = new PullOptions()
+                {
+                    MergeOptions = new MergeOptions()
+                    {
+                        FastForwardStrategy = FastForwardStrategy.Default
+                    }
+                };
+
+                MergeResult mergeResult = Commands.Pull(
+                    BlogRepository,
+                    new Signature("my name", "my email", DateTimeOffset.Now), // I dont want to provide these
+                    pullOptions
+                );
+                Console.WriteLine("Updated Blog Repo");
+            }
+            catch (RepositoryNotFoundException)
+            {
+                if (Directory.Exists(RootDirectory.FullName))
+                {
+                    for (int numTries = 0; numTries < 10; numTries++)
+                    {
+                        try
+                        {
+                            Directory.Delete(RootDirectory.FullName, true);
+                        }
+                        catch (IOException)
+                        {
+                            Thread.Sleep(50);
+                        }
+                    }
+                }
+
+                Repository.Clone(Remote, RootDirectory.FullName);
+                BlogRepository = new Repository(RootDirectory.FullName);
+                Console.WriteLine("Created Blog Repo");
+            }
+            catch (LibGit2SharpException)
+            {
+                Console.WriteLine("Unspecified Error occured, ignoring");
+            }
+        }
+        
+        /*
         private void OnBlogChanged(object source, FileSystemEventArgs e)
         {
             if (!e.Name.EndsWith('~') && !e.Name.Contains(".git"))
@@ -100,11 +239,6 @@ namespace Tayko.co.Service
                 }
                 _lockMutex.ReleaseMutex();
             }
-        }
-
-        private void OnBlogRenamed(object source, RenamedEventArgs e)
-        {
-            Console.WriteLine($"BLOG: {e.OldFullPath} changed to {e.FullPath}");
         }
         
         private void OnContentChanged(object source, FileSystemEventArgs e)
@@ -164,7 +298,7 @@ namespace Tayko.co.Service
                 }
                 _lockMutex.ReleaseMutex();
             }
-        }
+        }*/
 
         public PostModel LoadBlogPost(DirectoryInfo postDirectory)
         {
@@ -225,6 +359,9 @@ namespace Tayko.co.Service
                         PostResourceDirectory = null
                     };
 
+                    temporaryPost.UpdateHash();
+
+                    // todo: remove the PostCover and replace it in the Blog Controller
                     foreach (var directory in postDirectory.GetDirectories())
                     {
                         if (directory.Name.Equals("resources"))
@@ -248,8 +385,9 @@ namespace Tayko.co.Service
 
         private void BlogInitializer()
         {
-            _giterator.UpdateBlogRepository(null);
-
+            UpdateBlogRepository();
+            
+            // todo: Move outside of Blogerator
             foreach (var subDirectory in RootDirectory.GetDirectories())
             {
                 if (subDirectory.Name == ".git")
@@ -265,39 +403,8 @@ namespace Tayko.co.Service
                     Posts.Add(loadedPost);
                 }
             }
-
-            InitializeWatchers();
+            
             BlogeratorStarted();
-        }
-
-        public void GitInitializer()
-        {
-            try
-            {
-                Repository blogRepository = new Repository(RootDirectory.FullName);
-                
-                Commands.Fetch(blogRepository, "origin", new string[0], new FetchOptions(),null);
-
-                var master = blogRepository.Branches["master"];
-                PullOptions pullOptions = new PullOptions()
-                {
-                    MergeOptions = new MergeOptions()
-                    {
-                        FastForwardStrategy = FastForwardStrategy.Default
-                    }
-                };
-                
-                MergeResult mergeResult = Commands.Pull(
-                    blogRepository,
-                    new Signature("my name", "my email", DateTimeOffset.Now), // I dont want to provide these
-                    pullOptions
-                );
-            }
-            catch (RepositoryNotFoundException)
-            {
-                Repository.Clone(@"https://github.com/YOUR-WORST-TACO/tayko.co-blog.git", RootDirectory.FullName);
-                //blogRepository = new Repository(RootDirectory.FullName);
-            }
         }
 
         public void BlogeratorStarted()
