@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Tayko.co.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using Tayko.co.Service;
@@ -40,6 +37,7 @@ namespace Tayko.co.Controllers
                     _blogerator.Posts.OrderByDescending(item => item.PostDate).ToList());
             }
 
+            // todo: replace this with a convenience function from Blogerator
             // finds first article that matches the lambda
             var foundArticle = _blogerator.Posts.FirstOrDefault(
                 x => (x.PostName == article)
@@ -51,6 +49,8 @@ namespace Tayko.co.Controllers
                 // go to error page
                 return StatusCode(404);
             }
+
+            foundArticle.PostCover = null;
             
             if (Directory.Exists(foundArticle.PostRoot.FullName + "/resources"))
             {
@@ -61,7 +61,7 @@ namespace Tayko.co.Controllers
 
             if (foundArticle.PostCover == null)
             {
-                foundArticle.PostCover = "https://source.unsplash.com/1600x900/?nature,water";
+                foundArticle.PostCover = "https://source.unsplash.com/1600x900/?nature,mountains";
             }
             else
             {
@@ -74,6 +74,7 @@ namespace Tayko.co.Controllers
 
         public IActionResult LoadBlogResource(string article, string resource)
         {
+            // todo: replace this with a convenience function from Blogerator
             // finds first article that matches the lambda
             var foundArticle = _blogerator.Posts.FirstOrDefault(
                 x => (x.PostName == article)
@@ -87,19 +88,13 @@ namespace Tayko.co.Controllers
             if (!Directory.Exists(resourceDirectory)) return NotFound();
 
             var resourceItem = foundArticle.PostRoot + "/resources/" + resource;
-
-            if (!System.IO.File.Exists(resourceItem))
-            {
-                return NotFound();
-            }
-
+            if (!System.IO.File.Exists(resourceItem)) return NotFound();
+            
             var resourceItemContent = System.IO.File.OpenRead(resourceItem);
 
-            if (!provider.TryGetContentType(resourceItem, out var resourceItemType))
-            {
+            if (!provider.TryGetContentType(resourceItem, out var resourceItemType)) 
                 resourceItemType = "application/octet-stream";
-            }
-
+            
             return File(resourceItemContent, resourceItemType);
         }
     }

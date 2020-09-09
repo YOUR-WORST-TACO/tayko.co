@@ -19,17 +19,28 @@
     @media screen and (max-width: $page-response-width) {
       width: ($compressed-size - 20px);
       height: ($compressed-size - 20px);
-      
+    }
+    
+    @media screen and (max-width: $page-smallest-width) {
+      width: ($size - 20px);
+      height: ($size - 20px);
     }
   }
-
   &.pic-left {
     float: left;
     margin-right: 20px;
+    
+    @media screen and (max-width: $page-smallest-width) {
+      float: none
+    }
   }
   &.pic-right {
     float: right;
     margin-left: 20px;
+    
+    @media screen and (max-width: $page-smallest-width) {
+      float: none
+    }
   }
   &.rounded {
     margin-right: 0px;
@@ -50,6 +61,16 @@
       
       img {
         border-radius: $compressed-size;
+      }
+    }
+    
+    @media screen and (max-width: $page-smallest-width) {
+      width: ($size);
+      height: ($size);
+      border-radius: $size;
+
+      img {
+        border-radius: $size;
       }
     }
   }

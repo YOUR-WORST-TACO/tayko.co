@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Tayko.co.Models;
 
 namespace Tayko.co.Controllers
 {

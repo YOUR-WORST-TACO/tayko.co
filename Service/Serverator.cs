@@ -11,7 +11,7 @@ namespace Tayko.co.Service
 
         public Serverator(T backgroundService)
         {
-            this._backgroundService = backgroundService;
+            _backgroundService = backgroundService;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)

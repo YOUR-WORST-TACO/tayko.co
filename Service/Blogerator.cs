@@ -283,10 +283,5 @@ namespace Tayko.co.Service
         {
             Console.WriteLine("Blogerator successfully initialized!");
         }
-
-        public PostModel GetPost(string postName)
-        {
-            return null;
-        }
     }
 }
