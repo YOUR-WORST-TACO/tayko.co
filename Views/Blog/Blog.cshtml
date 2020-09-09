@@ -4,8 +4,9 @@
     Layout = "_BlogLayout";
 }
 
-<div class="blog-image" style="background-image: url(@Model.PostName/@Model.PostCover.Name)">
+<div class="blog-image" style="background-image: url(@Model.PostCover)">
 </div>
+
 <div class="blog-content">
     <div class="blog-container">
         @Html.Raw(Model.PostContent);

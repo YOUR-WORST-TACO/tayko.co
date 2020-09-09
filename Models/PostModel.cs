@@ -6,17 +6,29 @@ namespace Tayko.co.Models
 {
     public class PostModel
     {
-        public string PostTitle { get; set; }                        // stored in meta
-        public string PostDescription { get; set; }                  // stored in meta
-        public DateTime PostDate { get; set; }                       // stored in meta
-        public FileInfo PostCover { get; set; }
         public string PostAuthor { get; set; }
         public string PostName { get; set; }                         // obtained from directory name
+        public string PostTitle { get; set; }                        // stored in meta
         public string PostContent { get; set; }                      // stored in content
+        public string PostDescription { get; set; }                  // stored in meta
         public FileInfo PostStorageFile { get; set; }                // physical location of content file
+        private string PostStorageFileHash { get; set; }
+        public string PostCover { get; set; }
         public DirectoryInfo PostRoot { get; set; }                  // physical location of article root
-        public DirectoryInfo PostResourceDirectory { get; set; }     // physical location of post resources
-        public string PostStorageFileHash { get; set; }
+        public DateTime PostDate { get; set; }                       // stored in meta
+        
+        public PostModel()
+        {
+            PostTitle = "";
+            PostDescription = "";
+            PostDate = DateTime.Now;
+            PostAuthor = "";
+            PostName = "";
+            PostContent = "";
+            PostStorageFile = null;
+            PostStorageFileHash = "";
+            PostRoot = null;
+        }
         public bool UpdateHash()
         {
             if (!File.Exists(PostStorageFile.FullName)) return false;

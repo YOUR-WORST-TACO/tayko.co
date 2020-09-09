@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -8,45 +7,27 @@ using System.Threading;
 using System.Threading.Tasks;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.VisualBasic;
 using Tayko.co.Models;
 
 namespace Tayko.co.Service
 {
-    public enum BlogChangeFlag
-    {
-        Create,
-        Modify,
-        Delete
-    }
     public class Blogerator : IHostedService
     {
         private DirectoryInfo RootDirectory { get; set; }
         private string ContentFileName = "content.md";
-
-        private FileSystemWatcher BlogWatcher { get; set; }
-        private FileSystemWatcher BlogContentWatcher { get; set; }
         private Repository BlogRepository { get; set; }
         private string Remote { get; set; }
         
         private Timer _timer;
         private int _updateDelayCount;
-
-        private static int counter;
-
         private int RootDirectoryDepth { get; set; }
 
         public List<PostModel> Posts { get; set; }
 
         public Blogerator(IWebHostEnvironment hostingEnvironment, IConfiguration configuration)
         {
-            counter++;
             RootDirectory = new DirectoryInfo(hostingEnvironment.ContentRootPath + "/Blog");
             RootDirectoryDepth = RootDirectory.FullName.Split(Path.DirectorySeparatorChar).Length - 1;
             
@@ -79,9 +60,6 @@ namespace Tayko.co.Service
 
         private void BlogeratorThread(object state)
         {
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-
             if (_updateDelayCount < 5)
             {
                 _updateDelayCount++;
@@ -93,15 +71,6 @@ namespace Tayko.co.Service
             }
             
             ComputeChanges();
-            
-            stopWatch.Stop();
-            TimeSpan ts = stopWatch.Elapsed;
-
-            // Format and display the TimeSpan value.
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                ts.Hours, ts.Minutes, ts.Seconds,
-                ts.Milliseconds / 10);
-            Console.WriteLine("RunTime " + elapsedTime);
         }
         private void ComputeChanges()
         {
@@ -115,7 +84,7 @@ namespace Tayko.co.Service
 
                 if (tempPosts.All(post => post.PostRoot.FullName != childDirectory) && childName != ".git")
                 {
-                    var loadedPost = LoadBlogPost(new DirectoryInfo(childDirectory));
+                    var loadedPost = LoadBlogPost(new DirectoryInfo(childDirectory), false);
                     if (loadedPost != null)
                     {
                         Console.WriteLine($"Loading Post {loadedPost.PostName}");
@@ -129,7 +98,7 @@ namespace Tayko.co.Service
             {
                 if (!Directory.Exists(post.PostRoot.FullName))
                 {
-                    Console.WriteLine($"Deleting(1) Post {post.PostName}");
+                    Console.WriteLine($"Deleting (v1) Post {post.PostName}");
                     Posts.Remove(post);
                 }
             }
@@ -143,7 +112,7 @@ namespace Tayko.co.Service
                 if (File.Exists(post.PostStorageFile.FullName))
                 {
                     if (!post.UpdateHash()) continue;
-                    var loadedPost = LoadBlogPost(post.PostRoot);
+                    var loadedPost = LoadBlogPost(post.PostRoot, false);
 
                     if (loadedPost != null)
                     {
@@ -156,13 +125,13 @@ namespace Tayko.co.Service
                     }
                     else
                     {
-                        Console.WriteLine($"Deleting(2) Post {post.PostName}");
+                        Console.WriteLine($"Deleting (v2) Post {post.PostName}");
                         Posts.Remove(post);
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"Deleting(3) Post {post.PostName}");
+                    Console.WriteLine($"Deleting (v3) Post {post.PostName}");
                     Posts.Remove(post);
                 }
             }
@@ -176,7 +145,6 @@ namespace Tayko.co.Service
 
                 Commands.Fetch(BlogRepository, "origin", new string[0], new FetchOptions(), null);
 
-                var master = BlogRepository.Branches["master"];
                 PullOptions pullOptions = new PullOptions()
                 {
                     MergeOptions = new MergeOptions()
@@ -185,12 +153,13 @@ namespace Tayko.co.Service
                     }
                 };
 
-                MergeResult mergeResult = Commands.Pull(
+                // todo: track the merger result, or get rid of it
+                // MergeResult mergeResult = Commands.Pull(
+                Commands.Pull(
                     BlogRepository,
                     new Signature("my name", "my email", DateTimeOffset.Now), // I dont want to provide these
                     pullOptions
                 );
-                Console.WriteLine("Updated Blog Repo");
             }
             catch (RepositoryNotFoundException)
             {
@@ -211,96 +180,15 @@ namespace Tayko.co.Service
 
                 Repository.Clone(Remote, RootDirectory.FullName);
                 BlogRepository = new Repository(RootDirectory.FullName);
-                Console.WriteLine("Created Blog Repo");
+                // Console.WriteLine("Created Blog Repo");
             }
             catch (LibGit2SharpException)
             {
                 Console.WriteLine("Unspecified Error occured, ignoring");
             }
         }
-        
-        /*
-        private void OnBlogChanged(object source, FileSystemEventArgs e)
-        {
-            if (!e.Name.EndsWith('~') && !e.Name.Contains(".git"))
-            {
-                //Console.WriteLine($"File in BLOG: {e.FullPath} {e.ChangeType}");
-                _lockMutex.WaitOne();
-                
-                string[] changedDirectories = e.FullPath.Split(Path.DirectorySeparatorChar);
-                if (changedDirectories.Length > RootDirectoryDepth)
-                {
-                    if (e.ChangeType == WatcherChangeTypes.Deleted)
-                    {
-                        Posts.RemoveAll(post => post.PostName == changedDirectories[RootDirectoryDepth + 1]);
-                        Console.WriteLine($"Article: {changedDirectories[RootDirectoryDepth + 1]} has been deleted.");
-                    }
-                    //Console.WriteLine($"changed detected in article: {changedDirectories[RootDirectoryDepth+1]}");
-                }
-                _lockMutex.ReleaseMutex();
-            }
-        }
-        
-        private void OnContentChanged(object source, FileSystemEventArgs e)
-        {
-            if (!e.Name.EndsWith('~') && !e.Name.Contains(".git"))
-            {
-                _lockMutex.WaitOne(4000);
-                DateTime lastStoredChange;
-                var lastChange = File.GetLastWriteTime(e.FullPath);
-                lastChange = new DateTime(
-                    lastChange.Ticks - (lastChange.Ticks % TimeSpan.TicksPerSecond),
-                    lastChange.Kind);
-                
-                if (!PostChangeTracker.TryGetValue(e.FullPath, out lastStoredChange))
-                {
-                    PostChangeTracker[e.FullPath] = lastChange;
-                }
 
-                if (!lastStoredChange.Equals(lastChange))
-                {
-                    //Console.WriteLine($"File Change {totalChanges++}: {e.FullPath} {e.ChangeType} \n\t Last Change {lastChange.Ticks} \n\t Last Stored Change  {lastStoredChange.Ticks}");
-                    string[] changedDirectories = e.FullPath.Split(Path.DirectorySeparatorChar);
-                    if (changedDirectories.Length > RootDirectoryDepth)
-                    {
-                        var currentPost = Posts.FirstOrDefault(post =>
-                            post.PostName == changedDirectories[RootDirectoryDepth + 1]);
-
-                        if (currentPost != null)
-                        {
-                            var loadedPost = LoadBlogPost(currentPost.PostRoot);
-
-                            if (loadedPost != null)
-                            {
-                                currentPost.PostContent = loadedPost.PostContent;
-                                currentPost.PostAuthor = loadedPost.PostAuthor;
-                                currentPost.PostDate = loadedPost.PostDate;
-                                currentPost.PostTitle = loadedPost.PostTitle;
-                                currentPost.PostDescription = loadedPost.PostDescription;
-                            }
-                            else
-                            {
-                                Posts.RemoveAll(post => post.PostName == changedDirectories[RootDirectoryDepth + 1]);
-                            }
-                        }
-                        else
-                        {
-                            var postDirectory = new DirectoryInfo(Path.GetDirectoryName(e.FullPath) ?? "");
-                            var loadedPost = LoadBlogPost(postDirectory);
-                            if (loadedPost != null)
-                            {
-                                Posts.Add(loadedPost);
-                            }
-                        }
-                    }
-
-                    PostChangeTracker[e.FullPath] = lastChange;
-                }
-                _lockMutex.ReleaseMutex();
-            }
-        }*/
-
-        public PostModel LoadBlogPost(DirectoryInfo postDirectory)
+        public PostModel LoadBlogPost(DirectoryInfo postDirectory, bool verbose = true)
         {
             FileInfo contentFile = null;
 
@@ -333,7 +221,7 @@ namespace Tayko.co.Service
 
                 if (fileContents == null)
                 {
-                    Console.Write($"Unable to access content file: {postDirectory.Name}\n");
+                    if (verbose) Console.Write($"Unable to access content file: {postDirectory.Name}\n");
                     return null;
                 }
 
@@ -345,7 +233,7 @@ namespace Tayko.co.Service
 
                     var markdown = new MarkdownSharp.Markdown();
 
-                    PostModel temporaryPost = new PostModel
+                    var temporaryPost = new PostModel
                     {
                         PostStorageFile = contentFile,
                         PostContent = markdown.Transform(storageFileSplit["content"].Value),
@@ -356,29 +244,16 @@ namespace Tayko.co.Service
                         PostRoot = postDirectory,
                         PostDate = DateTime.ParseExact(storageFileSplit["postDate"].Value, "yyyyMMdd",
                             System.Globalization.CultureInfo.InvariantCulture),
-                        PostResourceDirectory = null
                     };
 
                     temporaryPost.UpdateHash();
 
-                    // todo: remove the PostCover and replace it in the Blog Controller
-                    foreach (var directory in postDirectory.GetDirectories())
-                    {
-                        if (directory.Name.Equals("resources"))
-                        {
-                            temporaryPost.PostResourceDirectory = new DirectoryInfo(directory.FullName);
-
-                            temporaryPost.PostCover = temporaryPost.PostResourceDirectory.GetFiles()
-                                .FirstOrDefault(file => Path.GetFileNameWithoutExtension(file.Name) == "cover");
-                        }
-                    }
-
-                    Console.Write($"Successfully Loaded Article: {postDirectory.Name}\n");
+                    if (verbose) Console.Write($"Successfully Loaded Article: {postDirectory.Name}\n");
                     return temporaryPost;
                 }
             }
 
-            Console.Write($"Malformed Article Skipped: {postDirectory.Name}\n");
+            if (verbose) Console.Write($"Malformed Article Skipped: {postDirectory.Name}\n");
             
             return null;
         }
@@ -387,16 +262,13 @@ namespace Tayko.co.Service
         {
             UpdateBlogRepository();
             
-            // todo: Move outside of Blogerator
             foreach (var subDirectory in RootDirectory.GetDirectories())
             {
                 if (subDirectory.Name == ".git")
                 {
                     continue;
                 }
-
-                var articleDirectory = new DirectoryInfo(subDirectory.FullName);
-
+                
                 var loadedPost = LoadBlogPost(subDirectory);
                 if (loadedPost != null)
                 {

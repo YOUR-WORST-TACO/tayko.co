@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,10 +32,6 @@ namespace Tayko.co.Controllers
 
         public IActionResult LoadBlog(string article)
         {
-            // get default root folder for hosting
-
-            // instantiate new BlogDataManager to load blogs
-
             // if no article was passed
             if (article == null)
             {
@@ -53,7 +51,23 @@ namespace Tayko.co.Controllers
                 // go to error page
                 return StatusCode(404);
             }
+            
+            if (Directory.Exists(foundArticle.PostRoot.FullName + "/resources"))
+            {
+                foundArticle.PostCover = new DirectoryInfo(foundArticle.PostRoot.FullName + "/resources").GetFiles()
+                    .FirstOrDefault(file => Path.GetFileNameWithoutExtension(file.Name) == "cover")
+                    ?.Name;
+            }
 
+            if (foundArticle.PostCover == null)
+            {
+                foundArticle.PostCover = "https://source.unsplash.com/1600x900/?nature,water";
+            }
+            else
+            {
+                foundArticle.PostCover = foundArticle.PostName + "/" + foundArticle.PostCover;
+            }
+            
             // return Blog view with foundArticle model
             return View("Blog", foundArticle);
         }
@@ -65,27 +79,28 @@ namespace Tayko.co.Controllers
                 x => (x.PostName == article)
             );
 
-            if (foundArticle?.PostResourceDirectory != null)
+            if (foundArticle == null) return NotFound();
+            
+            var provider = new FileExtensionContentTypeProvider();
+            var resourceDirectory = foundArticle.PostRoot.FullName + "/resources";
+
+            if (!Directory.Exists(resourceDirectory)) return NotFound();
+
+            var resourceItem = foundArticle.PostRoot + "/resources/" + resource;
+
+            if (!System.IO.File.Exists(resourceItem))
             {
-                var provider = new FileExtensionContentTypeProvider();
-                var resourceItem = foundArticle.PostResourceDirectory.FullName + "/" + resource;
-
-                if (!System.IO.File.Exists(resourceItem))
-                {
-                    return NotFound();
-                }
-                
-                var resourceItemContent = System.IO.File.OpenRead(resourceItem);
-
-                if (!provider.TryGetContentType(resourceItem, out var resourceItemType))
-                {
-                    resourceItemType = "application/octet-stream";
-                }
-
-                return File(resourceItemContent, resourceItemType);
+                return NotFound();
             }
 
-            return NotFound();
+            var resourceItemContent = System.IO.File.OpenRead(resourceItem);
+
+            if (!provider.TryGetContentType(resourceItem, out var resourceItemType))
+            {
+                resourceItemType = "application/octet-stream";
+            }
+
+            return File(resourceItemContent, resourceItemType);
         }
     }
 }

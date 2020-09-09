@@ -801,6 +801,7 @@ web backend
   -moz-box-shadow: inset 10px -9px 22px -13px black;
   box-shadow: inset 10px -9px 22px -13px black;
   background-size: cover;
+  background-position: 0% +50%;
   height: 400px;
   overflow: hidden;
   width: 100%;
