@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Steph\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Steph\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_Tayko.co.-361426858.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Steph\AppData\Roaming\JetBrains\Rider2020.1\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\Steph\AppData\Roaming\JetBrains\Rider2020.1\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\Steph\AppData\Roaming\JetBrains\Rider2020.1\javascript\nodejs\12.4.0\core-modules" t="IncludeRecursive" />
+    <e p="C:\Users\Steph\AppData\Roaming\JetBrains\Rider2020.1\javascript\nodejs\12.4.0\node-typings\node_modules\@types" t="IncludeRecursive" />
+    <e p="C:\Users\Steph\Documents\Development\Rider\Tayko.co" t="IncludeRecursive">
+      <e p=".dockerignore" t="Include" />
+      <e p=".gitignore" t="Include" />
+      <e p="app.config" t="Include" />
+      <e p="appsettings.Development.json" t="Include" />
+      <e p="appsettings.json" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="Blog" t="Include">
+        <e p="articles-how-to" t="Include">
+          <e p="content.md" t="Include" />
+          <e p="resources" t="Include">
+            <e p="cover.jpg" t="Include" />
+          </e>
+        </e>
+        <e p="how-to-article" t="Include">
+          <e p="content.md" t="Include" />
+          <e p="resources" t="Include">
+            <e p="cover.png" t="Include" />
+          </e>
+        </e>
+        <e p="my-test-article" t="Include">
+          <e p="content.md" t="Include" />
+          <e p="resources" t="Include">
+            <e p="cover.png" t="Include" />
+          </e>
+        </e>
+        <e p="test-1" t="Include">
+          <e p="content.md" t="Include" />
+          <e p="resources" t="Include">
+            <e p="cover.jpg" t="Include" />
+          </e>
+        </e>
+        <e p="test-2" t="Include">
+          <e p="content.md" t="Include" />
+          <e p="resources" t="Include" />
+        </e>
+        <e p="test-3" t="Include">
+          <e p="content.md" t="Include" />
+          <e p="resources" t="Include">
+            <e p="cover.jpg" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="bundleconfig.json" t="Include" />
+      <e p="Controllers" t="Include">
+        <e p="BlogController.cs" t="Include" />
+        <e p="ErrorController.cs" t="Include" />
+        <e p="HomeController.cs" t="Include" />
+      </e>
+      <e p="Dockerfile" t="Include" />
+      <e p="gulpfile.js" t="Include" />
+      <e p="kubernetes" t="Include">
+        <e p="ingress-tayko.yaml" t="Include" />
+        <e p="service-tayko.yaml" t="Include" />
+        <e p="statefulset-tayko.yaml" t="Include" />
+      </e>
+      <e p="Models" t="Include">
+        <e p="ErrorViewModel.cs" t="Include" />
+        <e p="PostModel.cs" t="Include" />
+      </e>
+      <e p="node_modules\@types" t="IncludeRecursive">
+        <e p="events" t="IncludeRecursive" />
+        <e p="minimatch" t="IncludeRecursive" />
+        <e p="node" t="IncludeRecursive" />
+      </e>
+      <e p="node_modules\del" t="IncludeRecursive" />
+      <e p="node_modules\gulp" t="IncludeRecursive" />
+      <e p="node_modules\gulp-cli" t="IncludeRecursive" />
+      <e p="node_modules\gulp-rename" t="IncludeRecursive" />
+      <e p="node_modules\gulp-sass" t="IncludeRecursive" />
+      <e p="node_modules\node-sass" t="IncludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp3.1" t="Include">
+            <e p="Tayko.co.AssemblyInfo.cs" t="Include" />
+            <e p="Tayko.co.RazorAssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="package-lock.json" t="Include" />
+      <e p="package.json" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Program.cs" t="Include" />
+      <e p="Properties" t="Include">
+        <e p="launchSettings.json" t="Include" />
+      </e>
+      <e p="README.md" t="Include" />
+      <e p="Service" t="Include">
+        <e p="Blogerator.cs" t="Include" />
+        <e p="Serverator.cs" t="Include" />
+      </e>
+      <e p="Startup.cs" t="Include" />
+      <e p="styles" t="Include">
+        <e p="_CodeStyle.scss" t="Include" />
+        <e p="_Colors.scss" t="Include" />
+        <e p="_Globals.scss" t="Include" />
+        <e p="_Parameters.scss" t="Include" />
+        <e p="Components" t="Include">
+          <e p="_Blinker.scss" t="Include" />
+          <e p="_BodyContent.scss" t="Include" />
+          <e p="_Carousel.scss" t="Include" />
+          <e p="_CodeBox.scss" t="Include" />
+          <e p="_CodeButton.scss" t="Include" />
+          <e p="_Consent.scss" t="Include" />
+          <e p="_Copyright.scss" t="Include" />
+          <e p="_Footer.scss" t="Include" />
+          <e p="_Navbar.scss" t="Include" />
+          <e p="_Picture.scss" t="Include" />
+          <e p="_Popup.scss" t="Include" />
+          <e p="_Scrollbar.scss" t="Include" />
+          <e p="_SkillBox.scss" t="Include" />
+        </e>
+        <e p="Layouts" t="Include">
+          <e p="_Resize.scss" t="Include" />
+        </e>
+        <e p="main.scss" t="Include" />
+        <e p="Mixins" t="Include">
+          <e p="_Links.scss" t="Include" />
+          <e p="_Resize.scss" t="Include" />
+          <e p="_TextStyles.scss" t="Include" />
+        </e>
+        <e p="Pages" t="Include">
+          <e p="_Blog.scss" t="Include" />
+          <e p="_Error.scss" t="Include" />
+          <e p="_Index.scss" t="Include" />
+          <e p="_Privacy.scss" t="Include" />
+          <e p="_Shared.scss" t="Include" />
+        </e>
+      </e>
+      <e p="Tayko.co.csproj" t="IncludeRecursive" />
+      <e p="Tayko.co.sln" t="IncludeFlat" />
+      <e p="Views" t="Include">
+        <e p="_ViewImports.cshtml" t="Include" />
+        <e p="_ViewStart.cshtml" t="Include" />
+        <e p="Blog" t="Include">
+          <e p="_BlogLayout.cshtml" t="Include" />
+          <e p="Blog.cshtml" t="Include" />
+          <e p="BlogOverview.cshtml" t="Include" />
+        </e>
+        <e p="Error" t="Include">
+          <e p="404.cshtml" t="Include" />
+          <e p="500.cshtml" t="Include" />
+          <e p="Generic.cshtml" t="Include" />
+        </e>
+        <e p="Home" t="Include">
+          <e p="Code.cshtml" t="Include" />
+          <e p="Contact.cshtml" t="Include" />
+          <e p="Index.cshtml" t="Include" />
+          <e p="Privacy.cshtml" t="Include" />
+          <e p="Projects.cshtml" t="Include" />
+        </e>
+        <e p="Shared" t="Include">
+          <e p="_CookieConsentPartial.cshtml" t="Include" />
+          <e p="_Layout.cshtml" t="Include" />
+          <e p="_LayoutContainerless.cshtml" t="Include" />
+          <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+          <e p="Error.cshtml" t="Include" />
+        </e>
+      </e>
+      <e p="wwwroot" t="Include">
+        <e p="css" t="Include">
+          <e p="main.css" t="Include" />
+          <e p="main.min.css" t="Include" />
+        </e>
+        <e p="favicon.ico" t="Include" />
+        <e p="images" t="Include">
+          <e p="github-white.svg" t="Include" />
+          <e p="github.svg" t="Include" />
+          <e p="gitlab-white.svg" t="Include" />
+          <e p="gitlab.svg" t="Include" />
+          <e p="index-arrow.svg" t="Include" />
+          <e p="linkedin-white.svg" t="Include" />
+          <e p="linkedin.svg" t="Include" />
+          <e p="mail.svg" t="Include" />
+          <e p="temp-profile-pic.jpg" t="Include" />
+          <e p="wallpaper-blur.png" t="Include" />
+          <e p="wallpaper-frosted.png" t="Include" />
+          <e p="wallpaper.jpg" t="Include" />
+          <e p="wallpaper.png" t="Include" />
+        </e>
+        <e p="js" t="Include">
+          <e p="blinker.js" t="Include" />
+          <e p="blinker.min.js" t="Include" />
+          <e p="index.js" t="Include" />
+          <e p="site.js" t="Include" />
+          <e p="site.min.js" t="Include" />
+        </e>
+        <e p="lib" t="Include">
+          <e p="bootstrap" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="dist" t="Include">
+              <e p="css" t="Include">
+                <e p="bootstrap-theme.css" t="Include" />
+                <e p="bootstrap-theme.css.map" t="Include" />
+                <e p="bootstrap-theme.min.css" t="Include" />
+                <e p="bootstrap-theme.min.css.map" t="Include" />
+                <e p="bootstrap.css" t="Include" />
+                <e p="bootstrap.css.map" t="Include" />
+                <e p="bootstrap.min.css" t="Include" />
+                <e p="bootstrap.min.css.map" t="Include" />
+              </e>
+              <e p="fonts" t="Include">
+                <e p="glyphicons-halflings-regular.eot" t="Include" />
+                <e p="glyphicons-halflings-regular.svg" t="Include" />
+                <e p="glyphicons-halflings-regular.ttf" t="Include" />
+                <e p="glyphicons-halflings-regular.woff" t="Include" />
+                <e p="glyphicons-halflings-regular.woff2" t="Include" />
+              </e>
+              <e p="js" t="Include">
+                <e p="bootstrap.bundle.js" t="Include" />
+                <e p="bootstrap.bundle.js.map" t="Include" />
+                <e p="bootstrap.bundle.min.js" t="Include" />
+                <e p="bootstrap.bundle.min.js.map" t="Include" />
+                <e p="bootstrap.js" t="Include" />
+                <e p="bootstrap.js.map" t="Include" />
+                <e p="bootstrap.min.js" t="Include" />
+                <e p="bootstrap.min.js.map" t="Include" />
+                <e p="npm.js" t="Include" />
+              </e>
+            </e>
+            <e p="LICENSE" t="Include" />
+          </e>
+          <e p="highlight" t="Include">
+            <e p="dist" t="Include">
+              <e p="highlight.pack.js" t="Include" />
+            </e>
+            <e p="LICENSE" t="Include" />
+          </e>
+          <e p="jquery" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="dist" t="Include">
+              <e p="jquery.js" t="Include" />
+              <e p="jquery.min.js" t="Include" />
+              <e p="jquery.min.map" t="Include" />
+            </e>
+            <e p="LICENSE.txt" t="Include" />
+          </e>
+          <e p="jquery-validation" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="dist" t="Include">
+              <e p="additional-methods.js" t="Include" />
+              <e p="additional-methods.min.js" t="Include" />
+              <e p="jquery.validate.js" t="Include" />
+              <e p="jquery.validate.min.js" t="Include" />
+            </e>
+            <e p="LICENSE.md" t="Include" />
+          </e>
+          <e p="jquery-validation-unobtrusive" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="jquery.validate.unobtrusive.js" t="Include" />
+            <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+            <e p="LICENSE.txt" t="Include" />
+          </e>
+          <e p="smoothstate" t="Include">
+            <e p="jquery.smoothState.js" t="Include" />
+            <e p="jquery.smoothState.min.js" t="Include" />
+            <e p="LICENSE.md" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+  </component>
+</project>

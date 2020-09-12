@@ -1,4 +1,4 @@
-﻿function swapText(element = null, startText = null, endText = "", prefix = "", postfix = "", oncomplete = null) {
+﻿function swapText(element = null, startText = null, endText = "", prefix = "", postfix = "", oncomplete = null, speed = 100) {
     
     if (element == null) {
         throw "No swap text element provided!";
@@ -24,45 +24,14 @@
         next.shift();
         
         if (next.length > 0) {
-            let animationSpeed = (Math.floor(Math.random() * 200 ) + 100);
+            let animationSpeed = (Math.floor(Math.random() * speed ) + speed);
             setTimeout(function() {
                 fn(fn, elm, next, pre, post, callback)
             }, animationSpeed);
-        } else {
+        } else if ( callback != null) {
             callback();
         }
     };
     
     callBack(callBack, element, steps, prefix, postfix, oncomplete);
 }
-
-function animate_index_title() {
-    let $title = $('#title');
-
-    $title.removeClass("blinker-animate");
-    
-    let $startText = $('.blinker-highlight');
-    
-    swapText(
-        $title, 
-        $startText.text(),
-        "Stephen?",
-        "Who is <span class=\"blinker-highlight\">", 
-        "</span>",
-        function() {
-            $title.addClass("blinker-animate");
-            
-            setTimeout(function()
-            {
-                $title.removeClass("blinker");  
-            }, 2000);
-        }
-    );
-}
-
-$(document).ready(function() {
-    setTimeout(function() {
-        animate_index_title()
-    }, 2000);
-    
-});

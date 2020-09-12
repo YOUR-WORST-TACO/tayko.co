@@ -57,7 +57,22 @@ nav {
         content: "";
         padding-left: 0;
       }
-      
+      @media screen and (max-width: $page-smallest-width)
+      {
+        display: block;
+        
+        padding-bottom: 10px;
+        
+        a {
+          font-size: 20px;
+        }
+        
+        &:after {
+          color: $color-foreground;
+          content: "";
+          padding-left: 1px;
+        }
+      }
     }
   }
 }

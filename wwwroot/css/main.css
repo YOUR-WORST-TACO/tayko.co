@@ -236,6 +236,21 @@ nav > .navbar-list > li:last-child:after {
   padding-left: 0;
 }
 
+@media screen and (max-width: 650px) {
+  nav > .navbar-list > li {
+    display: block;
+    padding-bottom: 10px;
+  }
+  nav > .navbar-list > li a {
+    font-size: 20px;
+  }
+  nav > .navbar-list > li:after {
+    color: #f5f5f5;
+    content: "";
+    padding-left: 1px;
+  }
+}
+
 .navbar-content {
   position: fixed;
 }
@@ -585,31 +600,6 @@ web backend
   }
 }
 
-.blinker::after {
-  content: "|";
-  display: inline-block;
-}
-
-.blinker-highlight {
-  color: #2fa7d2;
-}
-
-.blinker-animate::after {
-  animation: blinker-animation 1.5s steps(1) infinite;
-}
-
-@keyframes blinker-animation {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 @keyframes carousel_animation {
   1.11111% {
     opacity: 1;
@@ -953,6 +943,173 @@ web backend
   margin-left: 2em;
 }
 
+.index-intro-content {
+  height: 100%;
+  width: 520px;
+  margin: 0 auto;
+  padding: 30vh 10px 10px;
+}
+
+.index-intro-content h1 {
+  font-size: 58px;
+}
+
+@media screen and (max-width: 520px) {
+  .index-intro-content h1 {
+    font-size: 10vw;
+  }
+}
+
+.index-intro-content .blinker::after {
+  content: "|";
+  font-size: 100px;
+  display: inline-block;
+}
+
+@media screen and (max-width: 520px) {
+  .index-intro-content .blinker::after {
+    font-size: 17.5vw;
+  }
+}
+
+.index-intro-content .blinker-highlight {
+  color: #2fa7d2;
+  font-size: 100px;
+  padding-left: 30px;
+}
+
+@media screen and (max-width: 520px) {
+  .index-intro-content .blinker-highlight {
+    font-size: 17.5vw;
+  }
+}
+
+.index-intro-content .blinker-animate::after {
+  animation: blinker-animation 1.5s steps(1) infinite;
+}
+
+@keyframes blinker-animation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.index-intro-content .index-whoami-container {
+  height: 200px;
+}
+
+@media screen and (max-width: 520px) {
+  .index-intro-content .index-whoami-container .index-whoami {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.index-intro-content .index-whoami-container #index-whoami-0 {
+  line-height: 20px;
+  padding-top: 50px;
+  padding-left: 100px;
+}
+
+@media screen and (max-width: 520px) {
+  .index-intro-content .index-whoami-container #index-whoami-0 {
+    padding-left: 0;
+  }
+}
+
+.index-intro-content .index-whoami-container #index-whoami-1 {
+  line-height: 20px;
+  padding-left: 140px;
+}
+
+@media screen and (max-width: 520px) {
+  .index-intro-content .index-whoami-container #index-whoami-1 {
+    padding-left: 0;
+  }
+}
+
+.index-intro-content .index-whoami-container #index-whoami-2 {
+  line-height: 20px;
+  padding-left: 160px;
+}
+
+@media screen and (max-width: 520px) {
+  .index-intro-content .index-whoami-container #index-whoami-2 {
+    padding-left: 0;
+  }
+}
+
+.index-intro-content .index-whoami-container #index-whoami-3 {
+  line-height: 20px;
+  font-size: 25px;
+  padding-top: 20px;
+  padding-left: 120px;
+}
+
+@media screen and (max-width: 520px) {
+  .index-intro-content .index-whoami-container #index-whoami-3 {
+    padding-left: 0;
+  }
+}
+
+.index-intro-content .index-scroll-container {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  margin-left: 30vw;
+  width: 70vw;
+}
+
+.index-intro-content .index-scroll-container .index-arrow-container {
+  width: 110px;
+  margin: 0 auto;
+}
+
+.index-intro-content .index-scroll-container .index-arrow-container .arrow-animate {
+  animation: arrow-animation 1.5s forwards;
+}
+
+@media screen and (max-width: 1300px) {
+  .index-intro-content .index-scroll-container {
+    width: 60vw;
+    margin-left: 40vw;
+  }
+}
+
+@media screen and (max-width: 1070px) {
+  .index-intro-content .index-scroll-container {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 1070px) {
+  .index-intro-content {
+    padding: 30px 10px 10px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .index-intro-content {
+    width: 100%;
+  }
+}
+
+@keyframes arrow-animation {
+  0% {
+    stroke-dashoffset: 1759;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -969,12 +1126,6 @@ body {
 h1 {
   font-size: 65px;
   color: #f5f5f5;
-}
-
-@media screen and (max-width: 650px) {
-  h1 {
-    font-size: 10vw;
-  }
 }
 
 h2 {

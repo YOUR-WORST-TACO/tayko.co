@@ -14,10 +14,6 @@ body {
 h1 {
   font-size: 65px;
   @include default_text;
-  
-  @media screen and (max-width: $page-smallest-width) {
-    font-size: 10vw;
-  }
 }
 
 h2 {
