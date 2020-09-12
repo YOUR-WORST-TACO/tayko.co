@@ -30,6 +30,10 @@ $duration: 3s;
   width: 100%;
   overflow: hidden;
   height: 25px;
+
+  @media screen and (max-width: $page-smallest-width) {
+    display: none;
+  }
 }
 
 .carousel-list {

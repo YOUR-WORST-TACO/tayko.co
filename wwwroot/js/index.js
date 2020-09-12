@@ -59,7 +59,9 @@ function animate_index_3() {
         "",
         "",
         function() {
-            animate_arrow();
+            setTimeout(function() {
+                animate_arrow();
+            }, 200)
         },
         30
     );

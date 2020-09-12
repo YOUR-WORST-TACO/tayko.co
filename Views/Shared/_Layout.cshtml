@@ -78,16 +78,18 @@
 
 <main role="main">
     <partial name="_CookieConsentPartial"/>
-
-    <section class="body-content">
-        <div class="primary-content">
+    
+    <div class="primary-wrapper">
+    <section class="primary-section">
+        <div class="content-wrapper">
             @RenderBody()
         </div>
     </section>
+    </div>
 </main>
 
 <footer>
-    <div class="footer-content">
+    <div class="footer-wrapper">
         <div class="footer-contact">
             <p>Look around</p>
             <hr/>

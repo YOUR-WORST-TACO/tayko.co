@@ -106,7 +106,6 @@
         <e p="_Parameters.scss" t="Include" />
         <e p="Components" t="Include">
           <e p="_Blinker.scss" t="Include" />
-          <e p="_BodyContent.scss" t="Include" />
           <e p="_Carousel.scss" t="Include" />
           <e p="_CodeBox.scss" t="Include" />
           <e p="_CodeButton.scss" t="Include" />
@@ -120,7 +119,7 @@
           <e p="_SkillBox.scss" t="Include" />
         </e>
         <e p="Layouts" t="Include">
-          <e p="_Resize.scss" t="Include" />
+          <e p="_Default.scss" t="Include" />
         </e>
         <e p="main.scss" t="Include" />
         <e p="Mixins" t="Include">
@@ -182,6 +181,8 @@
           <e p="linkedin.svg" t="Include" />
           <e p="mail.svg" t="Include" />
           <e p="temp-profile-pic.jpg" t="Include" />
+          <e p="wallpaper-2.jpg" t="Include" />
+          <e p="wallpaper-3.jpg" t="Include" />
           <e p="wallpaper-blur.png" t="Include" />
           <e p="wallpaper-frosted.png" t="Include" />
           <e p="wallpaper.jpg" t="Include" />
@@ -191,6 +192,7 @@
           <e p="blinker.js" t="Include" />
           <e p="blinker.min.js" t="Include" />
           <e p="index.js" t="Include" />
+          <e p="index.min.js" t="Include" />
           <e p="site.js" t="Include" />
           <e p="site.min.js" t="Include" />
         </e>
