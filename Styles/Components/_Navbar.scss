@@ -4,7 +4,11 @@ nav {
   width: 30vw;
   height: 100vh;
   
-  background: url("../images/wallpaper-3.jpg") no-repeat fixed;
+  background: url("../images/wallpaper.jpg") no-repeat fixed;
+  
+  // todo: add the following for the artist ;)
+  // <span>Photo by <a href="https://unsplash.com/@jeremybishop?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Jeremy Bishop</a> on <a href="https://unsplash.com/s/photos/dark?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+  
   //background-size: cover;
   background-size: auto 100%;
   //background-size: 30% 100%;
