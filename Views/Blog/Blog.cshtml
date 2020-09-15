@@ -4,6 +4,13 @@
     Layout = "_BlogLayout";
 }
 
+@section Meta {
+    <meta name="description" content="@Model.PostDescription"/>
+    <meta name="og:title" property="og:title" content="@Model.PostTitle"/>
+    <meta name="og:description" property="og:description" content="@Model.PostDescription"/>
+    <meda name="og:image" property="og:image" content="https://tayko.co/images/wallpaper.jpg"/>
+}
+
 <div class="blog-image" style="background-image: url(@Model.PostCover)">
 </div>
 

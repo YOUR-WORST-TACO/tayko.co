@@ -1,7 +1,14 @@
 ﻿@{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Stephen Tafoya";
     string lyzeCookie = Context.Request.Cookies["LyzeCookie"];
     Layout = "_LayoutContainerless";
+}
+
+@section Meta {
+    <meta name="description" content="Stephen Tafoya is a programmer who excels at a wide variety of languages and frameworks including but not limited to C, C++, Dotnet Core, Web Languages, Docker, Github Integration, Kubernetes, and many many more.">
+    <meta name="og:title" property="og:title" content="Stephen Tafoya, Programmer">
+    <meta name="og:description" property="og:description" content="Stephen Tafoya is a programmer who excels at a wide variety of languages and frameworks including but not limited to C, C++, Dotnet Core, Web Languages, Docker, Github Integration, Kubernetes, and many many more.">
+    <meta name="og:image" property="og:image" content="https://tayko.co/images/wallpaper.jpg">
 }
 
 <section class="primary-section">
@@ -58,8 +65,6 @@ let arrow_length = arrow.getTotalLength();
 arrow.style.display = "none";
 arrow.style.strokeDasharray = arrow_length;
 arrow.style.strokeDashoffset = arrow_length - 0.5;
-
-console.log(arrow_length);
 
 </script>
 <!--
