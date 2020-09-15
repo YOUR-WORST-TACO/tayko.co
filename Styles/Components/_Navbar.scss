@@ -96,6 +96,10 @@ nav {
     //background-position: 0% +50%;
   }
 
+  @media screen and (max-height: 690px) {
+    background-size: cover;
+  }
+  
   @media screen and (max-width: $page-smallest-width) {
     height: 400px;
   }

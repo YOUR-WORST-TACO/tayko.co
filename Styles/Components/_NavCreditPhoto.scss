@@ -69,6 +69,10 @@
     display: block;
   }
   
+  @media screen and (max-width: $page-response-width) {
+    position: absolute;
+  }
+  
   @media screen and (max-width: 330px) {
     padding: 10px 0 0 10px;
   }

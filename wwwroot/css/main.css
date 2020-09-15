@@ -85,7 +85,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   margin-left: 30vw;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1240px) {
   .primary-wrapper {
     margin-left: 40vw;
   }
@@ -131,7 +131,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   padding: 100px 25px 25px;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1240px) {
   .content-wrapper {
     width: 650px;
   }
@@ -155,7 +155,7 @@ footer {
   background-color: #111214;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1240px) {
   footer {
     margin-left: 40vw;
   }
@@ -200,7 +200,7 @@ footer {
   flex: 1;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1240px) {
   .footer-wrapper {
     width: 650px;
   }
@@ -220,7 +220,7 @@ nav {
   background-size: auto 100%;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1240px) {
   nav {
     width: 40vw;
   }
@@ -336,6 +336,12 @@ nav > .navbar-list > li:last-child:after {
   }
 }
 
+@media screen and (max-height: 690px) {
+  nav {
+    background-size: cover;
+  }
+}
+
 @media screen and (max-width: 650px) {
   nav {
     height: 400px;
@@ -442,6 +448,12 @@ nav > .navbar-list > li:last-child:after {
   display: block;
 }
 
+@media screen and (max-width: 1070px) {
+  #credit-photo-container {
+    position: absolute;
+  }
+}
+
 @media screen and (max-width: 330px) {
   #credit-photo-container {
     padding: 10px 0 0 10px;
@@ -473,7 +485,7 @@ body::-webkit-scrollbar-thumb {
   font-size: 15px;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1240px) {
   .copyright {
     width: 40vw;
   }
@@ -1062,7 +1074,7 @@ web backend
   font-size: 16px;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1240px) {
   .blog-content {
     width: 650px;
   }
@@ -1225,7 +1237,7 @@ web backend
   animation: arrow-animation 1.5s forwards;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1240px) {
   .index-intro-content .index-scroll-container {
     width: 60vw;
     margin-left: 40vw;
@@ -1246,6 +1258,12 @@ web backend
 }
 
 @media screen and (max-width: 1070px) {
+  .index-intro-content {
+    padding: 30px 10px 40px 10px;
+  }
+}
+
+@media screen and (max-height: 770px) {
   .index-intro-content {
     padding: 30px 10px 40px 10px;
   }
