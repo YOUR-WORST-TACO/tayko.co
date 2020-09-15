@@ -48,7 +48,15 @@ p {
   }
 }
 
+a {
+  @include hover-text-link;
+}
+
 div.clear {
   clear:both;
 }
 
+span.italic {
+  font-style: italic;
+  font-weight: bold;
+}
