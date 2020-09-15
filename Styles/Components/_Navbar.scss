@@ -6,16 +6,14 @@ nav {
   
   background: url("../images/wallpaper.jpg") no-repeat fixed;
   
-  // todo: add the following for the artist ;)
-  // <span>Photo by <a href="https://unsplash.com/@jeremybishop?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Jeremy Bishop</a> on <a href="https://unsplash.com/s/photos/dark?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
-  
   //background-size: cover;
   background-size: auto 100%;
   //background-size: 30% 100%;
   //background-attachment: fixed;
   
-  padding-top: 200px;
   h1 {
+    padding-top: 200px;
+    
     a {
       @include plain-text-link;
     }
@@ -23,9 +21,18 @@ nav {
     text-align: center;
     font-size: 50px;
 
+    @media screen and (max-width: $page-response-width) {
+      padding-top: 40px;
+      //background-position: 0% +50%;
+    }
     
     @media screen and (max-width: 400px) {
       font-size: 12vw;
+    }
+
+    @media screen and (max-width: 330px) {
+      padding-top: 0;
+      
     }
   }
   
@@ -46,7 +53,7 @@ nav {
       padding-left: 9px;
       
       a {
-        @include hover-text-link;
+        @include nav-hover-text-link;
         transition: 0.3s;
         font-size: 14px;
         
@@ -85,7 +92,6 @@ nav {
   }
 
   @media screen and (max-width: $page-response-width) {
-    padding-top: 40px;
     background-size: cover;
     //background-position: 0% +50%;
   }

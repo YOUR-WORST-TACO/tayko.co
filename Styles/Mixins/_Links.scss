@@ -1,4 +1,22 @@
+$link-primary: #3db4de;
+$link-secondary: #69d8ff;
+
 @mixin hover-text-link {
+  &:link, &:visited {
+    color: $link-primary;
+  }
+  &:hover, &:focus {
+    color: $link-secondary;
+    font-style: normal;
+    text-decoration: none;
+  }
+  &:link:active, &:visited:active
+  {
+    color: $color-foreground-2;
+  }
+}
+
+@mixin nav-hover-text-link {
   &:link, &:visited {
     color: $color-foreground;
   }

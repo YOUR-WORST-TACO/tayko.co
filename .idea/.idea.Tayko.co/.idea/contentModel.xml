@@ -111,6 +111,7 @@
           <e p="_CodeButton.scss" t="Include" />
           <e p="_Consent.scss" t="Include" />
           <e p="_Copyright.scss" t="Include" />
+          <e p="_CreditPhoto.scss" t="Include" />
           <e p="_Footer.scss" t="Include" />
           <e p="_Navbar.scss" t="Include" />
           <e p="_Picture.scss" t="Include" />
@@ -159,8 +160,10 @@
         </e>
         <e p="Shared" t="Include">
           <e p="_CookieConsentPartial.cshtml" t="Include" />
+          <e p="_FooterPartial.cshtml" t="Include" />
           <e p="_Layout.cshtml" t="Include" />
           <e p="_LayoutContainerless.cshtml" t="Include" />
+          <e p="_NavbarPartial.cshtml" t="Include" />
           <e p="_ValidationScriptsPartial.cshtml" t="Include" />
           <e p="Error.cshtml" t="Include" />
         </e>
@@ -176,17 +179,12 @@
           <e p="github.svg" t="Include" />
           <e p="gitlab-white.svg" t="Include" />
           <e p="gitlab.svg" t="Include" />
-          <e p="index-arrow.svg" t="Include" />
+          <e p="info-icon.png" t="Include" />
           <e p="linkedin-white.svg" t="Include" />
           <e p="linkedin.svg" t="Include" />
           <e p="mail.svg" t="Include" />
           <e p="temp-profile-pic.jpg" t="Include" />
-          <e p="wallpaper-2.jpg" t="Include" />
-          <e p="wallpaper-3.jpg" t="Include" />
-          <e p="wallpaper-blur.png" t="Include" />
-          <e p="wallpaper-frosted.png" t="Include" />
           <e p="wallpaper.jpg" t="Include" />
-          <e p="wallpaper.png" t="Include" />
         </e>
         <e p="js" t="Include">
           <e p="blinker.js" t="Include" />

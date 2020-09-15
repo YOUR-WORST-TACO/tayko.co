@@ -1,0 +1,75 @@
+#credit-photo-container {
+  @media screen and (max-width: 330px) {
+    position: relative;
+  }
+  
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  
+  padding: 20px 0 0 20px;
+  
+  a {
+    @include hover-text-link;
+  }
+  
+  .credit-photo-button {
+    //background:url(../images/info-icon.png) no-repeat;
+    //background-size: cover;
+    cursor:pointer;
+    border:none;
+    width:30px;
+    height:30px;
+    
+    padding-right: 5px;
+    
+    box-sizing: content-box;
+    
+    &:focus {
+      border: none;
+      outline: 0;
+      //display: none;
+    }
+  }
+  
+  .credit-photo-info {
+    background-color: $color-background-2;
+    color: $color-foreground;
+    
+    padding: 0 10px 0 10px;
+    
+    float: right;
+    height: 30px;
+    display: none;
+    line-height: 30px;
+    
+    &:hover {
+      display: block;
+    }
+    @media screen and (max-width: 330px) {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 50px;
+      line-height: 50px;
+    }
+  }
+  
+  .credit-photo-info:hover + .credit-photo-button {
+    position: fixed;
+    left: -100px;
+    display: none;
+  }
+  
+  .credit-photo-button:focus + .credit-photo-info {
+    display: block;
+  }
+  
+  @media screen and (max-width: 330px) {
+    padding: 10px 0 0 10px;
+  }
+}

@@ -1,0 +1,63 @@
+<header>
+    <nav class="navbar navbar-content">
+        <div id="credit-photo-container">
+                <input class="credit-photo-button" type="image" src="~/images/info-icon.png">
+                <div class="credit-photo-info">
+                    <span>Photo by <a href="https://unsplash.com/jeremybishop?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank">Jeremy Bishop</a> on <a href="https://unsplash.com/s/photos/dark?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText" target="_blank">Unsplash</a></span>
+                </div>
+            </div>
+        
+        <h1>
+            <a asp-controller="Home" asp-action="Index">Stephen Tafoya</a>
+        </h1>
+
+        <div class="carousel-container">
+            <ul class="carousel-list">
+                <li>Developer</li>
+                <li>Artist</li>
+                <li>Creator</li>
+                <li>Web Designer</li>
+                <li>Information Technician</li>
+                <li>Autodidact</li>
+                <li>Drinks Water</li>
+                <li>Linux Enthusiast</li>
+                <li>Fixes Computers</li>
+            </ul>
+        </div>
+
+        <ul class="navbar-list">
+            <li>
+                <a asp-controller="Home" asp-action="Index">HOME</a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="Contact">CONTACT</a>
+            </li>
+            <li>
+                <a asp-controller="Home" asp-action="Projects">PROJECTS</a>
+            </li>
+            <li>
+                <a asp-controller="Blog" asp-action="LoadBlog" asp-route-article="">BLOG</a>
+            </li>
+        </ul>
+
+        <div class="codebuttons">
+            <ul>
+                <li>
+                    <a href="https://github.com/your-worst-taco">
+                        <img src="~/images/github-white.svg"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://gitlab.com/your-worst-taco">
+                        <img src="~/images/gitlab-white.svg"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.google.com">
+                        <img src="~/images/linkedin-white.svg"/>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

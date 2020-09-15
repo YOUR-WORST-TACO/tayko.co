@@ -19,106 +19,29 @@
 <body>
 
 <div id="main">
-<header>
-    <nav class="navbar navbar-content">
-        <h1>
-            <a asp-controller="Home" asp-action="Index">Stephen Tafoya</a>
-        </h1>
 
-        <div class="carousel-container">
-            <ul class="carousel-list">
-                <li>Developer</li>
-                <li>Artist</li>
-                <li>Creator</li>
-                <li>Web Designer</li>
-                <li>Information Technician</li>
-                <li>Autodidact</li>
-                <li>Drinks Water</li>
-                <li>Linux Enthusiast</li>
-                <li>Fixes Computers</li>
-            </ul>
+    <partial name="_NavbarPartial"/>
+
+    <main role="main">
+        <partial name="_CookieConsentPartial"/>
+
+        <div class="primary-wrapper">
+            @RenderBody()
         </div>
+    </main>
 
-        <ul class="navbar-list">
-            <li>
-                <a asp-controller="Home" asp-action="Index">HOME</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="Contact">CONTACT</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="Projects">PROJECTS</a>
-            </li>
-            <li>
-                <a asp-controller="Blog" asp-action="LoadBlog" asp-route-article="">BLOG</a>
-            </li>
-        </ul>
-
-        <div class="codebuttons">
-            <ul>
-                <li>
-                    <a href="https://github.com/your-worst-taco">
-                        <img src="~/images/github-white.svg"/>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://gitlab.com/your-worst-taco">
-                        <img src="~/images/gitlab-white.svg"/>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.google.com">
-                        <img src="~/images/linkedin-white.svg"/>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
-
-<main role="main">
-    <partial name="_CookieConsentPartial"/>
-
-    <div class="primary-wrapper">
-        @RenderBody()
+    <partial name="_FooterPartial"/>
+    
+    <div class="copyright">
+        <p>&copy; @DateTime.Now.Year - Tayko.co</p>
     </div>
-</main>
-
-<footer>
-    <div class="footer-wrapper">
-        <div class="footer-contact">
-            <p>Look around</p>
-            <hr/>
-            <ul>
-                <li>
-                    <a href="#">Github</a>
-                </li>
-                <li>
-                    <a href="#">Gitlab</a>
-                </li>
-                <li>
-                    <a href="#">Linkin</a>
-                </li>
-            </ul>
-        </div>
-        <div class="footer-projects">
-            <p>Projects</p>
-            <hr/>
-        </div>
-        <div class="clear"></div>
-    </div>
-
-</footer>
-<div class="copyright">
-    <p>&copy; @DateTime.Now.Year - Tayko.co</p>
-</div>
 </div>
 <environment include="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script> <!-- JQuery -->
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script> <!-- Bootstrap -->
 
     <script src="~/lib/smoothstate/jquery.smoothState.js" asp-append-version="true"></script>
-    
+
     <script src="~/js/site.js" asp-append-version="true"></script> <!-- Site.js -->
 </environment>
 <environment exclude="Development">
@@ -136,7 +59,7 @@
     </script>
 
     <script src="~/lib/smoothstate/jquery.smoothState.min.js" asp-append-version="true"></script>
-    
+
     <script src="~/js/site.min.js" asp-append-version="true"></script>
 </environment>
 
