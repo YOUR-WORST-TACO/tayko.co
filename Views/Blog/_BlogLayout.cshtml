@@ -3,6 +3,10 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="og:type" property="og:type" content="website"/>
+
+    @await RenderSectionAsync("Meta", false)
+
     <title>@ViewData["Title"] - Tayko.co</title>
 
     <environment include="Development">
@@ -16,102 +20,29 @@
         <link rel="stylesheet" href="~/css/main.min.css" asp-append-version="true"/>
     </environment>
 </head>
-<body>
 
-<div id="main">
-<header>
-    <nav class="navbar navbar-content">
-            <h1>
-                <a asp-controller="Home" asp-action="Index">Stephen Tafoya</a>
-            </h1>
-    
-            <div class="carousel-container">
-                <ul class="carousel-list">
-                    <li>Developer</li>
-                    <li>Artist</li>
-                    <li>Creator</li>
-                    <li>Web Designer</li>
-                    <li>Information Technician</li>
-                    <li>Human</li>
-                    <li>Drinks Water</li>
-                    <li>Linux Enthusiast</li>
-                    <li>Fixes Computers</li>
-                </ul>
-            </div>
-    
-            <ul class="navbar-list">
-                <li>
-                    <a asp-controller="Home" asp-action="Index">HOME</a>
-                </li>
-                <li>
-                    <a asp-controller="Home" asp-action="Contact">CONTACT</a>
-                </li>
-                <li>
-                    <a asp-controller="Home" asp-action="Projects">PROJECTS</a>
-                </li>
-                <li>
-                    <a asp-controller="Blog" asp-action="LoadBlog" asp-route-article="">BLOG</a>
-                </li>
-            </ul>
-    
-            <div class="codebuttons">
-                <ul>
-                    <li>
-                        <a href="https://github.com/your-worst-taco">
-                            <img src="~/images/github-white.svg"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://gitlab.com/your-worst-taco">
-                            <img src="~/images/gitlab-white.svg"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.google.com">
-                            <img src="~/images/linkedin-white.svg"/>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-</header>
+<body>
+<partial name="Partials/_NavbarPartial"/>
 
 <main role="main">
-    <partial name="_CookieConsentPartial" />
+    <partial name="Partials/_CookieConsentPartial"/>
     <div class="primary-wrapper">
-    <section class="primary-section">
-        @RenderBody()
-    </section>
+        <section class="primary-section">
+            @RenderBody()
+        </section>
     </div>
 </main>
 
-<footer>
-    <div class="footer-wrapper">
-        <div class="footer-contact">
-            <p>Look around</p>
-            <hr/>
-            <ul>
-                <li><a href="#">Github</a></li>
-                <li><a href="#">Gitlab</a></li>
-                <li><a href="#">Linkin</a></li>
-            </ul>
-        </div>
-        <div class="footer-projects">
-            <p>Projects</p>
-            <hr/>
-        </div>
-        <div class="clear"></div>
-    </div>
+<partial name="Partials/_FooterPartial"/>
 
-</footer>
 <div class="copyright">
     <p>&copy; @DateTime.Now.Year - Tayko.co</p>
 </div>
-</div>
+
 <environment include="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script> <!-- JQuery -->
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script> <!-- Bootstrap -->
-    
+
     <script src="~/lib/smoothstate/jquery.smoothState.js" asp-append-version="true"></script>
 
     <script src="~/js/site.js" asp-append-version="true"></script> <!-- Site.js -->
@@ -124,14 +55,14 @@
             integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
         </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                    crossorigin="anonymous"
-                    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+            asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+            crossorigin="anonymous"
+            integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
             </script>
 
     <script src="~/lib/smoothstate/jquery.smoothState.min.js" asp-append-version="true"></script>
-    
+
     <script src="~/js/site.min.js" asp-append-version="true"></script>
 </environment>
 
