@@ -111,9 +111,9 @@
           <e p="_CodeButton.scss" t="Include" />
           <e p="_Consent.scss" t="Include" />
           <e p="_Copyright.scss" t="Include" />
-          <e p="_CreditPhoto.scss" t="Include" />
           <e p="_Footer.scss" t="Include" />
           <e p="_Navbar.scss" t="Include" />
+          <e p="_NavCreditPhoto.scss" t="Include" />
           <e p="_Picture.scss" t="Include" />
           <e p="_Popup.scss" t="Include" />
           <e p="_Scrollbar.scss" t="Include" />
@@ -159,13 +159,15 @@
           <e p="Projects.cshtml" t="Include" />
         </e>
         <e p="Shared" t="Include">
-          <e p="_CookieConsentPartial.cshtml" t="Include" />
-          <e p="_FooterPartial.cshtml" t="Include" />
           <e p="_Layout.cshtml" t="Include" />
           <e p="_LayoutContainerless.cshtml" t="Include" />
-          <e p="_NavbarPartial.cshtml" t="Include" />
-          <e p="_ValidationScriptsPartial.cshtml" t="Include" />
           <e p="Error.cshtml" t="Include" />
+          <e p="Partials" t="Include">
+            <e p="_CookieConsentPartial.cshtml" t="Include" />
+            <e p="_FooterPartial.cshtml" t="Include" />
+            <e p="_NavbarPartial.cshtml" t="Include" />
+            <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+          </e>
         </e>
       </e>
       <e p="wwwroot" t="Include">
