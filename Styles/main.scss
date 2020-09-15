@@ -11,6 +11,7 @@
 @import 'Components/CodeBox';
 @import 'Components/Footer';
 @import 'Components/Navbar';
+@import 'Components/NavCreditPhoto';
 @import 'Components/Scrollbar';
 @import 'Components/Copyright';
 @import 'Components/CodeButton';
@@ -20,7 +21,6 @@
 @import 'Components/Carousel';
 @import 'Components/Popup';
 @import 'Components/Consent';
-@import 'Components/CreditPhoto';
 
 @import 'Pages/Error';
 @import 'Pages/Blog';
@@ -28,20 +28,3 @@
 @import 'Pages/Index';
  
 @import 'Globals';
-
-#content {
-  display: none;
-}
-input[type="text"]{
-  color: transparent;
-  text-shadow: 0 0 0 #000;
-  padding: 6px 12px;
-  width: 60px;
-  cursor: pointer;
-}
-input[type="text"]:focus{
-  outline: none;
-}
-input:focus + div#content {
-  display: block;
-}
