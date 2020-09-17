@@ -1,7 +1,15 @@
-﻿@{
+﻿@using System.Globalization
+@{
     ViewData["Title"] = "Stephen Tafoya";
     string lyzeCookie = Context.Request.Cookies["LyzeCookie"];
     Layout = "_LayoutContainerless";
+
+    string YearsSince(int year, int month = 1, int day = 1)
+    {
+        var years = Math.Round(DateTime.Now.Subtract(new DateTime(year, month, day)).TotalDays / 365, 0);
+
+        return $"{years.ToString(CultureInfo.InvariantCulture)} Years";
+    }
 }
 
 @section Meta {
@@ -35,8 +43,60 @@
         </div>
     </div>
 </section>
-<section style="height: 100vh; background-color: #000;">
-    
+<section class="ancillary-section testing">
+    <div class="content-wrapper">
+        <h1>About me</h1>
+        <p>
+            My name is Stephen Tafoya, I am a coneseur of all things computer related be it artwork, music, software
+            development, server management, you name it. I have also worked to familiarize myself with frameworks like
+            Docker and Kubernetes for the sake of learning, this site for example is hosted on my kube cluster.
+        </p>
+        <p>
+            As much as time as I seem to spend at a computer I also enjoy hobbies like golf, frisbee and regular, 
+            playing video games, and a recent hobby of mine, collecting and listening to vinyl.
+        </p>
+    </div>
+</section>
+
+<section class="ancillary-section">
+    <div class="content-wrapper">
+        <h1>Technical Skills</h1>
+        <table class="skill-table">
+            <tr>
+                <th></th>
+                <th>Skill</th>
+                <th>Experience</th>
+            </tr>
+            <tr>
+                <td>
+                    <img src="images/github-white.svg"/>
+                </td>
+                <td>Github</td>
+                <td>@YearsSince(2015)</td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="images/gitlab.png"/>
+                </td>
+                <td>Gitlab</td>
+                <td>@YearsSince(2018)</td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="images/csharp.svg"/>
+                </td>
+                <td>.Net Core</td>
+                <td>@YearsSince(2018)</td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="images/python.svg"/>
+                </td>
+                <td>Python</td>
+                <td>@YearsSince(2016)</td>
+            </tr>
+        </table>
+    </div>
 </section>
 
 <script>
