@@ -15,38 +15,10 @@
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="Blog" t="Include">
-        <e p="articles-how-to" t="Include">
-          <e p="content.md" t="Include" />
-          <e p="resources" t="Include">
-            <e p="cover.jpg" t="Include" />
-          </e>
-        </e>
         <e p="how-to-article" t="Include">
           <e p="content.md" t="Include" />
           <e p="resources" t="Include">
             <e p="cover.png" t="Include" />
-          </e>
-        </e>
-        <e p="my-test-article" t="Include">
-          <e p="content.md" t="Include" />
-          <e p="resources" t="Include">
-            <e p="cover.png" t="Include" />
-          </e>
-        </e>
-        <e p="test-1" t="Include">
-          <e p="content.md" t="Include" />
-          <e p="resources" t="Include">
-            <e p="cover.jpg" t="Include" />
-          </e>
-        </e>
-        <e p="test-2" t="Include">
-          <e p="content.md" t="Include" />
-          <e p="resources" t="Include" />
-        </e>
-        <e p="test-3" t="Include">
-          <e p="content.md" t="Include" />
-          <e p="resources" t="Include">
-            <e p="cover.jpg" t="Include" />
           </e>
         </e>
       </e>
@@ -177,14 +149,18 @@
         </e>
         <e p="favicon.ico" t="Include" />
         <e p="images" t="Include">
+          <e p="csharp-white.svg" t="Include" />
+          <e p="csharp.svg" t="Include" />
           <e p="github-white.svg" t="Include" />
           <e p="github.svg" t="Include" />
           <e p="gitlab-white.svg" t="Include" />
+          <e p="gitlab.png" t="Include" />
           <e p="gitlab.svg" t="Include" />
           <e p="info-icon.png" t="Include" />
           <e p="linkedin-white.svg" t="Include" />
           <e p="linkedin.svg" t="Include" />
           <e p="mail.svg" t="Include" />
+          <e p="python.svg" t="Include" />
           <e p="temp-profile-pic.jpg" t="Include" />
           <e p="wallpaper.jpg" t="Include" />
         </e>

@@ -17,6 +17,8 @@ $top-padding: 100px;
   background-color: $color-background;
   min-height: 100vh;
 
+  padding-top: $top-padding;
+
   @media screen and (max-width: $page-response-width) {
     min-height: -moz-calc(100vh - 300px);
     min-height: -webkit-calc(100vh - 300px);
@@ -27,6 +29,8 @@ $top-padding: 100px;
     min-height: -moz-calc(100vh - 400px);
     min-height: -webkit-calc(100vh - 400px);
     min-height: calc(100vh - 400px);
+
+    padding-top: 30px;
   }
 
   @media screen and (max-width: $page-response-width) and (max-height: 1000px) {
@@ -34,11 +38,22 @@ $top-padding: 100px;
   }
 }
 
+.ancillary-section {
+  background-color: $color-background;
+
+  padding: 100px 0 100px 0;
+  
+  &.testing {
+    background-color: $color-background-3;
+  }
+}
+
 .content-wrapper {
   height: 100%;
   width: 750px;
   margin: 0 auto;
-  padding: $top-padding 25px 25px;
+  
+  padding: 0 25px 0 25px;
 
   @media screen and (max-width: $page-transition-width) {
     width: 650px;
@@ -46,7 +61,5 @@ $top-padding: 100px;
 
   @media screen and (max-width: $page-smallest-width) {
     width: 100%;
-
-    padding: 30px 25px 25px;
   }
 }

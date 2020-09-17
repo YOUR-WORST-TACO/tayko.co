@@ -6,7 +6,7 @@
   height: 100%;
   width: 520px;
   margin: 0 auto;
-  padding: 30vh 10px 10px;
+  padding: 30vh 35px 35px;
   
   h1 {
     font-size: 58px;
@@ -125,11 +125,11 @@
   }
   
   @media screen and (max-width: $page-response-width) {
-    padding: 30px 10px 40px 10px;
+    padding: 30px 30px 40px 30px;
   }
   
   @media screen and (max-height: 770px) {
-    padding: 30px 10px 40px 10px;
+    padding: 30px 30px 40px 30px;
   }
   
   @media screen and (max-width: 520px) {
@@ -140,4 +140,63 @@
 @keyframes arrow-animation {
   0% {stroke-dashoffset: 1759;}
   100% {stroke-dashoffset: 0;}
+}
+
+.skill-table {
+  color: #fff;
+  width: 100%;
+  
+  margin-top: 70px;
+  
+  tr {
+    border-bottom: solid  1px white;
+    padding-bottom: 30px;
+    
+    th {
+      font-size: 30px;
+      padding-bottom: 25px;
+      
+      @media screen and (max-width: 500px) {
+        font-size: 7vw;
+      }
+    }
+
+    td {
+      font-size: 25px;
+      padding-top: 25px;
+      padding-bottom: 25px;
+      
+      font-weight: 100;
+
+      @media screen and (max-width: 500px) {
+        font-size: 5vw;
+      }
+    }
+
+    th:first-child, td:first-child {
+      $skill-table-n1-width: 100px;
+      width: $skill-table-n1-width;
+      min-width: $skill-table-n1-width;
+      max-width: $skill-table-n1-width;
+
+      img {
+        width: 50px;
+      }
+
+      @media screen and (max-width: 500px) {
+        $skill-table-n1-width-response: 60px;
+        width: $skill-table-n1-width-response;
+        min-width: $skill-table-n1-width-response;
+        max-width: $skill-table-n1-width-response;
+      }
+    }
+    
+    th:last-child, td:last-child {
+      text-align: right;
+    }
+    
+    &:first-child, &:last-child {
+      border: none;
+    }
+  }
 }

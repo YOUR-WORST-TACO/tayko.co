@@ -3,16 +3,13 @@ nav {
 
   width: 30vw;
   height: 100vh;
-  
-  background: url("../images/wallpaper.jpg") no-repeat fixed;
-  
-  //background-size: cover;
-  background-size: auto 100%;
-  //background-size: 30% 100%;
-  //background-attachment: fixed;
+
+  background-size: cover;
+  background: url("../images/wallpaper.jpg") no-repeat fixed 0% +0%;
   
   h1 {
     padding-top: 200px;
+    padding-bottom: 0;
     
     a {
       @include plain-text-link;
@@ -31,7 +28,7 @@ nav {
     }
 
     @media screen and (max-width: 330px) {
-      padding-top: 0;
+      //padding-top: 0;
       
     }
   }
