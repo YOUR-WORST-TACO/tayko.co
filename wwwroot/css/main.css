@@ -983,6 +983,34 @@ web backend
   font-size: 16px;
 }
 
+.blog-section {
+  background-color: #0a0b0d;
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 1070px) {
+  .blog-section {
+    min-height: -moz-calc(100vh - 300px);
+    min-height: -webkit-calc(100vh - 300px);
+    min-height: calc(100vh - 300px);
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .blog-section {
+    min-height: -moz-calc(100vh - 400px);
+    min-height: -webkit-calc(100vh - 400px);
+    min-height: calc(100vh - 400px);
+    padding-top: 30px;
+  }
+}
+
+@media screen and (max-width: 1070px) and (max-height: 1000px) {
+  .blog-section {
+    min-height: 0px;
+  }
+}
+
 .blog-image {
   -webkit-box-shadow: inset 10px -9px 22px -13px black;
   -moz-box-shadow: inset 10px -9px 22px -13px black;

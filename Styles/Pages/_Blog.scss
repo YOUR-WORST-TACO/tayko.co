@@ -15,6 +15,31 @@
 .article-description {
 }
 
+.blog-section {
+  background-color: $color-background;
+  min-height: 100vh;
+
+  //padding-top: $top-padding;
+
+  @media screen and (max-width: $page-response-width) {
+    min-height: -moz-calc(100vh - 300px);
+    min-height: -webkit-calc(100vh - 300px);
+    min-height: calc(100vh - 300px);
+  }
+
+  @media screen and (max-width: $page-smallest-width) {
+    min-height: -moz-calc(100vh - 400px);
+    min-height: -webkit-calc(100vh - 400px);
+    min-height: calc(100vh - 400px);
+
+    padding-top: 30px;
+  }
+
+  @media screen and (max-width: $page-response-width) and (max-height: 1000px) {
+    min-height: 0px;
+  }
+}
+
 .blog-image {
   -webkit-box-shadow: inset 10px -9px 22px -13px rgba(0,0,0,1);
   -moz-box-shadow: inset 10px -9px 22px -13px rgba(0,0,0,1);
