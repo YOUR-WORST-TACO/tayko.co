@@ -132,7 +132,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 }
 
 .ancillary-section.testing {
-  background-color: #333335;
+  background-color: #1f1f21;
 }
 
 .content-wrapper {
@@ -582,7 +582,7 @@ body::-webkit-scrollbar-thumb {
 .skill-bar {
   width: 100%;
   /* Full width */
-  background-color: #333335;
+  background-color: #1f1f21;
   /* Grey background */
   border-radius: 20px;
   overflow: hidden;
@@ -1114,7 +1114,7 @@ web backend
   height: 100%;
   width: 520px;
   margin: 0 auto;
-  padding: 30vh 35px 35px;
+  padding: 30vh 15px 15px;
 }
 
 .index-intro-content h1 {
@@ -1324,22 +1324,9 @@ web backend
   }
 }
 
-.skill-table tr th:first-child, .skill-table tr td:first-child {
-  width: 100px;
-  min-width: 100px;
-  max-width: 100px;
-}
-
-.skill-table tr th:first-child img, .skill-table tr td:first-child img {
+.skill-table tr td img {
   width: 50px;
-}
-
-@media screen and (max-width: 500px) {
-  .skill-table tr th:first-child, .skill-table tr td:first-child {
-    width: 60px;
-    min-width: 60px;
-    max-width: 60px;
-  }
+  margin-right: 30px;
 }
 
 .skill-table tr th:last-child, .skill-table tr td:last-child {
@@ -1348,18 +1335,6 @@ web backend
 
 .skill-table tr:first-child, .skill-table tr:last-child {
   border: none;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-size: cover;
-  background-attachment: fixed;
-  min-height: 100vh;
-  overflow-x: hidden;
 }
 
 h1 {
@@ -1420,11 +1395,26 @@ a:link:active, a:visited:active {
   color: #B1ADA0;
 }
 
-div.clear {
-  clear: both;
+.italic {
+  font-style: italic;
 }
 
-span.italic {
-  font-style: italic;
+.bold {
   font-weight: bold;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+div.clear {
+  clear: both;
 }

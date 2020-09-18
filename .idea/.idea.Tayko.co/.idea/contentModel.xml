@@ -76,6 +76,7 @@
         <e p="_Colors.scss" t="Include" />
         <e p="_Globals.scss" t="Include" />
         <e p="_Parameters.scss" t="Include" />
+        <e p="_TextStyles.scss" t="Include" />
         <e p="Components" t="Include">
           <e p="_Blinker.scss" t="Include" />
           <e p="_Carousel.scss" t="Include" />
@@ -137,6 +138,7 @@
           <e p="Partials" t="Include">
             <e p="_CookieConsentPartial.cshtml" t="Include" />
             <e p="_FooterPartial.cshtml" t="Include" />
+            <e p="_HeadPartial.cshtml" t="Include" />
             <e p="_NavbarPartial.cshtml" t="Include" />
             <e p="_ValidationScriptsPartial.cshtml" t="Include" />
           </e>
@@ -149,14 +151,46 @@
         </e>
         <e p="favicon.ico" t="Include" />
         <e p="images" t="Include">
+          <e p="cplusplus.svg" t="Include" />
           <e p="csharp-white.svg" t="Include" />
           <e p="csharp.svg" t="Include" />
+          <e p="css.svg" t="Include" />
+          <e p="favicon" t="Include">
+            <e p="android-icon-144x144.png" t="Include" />
+            <e p="android-icon-192x192.png" t="Include" />
+            <e p="android-icon-36x36.png" t="Include" />
+            <e p="android-icon-48x48.png" t="Include" />
+            <e p="android-icon-72x72.png" t="Include" />
+            <e p="android-icon-96x96.png" t="Include" />
+            <e p="apple-icon-114x114.png" t="Include" />
+            <e p="apple-icon-120x120.png" t="Include" />
+            <e p="apple-icon-144x144.png" t="Include" />
+            <e p="apple-icon-152x152.png" t="Include" />
+            <e p="apple-icon-180x180.png" t="Include" />
+            <e p="apple-icon-57x57.png" t="Include" />
+            <e p="apple-icon-60x60.png" t="Include" />
+            <e p="apple-icon-72x72.png" t="Include" />
+            <e p="apple-icon-76x76.png" t="Include" />
+            <e p="apple-icon-precomposed.png" t="Include" />
+            <e p="apple-icon.png" t="Include" />
+            <e p="favicon-16x16.png" t="Include" />
+            <e p="favicon-32x32.png" t="Include" />
+            <e p="favicon-96x96.png" t="Include" />
+            <e p="favicon.ico" t="Include" />
+            <e p="manifest.json" t="Include" />
+            <e p="ms-icon-144x144.png" t="Include" />
+            <e p="ms-icon-150x150.png" t="Include" />
+            <e p="ms-icon-310x310.png" t="Include" />
+            <e p="ms-icon-70x70.png" t="Include" />
+          </e>
           <e p="github-white.svg" t="Include" />
           <e p="github.svg" t="Include" />
           <e p="gitlab-white.svg" t="Include" />
           <e p="gitlab.png" t="Include" />
           <e p="gitlab.svg" t="Include" />
+          <e p="html5.svg" t="Include" />
           <e p="info-icon.png" t="Include" />
+          <e p="javascript.svg" t="Include" />
           <e p="linkedin-white.svg" t="Include" />
           <e p="linkedin.svg" t="Include" />
           <e p="mail.svg" t="Include" />

@@ -1,0 +1,55 @@
+h1 {
+  font-size: 65px;
+  @include default_text;
+  padding-bottom: 40px;
+
+  @media screen and (max-width: $page-smallest-width) {
+    font-size: 15vw;
+  }
+}
+
+h2 {
+  padding-top: 25px;
+  font-size: 40px;
+  @include default_text;
+}
+
+h3 {
+  @include default_text;
+}
+
+h4 {
+  @include default_text;
+}
+
+p {
+  @include default_text;
+
+  padding-top: 15px;
+
+  font-size: 20px;
+  line-height: 35px;
+
+  &.drop-cap::first-letter {
+    left: 0;
+    position: absolute;
+    float: left;
+    font-size: 4.5em;
+    line-height: 0.82em;
+    padding-right: 5px;
+    padding-top: 5px;
+    color: $color-5;
+  }
+}
+
+a {
+  @include hover-text-link;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
