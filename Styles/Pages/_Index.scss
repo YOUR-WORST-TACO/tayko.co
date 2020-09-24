@@ -1,12 +1,14 @@
-.index-content {
-  
+.primary-index-section {
+  @media screen and (max-height: 760px) {
+    padding-top: 20px;
+  }
 }
 
 .index-intro-content {
   height: 100%;
   width: 520px;
   margin: 0 auto;
-  padding: 30vh 15px 15px;
+  padding: 20vh 15px 15px;
   
   h1 {
     font-size: 58px;
@@ -119,17 +121,26 @@
       width: 100%;
       margin-left: 0;
     }
-    @media screen and (max-width: $page-smallest-width) and (max-height: 1000px){
+    
+    @media screen and (min-width: $page-response-width) and (max-height: 640px) {
+      display: none;
+    }
+    
+    @media screen and (max-width: $page-smallest-width) and (max-height: 1070px){
       display: none;
     }
   }
   
   @media screen and (max-width: $page-response-width) {
-    padding: 30px 30px 40px 30px;
+    padding: 30px 15px 40px 15px;
   }
   
-  @media screen and (max-height: 770px) {
-    padding: 30px 30px 40px 30px;
+  @media screen and (max-height: 930px) {
+    padding: 30px 15px 40px 15px;
+  }
+
+  @media screen and (max-height: 720px) {
+    padding: 0 15px 40px 15px;
   }
   
   @media screen and (max-width: 520px) {
